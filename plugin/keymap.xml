@@ -1,0 +1,31 @@
+<keymap>
+<map context="XPowerActions">
+	<key id="KEY_CHANNELUP" mapto="wakeup" flags="m" />
+	<key id="KEY_CHANNELDOWN" mapto="bouqdn" flags="m" />
+
+	<key id="KEY_0" mapto="abort" flags="m" />
+	<key id="KEY_1" mapto="wakeup" flags="m" />
+	<key id="KEY_2" mapto="suspend" flags="m" />
+	<key id="KEY_3" mapto="shutdown" flags="m" />
+	<key id="KEY_4" mapto="restart" flags="m" />
+	<key id="KEY_5" mapto="hibernate" flags="m" />
+	
+	
+	<key id="KEY_OK" mapto="ok" flags="m" />
+	<key id="KEY_EXIT" mapto="cancel" flags="m" />
+	<key id="KEY_ESC" mapto="cancel" flags="m" />
+	
+	<key id="KEY_MENU" mapto="menu" flags="m" />
+	<key id="KEY_SPACE" mapto="menu" flags="m" />
+
+	<key id="KEY_RED" mapto="red" flags="m" />
+	<key id="KEY_GREEN" mapto="green" flags="m" />
+	<key id="KEY_YELLOW" mapto="yellow" flags="m" />
+	<key id="KEY_BLUE" mapto="blue" flags="m" />
+	
+	<key id="KEY_LEFT" mapto="left" flags="mr" />
+	<key id="KEY_RIGHT" mapto="right" flags="mr" />
+	<key id="KEY_UP" mapto="up" flags="mr" />
+	<key id="KEY_DOWN" mapto="down" flags="mr" />
+</map>
+</keymap>
