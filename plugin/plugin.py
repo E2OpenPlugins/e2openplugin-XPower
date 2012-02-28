@@ -25,7 +25,7 @@ from xpoweredit import xpowerEdit
 from xpowerhlp import xpowerHelp
 
 # Global
-version = "1.50"
+version = "1.51"
 
 OS_XP = "0"
 OS_WIN7 = "1"

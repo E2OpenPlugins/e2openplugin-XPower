@@ -220,6 +220,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 
                         self.session.openWithCallback(self.updateFinished, MessageBox, _("Your PC has been updated..."), type = MessageBox.TYPE_INFO, timeout = 2)
                         ixpowerUt.writePCsConfig()
+			cfg.close.save()
 			ixpowerUt.configActualized = True
                 else:
                         self.close()
