@@ -1,0 +1,219 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Project-Id-Version: XPower\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: ims\n"
+"Language-Team: ims <ims21@users.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Czech\n"
+"X-Poedit-Country: CZECH REPUBLIC\n"
+
+msgid "Please wait, \"%s\" is sended to computer %s"
+msgstr "Čekejte, prosím. Příkaz \"%s\" je odesílán do %s"
+
+msgid "Magic packet has been send to PC %s"
+msgstr "Magic packet byl odeslán do PC %s"
+
+msgid "Connection finished... %s"
+msgstr "Spojení ukončeno... %s"
+
+msgid "Finished... %s"
+msgstr "Dokončeno... %s"
+
+msgid "Add/Edit"
+msgstr "Přidat/Upravit"
+
+msgid "IP:"
+msgstr "IP:"
+
+msgid "MAC:"
+msgstr "MAC:"
+
+msgid "Do You want remove PC: %s?"
+msgstr "Chcete odstranit PC: %s?"
+
+msgid "PC has been removed..."
+msgstr "PC bylo odstraněno..."
+
+msgid "Power management for Win/Linux PC's"
+msgstr "Správa napájení pro Win/Linux PC"
+
+msgid "BouqUp for %s, BouqDn for %s"
+msgstr "BouqUp - %s, BouqDn - %s"
+
+msgid "BouqUp for WakeUp"
+msgstr "BouqUp - probudit"
+
+msgid "XPower PC configuration"
+msgstr "XPower - nastavení PC"
+
+msgid "Get MAC"
+msgstr "Získat MAC"
+
+#
+#, python-format
+msgid ""
+"A PC entry with this name already exists!\n"
+"Update existing entry and continue?"
+msgstr ""
+"PC s tímto názvem již existuje!\n"
+"Aktualizovat existující položku a pokračovat?"
+
+msgid "Are you sure you want to add this PC?\n"
+msgstr "Opravdu chcete přidat toto PC?\n"
+
+msgid "Please wait while updating your PC..."
+msgstr "Čekejte na dokončení aktualizace PC..."
+
+msgid "Your PC has been updated..."
+msgstr "PC bylo aktualizováno..."
+
+msgid "Your new PC has been added."
+msgstr "Nové PC bylo přidáno."
+
+msgid "PC"
+msgstr "PC"
+
+msgid "User"
+msgstr "Uživatel"
+
+msgid "Name"
+msgstr "Název"
+
+msgid "MAC"
+msgstr "MAC"
+
+msgid "IP"
+msgstr "IP"
+
+msgid "Password"
+msgstr "Heslo"
+
+msgid "Close plugin"
+msgstr "Zavřít"
+
+msgid "Delete selected item"
+msgstr "Odstranit vybranou položku"
+
+msgid "Help"
+msgstr "Nápověda"
+
+msgid "Select power management"
+msgstr "Vyběr správy napájení"
+
+msgid "Shutdown"
+msgstr "Vypnout"
+
+msgid "WakeUp"
+msgstr "Probudit"
+
+msgid "Abort shutdown / reboot"
+msgstr "Zrušit vypnutí / restart"
+
+msgid "Reboot"
+msgstr "Restart"
+
+msgid "Suspend"
+msgstr "Uspat"
+
+msgid "Hibernate"
+msgstr "Hibernovat"
+
+msgid " - select action:"
+msgstr " - zvolte akci:"
+
+msgid "Select action"
+msgstr "Zvolit akci"
+
+msgid "Connection failed... %s"
+msgstr "Spojení selhalo... %s"
+
+msgid "get MAC of running PC"
+msgstr "získat MAC běžícího PC"
+
+msgid "wakeup PC"
+msgstr "probudit PC"
+
+msgid "Add/Edit item"
+msgstr "Přidat / upravit položku"
+
+msgid "User defined..."
+msgstr "Definováno uživatelem..."
+
+msgid "Version"
+msgstr "Verze"
+
+msgid "XPower Help"
+msgstr "XPower nápověda"
+
+msgid "Welcome in plugin XPower for remote power management PC's. This plugin knows sending Magic Packet and control power status of PC."
+msgstr "Vítejte v pluginu XPower pro ovládání napájení vzdálených PC. Tento plugin umí posílat Magic Packet a řídit stav napájení PC."
+
+msgid "Each operation system using its own comunication and own power managenent. There in settings of each PC item must be set true value."
+msgstr "Každý operační systém užívá vlastní komunikaci a vlastní správu napájení, proto musí být nastavena pro každé PC správná hodnota."
+
+msgid "If are on PC installed more OS, then create more PC's items. Priority key is name of PC."
+msgstr "Jestliže je na PC instalováno více OS, pak založte PC vícekrát, pokaždé s jiným jménem. "
+
+msgid "Dont forget, that not all mode must be supported by Your hardware!"
+msgstr "Nezapomeňte, že ne každý mód musí Vaše hardware podporovat!"
+
+msgid "XPower plugin knows:"
+msgstr "XPower umí:"
+
+msgid "Do not forget, that Suspend and Hibernate are hardware, BIOS and drivers dependents."
+msgstr "Nezapomeňte, že Uspat a Hibernovat závisí na hardware, BIOSu a ovladačích."
+
+msgid "- install telnetd with:"
+msgstr "- nainstalovat telnetd:"
+
+msgid "- enable the Telnet Server"
+msgstr "- povolit Telnet Server"
+
+msgid "- set Telnet server service to Automatic and run it"
+msgstr "- nastavit Telnet službu na Automaticky a spustit"
+
+msgid "- set Telnet in Services to Automatic and run it"
+msgstr "- nastavit Telnet ve službách na Automaticky a spustit"
+
+msgid "- there in Firewall add tcp port 23 for telnet"
+msgstr "- ve Firewallu přidat tcp port 23 pro telnet"
+
+msgid "- must be installed actual compiled \"net\" command. Problem is, that size of this file is over 8MB and some box have not enought memory for it"
+msgstr "- musí být instalován aktuálně zkompilovaný příkaz \"net\". Může nastat problém, protože tento soubor má velikost 8MB a některé boxy nemají dostatek paměti. "
+
+msgid "- this way knows Shutdown, Reboot and Abort only!"
+msgstr "- touto cestou je možné provést pouze Shutdown, Reboot a Abort!"
+
+msgid ""
+"Note:\n"
+" telnet is easy way, but it is not safe protocol! Disable telnet port 23 on Your router, if it is possible!"
+msgstr ""
+"Poznámka:\n"
+" telnet je nejjednodušší cesta pro XPower, ale není to bezpečný protokol! Pokud je to možné, zakažte na routeru port 23!"
+
+msgid "Setup"
+msgstr "Nastavení"
+
+msgid "Hotkeys"
+msgstr "Hotkeys"
+
+msgid ""
+"Command \"net\" is not installed\n"
+"option \"XP NET RPC\" does not work..."
+msgstr ""
+"Příkaz \"net\" není nainstalován\n"
+"volba \"XP NET RPC\" nepracuje..."
+
+msgid "No response from %s."
+msgstr "Žádná odpověď od %s."
+
+msgid "XPower PC configuration:"
+msgstr "XPower - konfigurace PC:"
+
+msgid "Closing plugin"
+msgstr "Zavírat plugin"
+
