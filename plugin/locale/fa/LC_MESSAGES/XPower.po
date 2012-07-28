@@ -1,0 +1,213 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Project-Id-Version: xpower Persian Translation\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: mehdi <mehdi_ar_yekta@yahoo.com>\n"
+"Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Persian\n"
+"X-Poedit-Country: IRAN, ISLAMIC REPUBLIC OF\n"
+
+msgid "Please wait, \"%s\" is sended to computer %s"
+msgstr ""
+
+msgid "Magic packet has been send to PC %s"
+msgstr ""
+
+msgid "Connection finished... %s"
+msgstr ""
+
+msgid "Finished... %s"
+msgstr ""
+
+msgid "Add/Edit"
+msgstr "افزودن / ویرایش کردن"
+
+msgid "IP:"
+msgstr ""
+
+msgid "MAC:"
+msgstr ""
+
+msgid "Do You want remove PC: %s?"
+msgstr ""
+
+msgid "PC has been removed..."
+msgstr "پاک شده است PC"
+
+msgid "Power management for Win/Linux PC's"
+msgstr "مدیریت انرژی و توان برای ویندوز / لینوکس کامپیوتر"
+
+msgid "BouqUp for %s, BouqDn for %s"
+msgstr ""
+
+msgid "BouqUp for WakeUp"
+msgstr ""
+
+msgid "XPower PC configuration"
+msgstr "XPower PC پیکربندی"
+
+msgid "Get MAC"
+msgstr ""
+
+#
+#, python-format
+msgid ""
+"A PC entry with this name already exists!\n"
+"Update existing entry and continue?"
+msgstr ""
+
+msgid "Are you sure you want to add this PC?\n"
+msgstr ""
+
+msgid "Please wait while updating your PC..."
+msgstr "لطفا تا زمانی کامپیوتر در حال بروزرسانی است صبر کنید ..."
+
+msgid "Your PC has been updated..."
+msgstr "کامپیوتر شما بروزرسانی شده است "
+
+msgid "Your new PC has been added."
+msgstr "کامپیوتر جدید شما اضافه گردید"
+
+msgid "PC"
+msgstr "کامپیوتر"
+
+msgid "User"
+msgstr "کاربر"
+
+msgid "Name"
+msgstr "نام"
+
+msgid "MAC"
+msgstr ""
+
+msgid "IP"
+msgstr ""
+
+msgid "Password"
+msgstr "رمز ورود"
+
+msgid "Close plugin"
+msgstr "بستن پلاگین"
+
+msgid "Delete selected item"
+msgstr "حذف گزینه انتخاب شده"
+
+msgid "Help"
+msgstr "راهنما"
+
+msgid "Select power management"
+msgstr "انتخاب مدیریت انرژی و توان"
+
+msgid "Shutdown"
+msgstr "خاموش کردن"
+
+msgid "WakeUp"
+msgstr "بیدار شدن"
+
+msgid "Abort shutdown / reboot"
+msgstr "لغو خاموش کردن / راه اندازی مجدد سیستم"
+
+msgid "Reboot"
+msgstr "راه اندازی مجدد"
+
+msgid "Suspend"
+msgstr "در وضعیت معلق"
+
+msgid "Hibernate"
+msgstr "هایبرنت"
+
+msgid " - select action:"
+msgstr "- انتخاب یک اقدام : "
+
+msgid "Select action"
+msgstr "انتخاب یک اقدام"
+
+msgid "Connection failed... %s"
+msgstr ""
+
+msgid "get MAC of running PC"
+msgstr ""
+
+msgid "wakeup PC"
+msgstr "بیدار سازی کامپیوتر"
+
+msgid "Add/Edit item"
+msgstr "اضافه کردن / ویرایش کردن گزینه"
+
+msgid "User defined..."
+msgstr "کاربر تعریف شد ..."
+
+msgid "Version"
+msgstr "نسخه"
+
+msgid "XPower Help"
+msgstr "XPower راهنما"
+
+msgid "Welcome in plugin XPower for remote power management PC's. This plugin knows sending Magic Packet and control power status of PC."
+msgstr "خوش آمدید به پلاگین ایکس پاور پلاگینی جهت مدیریت از راه دور کامپیوتر / این پلاگین با ارسال بسته های جادویی مدیریت توان کامپیوتر را در دست می گیرد   "
+
+msgid "Each operation system using its own comunication and own power managenent. There in settings of each PC item must be set true value."
+msgstr "هر سیستم عاملی از ارتباطات خاص خودش و مدیریت توان خودش استفاده می کند و در هر سیستم کامپیوتری لیستی از تنظیمات وجود دارد که بایستی به درستی تنظیم گردند"
+
+msgid "If are on PC installed more OS, then create more PC's items. Priority key is name of PC."
+msgstr "اگر در کامپیوتر شما چندین سیستم عامل نصب شده است پس گزینه های بیشتری را در کامپیوتر ایجاد کنید . اولویت ها بر اساس نام کامپیوترها هستند "
+
+msgid "Dont forget, that not all mode must be supported by Your hardware!"
+msgstr "فراموش نکن که قرار نیست تمامی مدها توسط سخت افزار شما پشتیبانی شود "
+
+msgid "XPower plugin knows:"
+msgstr "پلاگین ایکس پاور می داند که :"
+
+msgid "Do not forget, that Suspend and Hibernate are hardware, BIOS and drivers dependents."
+msgstr ""
+
+msgid "- install telnetd with:"
+msgstr "نصب تلنت با استفاده  : "
+
+msgid "- enable the Telnet Server"
+msgstr "فعال سازی سرور تلنت :"
+
+msgid "- set Telnet server service to Automatic and run it"
+msgstr "تنظیم کردن سرور تلنت در یک سرویس خاص به مد خودکاربه منظور راه اندازی آن"
+
+msgid "- set Telnet in Services to Automatic and run it"
+msgstr "تنظیم کردن سرور تلنت در تمامی سرویس به مد خودکاربه منظور راه اندازی آن"
+
+msgid "- there in Firewall add tcp port 23 for telnet"
+msgstr "در فایروال نی سی پی پورت 23 را به منظور فعال سازی تلنت اضافه کنید"
+
+msgid "- must be installed actual compiled \"net\" command. Problem is, that size of this file is over 8MB and some box have not enought memory for it"
+msgstr ""
+
+msgid "- this way knows Shutdown, Reboot and Abort only!"
+msgstr "این راه خاموش کردن و راه اندازی مجدد ولغو را می داند"
+
+msgid ""
+"Note:\n"
+" telnet is easy way, but it is not safe protocol! Disable telnet port 23 on Your router, if it is possible!"
+msgstr ""
+
+msgid "Setup"
+msgstr "برپاکردن"
+
+msgid "Hotkeys"
+msgstr "کلیدهای میانبر"
+
+msgid ""
+"Command \"net\" is not installed\n"
+"option \"XP NET RPC\" does not work..."
+msgstr ""
+
+msgid "No response from %s."
+msgstr ""
+
+msgid "XPower PC configuration:"
+msgstr "پیکربندی ایکس پاور کامپیوتر"
+
+msgid "Closing plugin"
+msgstr "بستن پلاگین"
+
