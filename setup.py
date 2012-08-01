@@ -3,7 +3,7 @@ import setup_translate
 
 pkg = 'Extensions.XPower'
 setup (name = 'enigma2-plugin-extensions-xpower',
-       version = '1.51',
+       version = '1.52',
        description = 'remote PC power management for win and linux',
        packages = [pkg],
        package_dir = {pkg: 'plugin'},

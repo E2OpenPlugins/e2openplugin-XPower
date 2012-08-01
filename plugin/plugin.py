@@ -13,6 +13,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+from Components.Sources.StaticText import StaticText
 
 from enigma import eTimer
 
@@ -25,7 +26,7 @@ from xpoweredit import xpowerEdit
 from xpowerhlp import xpowerHelp
 
 # Global
-version = "1.51"
+version = "1.52"
 
 OS_XP = "0"
 OS_WIN7 = "1"
@@ -35,6 +36,35 @@ OS_RPC= "5"
 SHUTDOWN = "0"
 SUSPEND = "1"
 HIBERNATE = "2"
+
+class xpowerSummary(Screen):
+	skin = """
+	<screen position="0,0" size="96,64">
+		<widget source="title" render="Label" position="0,0" size="96,12" font="FdLcD;12" halign="left" foregroundColor="lightyellow" />
+		<widget source="pcname" render="Label" position="0,12" size="200,40" font="FdLcD;40" halign="left" valign="center" foregroundColor="white"/>
+		<widget source="bouquet" render="Label" position="0,52" size="96,12" font="FdLcD;12" halign="left" foregroundColor="lightyellow"/>
+	</screen>"""
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["title"] = StaticText(_(parent.setup_title))
+		self["pcname"] = StaticText("")
+		self["bouquet"] = StaticText("")
+		self.onShow.append(self.addWatcher)
+		self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		self.parent.onChangedEntry.append(self.selectionChanged)
+		self.parent["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def removeWatcher(self):
+		self.parent.onChangedEntry.remove(self.selectionChanged)
+		self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
+
+	def selectionChanged(self):
+		self["pcname"].text = self.parent.getCurrentEntry()
+		self["bouquet"].text = self.parent.getCurrentValue()
 
 class xpower(Screen, HelpableScreen):
 	skin = """
@@ -144,8 +174,7 @@ class xpower(Screen, HelpableScreen):
 		self.statusbarText()
 		return _("BouqDn: %s") % (self.text)
 	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
+		return xpowerSummary
 	###
 
 	def prepare(self):
