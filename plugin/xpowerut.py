@@ -2,7 +2,6 @@ from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.Button import Button
 from Components.Label import Label
-from Plugins.Plugin import PluginDescriptor
 import os
 from os import path as os_path
 

@@ -10,7 +10,6 @@ from Components.ActionMap import ActionMap, HelpableActionMap
 from Screens.HelpMenu import HelpableScreen
 from Components.Button import Button
 from Components.Label import Label
-from Plugins.Plugin import PluginDescriptor
 from Components.Pixmap import Pixmap, MultiPixmap
 
 from xpowerut import ixpowerUt, xpowerUt
@@ -129,7 +128,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 #		ip = "%s.%s.%s.%s" % (tuple(cfg.ip.value))
 #		os.system("ether-wake %s" % (ip))
 #		self.session.open(MessageBox,_("Magic packet has been send to PC %s") % (self.pcinfo['name']),type = MessageBox.TYPE_INFO, timeout = 3)
-		#from plugin import xpower
+		#from ui import xpower
 		#self.session.open(xpower,xpower.wakeup)
 
 	def getPcMAC(self):						

@@ -3,12 +3,11 @@ from . import _
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
-from Plugins.Plugin import PluginDescriptor
 from Components.Button import Button
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 
-import plugin
+import ui
 		
 l1  = "\n"
 l2 = "\n" * 2
@@ -47,7 +46,6 @@ class xpowerHelp(Screen):
 	</screen>"""
 
 	def __init__(self, session, plugin_path):
-		self.skin_path = plugin_path
 		Screen.__init__(self, session)
 
 		self["key_red"] = Button(_("Close"))
@@ -72,7 +70,7 @@ class xpowerHelp(Screen):
 			}, -1)
 
 		self.setTitle(_("XPower Help"))
-		self["version"].setText(_("Version") + ": %s" % (plugin.version))
+		self["version"].setText(_("Version") + ": %s" % (ui.version))
 		self.whole()
 
 	def hotkeys(self):
