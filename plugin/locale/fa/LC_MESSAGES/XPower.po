@@ -211,3 +211,6 @@ msgstr "پیکربندی ایکس پاور کامپیوتر"
 msgid "Closing plugin"
 msgstr "بستن پلاگین"
 
+msgid "Delete"
+msgstr ""
+

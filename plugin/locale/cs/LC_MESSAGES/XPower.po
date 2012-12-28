@@ -217,3 +217,5 @@ msgstr "XPower - konfigurace PC:"
 msgid "Closing plugin"
 msgstr "Zavírat plugin"
 
+msgid "Delete"
+msgstr "Odstranit"

@@ -223,3 +223,5 @@ msgstr "XPower - крнфигурация PC:"
 msgid "Closing plugin"
 msgstr "Закрыть плагин"
 
+msgid "Delete"
+msgstr "Удалить"
