@@ -67,7 +67,7 @@ class xpowerSummary(Screen):
 
 class xpower(Screen, HelpableScreen):
 	skin = """
-	<screen position="center,center" size="560,420" title="XPower" >
+	<screen position="center,center" size="560,430" title="XPower" >
 
 		<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 		<ePixmap name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
@@ -79,28 +79,28 @@ class xpower(Screen, HelpableScreen):
 		<widget name="key_yellow" position="280,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_blue" position="420,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 
-		<widget source="config" render="Listbox" position="10,40" size="545,350" scrollbarMode="showOnDemand">
+		<widget source="config" render="Listbox" position="10,40" size="545,360" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 				{"template": [
-						MultiContentEntryPixmapAlphaTest(pos = (15, 1), size = (48, 48), png = 0), # index 0 is the PC pixmap (for pixmap it is png= )
-						MultiContentEntryText(pos = (90, 9), size = (120, 35), font=0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the Name (for text it is text= )
-						MultiContentEntryPixmapAlphaTest(pos = (220, 5), size = (40, 40), png = 2), # index 2 is the system pixmap
+						MultiContentEntryPixmapAlphaTest(pos = (15, 2), size = (48, 38), png = 0), # index 0 is the PC pixmap (for pixmap it is png= )
+						MultiContentEntryText(pos = (90, 6), size = (120, 35), font=0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the Name (for text it is text= )
+						MultiContentEntryPixmapAlphaTest(pos = (220, 2), size = (40, 40), png = 2), # index 2 is the system pixmap
 						MultiContentEntryText(pos = (290, 3), size = (250, 20), font=1, flags = RT_HALIGN_LEFT, text = 3), # index 3 is the IP
-						MultiContentEntryText(pos = (290, 28), size = (250, 20), font=1, flags = RT_HALIGN_LEFT, text = 4), # index 4 is the MAC
+						MultiContentEntryText(pos = (290, 23), size = (250, 20), font=1, flags = RT_HALIGN_LEFT, text = 4), # index 4 is the MAC
 						],
 					"fonts": [gFont("Regular", 30),gFont("Regular", 18)],
-					"itemHeight": 50
+					"itemHeight": 45
 				}
 			</convert>
 		</widget>
 
-		<ePixmap pixmap="skin_default/div-h.png" position="0,396" zPosition="1" size="560,2" />
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="480,403" size="14,14" zPosition="3"/>
-		<widget font="Regular;18" halign="left" position="505,400" render="Label" size="55,20" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
+		<ePixmap pixmap="skin_default/div-h.png" position="0,406" zPosition="1" size="560,2" />
+		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="480,413" size="14,14" zPosition="3"/>
+		<widget font="Regular;18" halign="left" position="505,410" render="Label" size="55,20" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="430,398" zPosition="3" size="35,25" alphatest="on" transparent="1" />
-		<widget name="statusbar" position="10,400" size="420,20" font="Regular;18" />
+		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="430,408" zPosition="3" size="35,25" alphatest="on" transparent="1" />
+		<widget name="statusbar" position="10,410" size="420,20" font="Regular;18" />
 
 	</screen>"""
 
