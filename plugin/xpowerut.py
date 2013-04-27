@@ -16,6 +16,8 @@ class xpowerUt(Screen):
 		self.remotepc = {}
 		self.configActualized = False
 
+		self.pcStr = _("PC")
+
 	def getRemotePCPoints(self):
 		self.remotepc = {}
 
@@ -34,7 +36,7 @@ class xpowerUt(Screen):
 		for pc in tree.findall("host"):
 			data = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False }
 			try:
-				data['name'] = getValue(pc.findall("name"), _("PC")).encode("UTF-8")
+				data['name'] = getValue(pc.findall("name"), self.pcStr).encode("UTF-8")
 				data['ip'] = getValue(pc.findall("ip"), "192.168.1.0").encode("UTF-8")
 				data['mac'] = getValue(pc.findall("mac"), "00:00:00:00:00:00").encode("UTF-8")
 				data['system'] = getValue(pc.findall("system"), "0").encode("UTF-8")
@@ -58,7 +60,7 @@ class xpowerUt(Screen):
 
 	def setDummyRecord(self):
 		data = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False }
-		data['name'] = _("PC")
+		data['name'] = self.pcStr
 		data['ip'] = "192.168.1.100"
 		data['mac'] = "00:00:00:00:00:00"
 		data['system'] = "0"

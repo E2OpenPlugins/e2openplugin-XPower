@@ -25,7 +25,7 @@ from xpoweredit import xpowerEdit
 from xpowerhlp import xpowerHelp
 
 # Global
-version = "1.53"
+version = "1.54"
 
 OS_XP = "0"
 OS_WIN7 = "1"
@@ -142,6 +142,9 @@ class xpower(Screen, HelpableScreen):
 			"suspend": (self.suspend, _("Suspend")),
 			"hibernate": (self.hibernate, _("Hibernate")),
 			}, -1)
+
+		self.ipStr = _("IP:")+" "
+		self.macStr = _("MAC:")+" "
 
 		self.menu = []
 		self.menu.append((_("WakeUp"),"wakeup"))
@@ -290,10 +293,9 @@ class xpower(Screen, HelpableScreen):
 		oldCount = self["config"].count()
 
 		list = []
-                remotepc = ixpowerUt.getPCsList()
-                for name in remotepc.keys():
-			pcentry = ixpowerUt.remotepc[name]
-                        list.append(self.buildPCViewItem(pcentry))
+		remotepc = ixpowerUt.getPCsList()
+		for name in remotepc.keys():
+			list.append(self.buildPCViewItem(ixpowerUt.remotepc[name]))
 		list.sort()
 		self["config"].setList(list)
 
@@ -315,10 +317,9 @@ class xpower(Screen, HelpableScreen):
 				self["config"].setIndex(oldIndex)
 
 	def buildPCViewItem(self, entry):
-                pc = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/host.png"))
-                name = entry["name"]
-		ip = _("IP:") + " " + str(entry["ip"])
-                mac = _("MAC:") + " " + str(entry["mac"])
+		pc = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/host.png"))
+		ip = "".join((self.ipStr,str(entry["ip"])))
+		mac = "".join((self.macStr,str(entry["mac"])))
 		system = entry["system"]
 		if system == OS_WIN7:
 			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/win.png"))
@@ -329,16 +330,16 @@ class xpower(Screen, HelpableScreen):
 		else:
 			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/xp.png"))
 		# return displayed items
-                return( pc, name, logo, ip, mac )
+		return( pc, entry["name"], logo, ip, mac )
 
-        def keyOK(self):
+	def keyOK(self):
                 self.session.openWithCallback(self.editClosed, xpowerEdit, self.pcinfo, self.net_rpc)
 
-        def editClosed(self):
+	def editClosed(self):
 		if ixpowerUt.configActualized:
                         self.showPCsList()
 
-        def deleteItem(self):
+	def deleteItem(self):
 		self.retValue=self.pcinfo['name']
 		self.session.openWithCallback(self.removeData, MessageBox, _("Do You want remove PC: %s?") % (self.pcinfo['name']), type = MessageBox.TYPE_YESNO)
 
