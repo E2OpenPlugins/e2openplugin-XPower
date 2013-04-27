@@ -54,11 +54,10 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 
 	</screen>"""
 
-	def __init__(self, session, pcinfo = None, net_rpc = -1):
+	def __init__(self, session, pcinfo = None):
 		self.skin = xpowerEdit.skin
 		self.session = session
 		self.pcinfo = pcinfo
-		self.net_rpc = net_rpc
 		
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)

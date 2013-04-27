@@ -154,8 +154,6 @@ class xpower(Screen, HelpableScreen):
 		self.menu.append((_("Hibernate"),"hibernate"))
 		self.menu.append((_("Abort shutdown / reboot"),"abort"))
 
-		self.net_rpc = os.system("net rpc | grep 'net rpc' > /dev/null 2>&1")
-
 		self.pcinfo = None
 		self.showPCsList()
 
@@ -228,9 +226,10 @@ class xpower(Screen, HelpableScreen):
 		return ( os, ip, user, passwd, mac )
 
 	def xpnet(self):
-		if self.pcinfo['system'] == OS_RPC and self.net_rpc != 0:
-			self.message(_("Command \"net\" is not installed\noption \"XP NET RPC\" does not work..."),10,"error")
-			return False
+		if self.pcinfo['system'] == OS_RPC:
+			if os.system("net rpc | grep 'net rpc' > /dev/null 2>&1") != 0:
+				self.message(_("Command \"net\" is not installed\noption \"XP NET RPC\" does not work..."),10,"error")
+				return False
 		return True
 
 	def isAlive(self):
@@ -333,7 +332,7 @@ class xpower(Screen, HelpableScreen):
 		return( pc, entry["name"], logo, ip, mac )
 
 	def keyOK(self):
-                self.session.openWithCallback(self.editClosed, xpowerEdit, self.pcinfo, self.net_rpc)
+                self.session.openWithCallback(self.editClosed, xpowerEdit, self.pcinfo)
 
 	def editClosed(self):
 		if ixpowerUt.configActualized:
