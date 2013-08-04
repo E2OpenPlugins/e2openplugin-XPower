@@ -295,7 +295,7 @@ class xpower(Screen, HelpableScreen):
 		remotepc = ixpowerUt.getPCsList()
 		for name in remotepc.keys():
 			list.append(self.buildPCViewItem(ixpowerUt.remotepc[name]))
-		list.sort()
+		list.sort(key = lambda x: x[1])
 		self["config"].setList(list)
 
 		newCount = self["config"].count()
