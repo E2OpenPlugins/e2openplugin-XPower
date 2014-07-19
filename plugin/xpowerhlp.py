@@ -46,6 +46,7 @@ class xpowerHelp(Screen):
 	</screen>"""
 
 	def __init__(self, session, plugin_path):
+		self.skin_path = plugin_path
 		Screen.__init__(self, session)
 
 		self["key_red"] = Button(_("Close"))
