@@ -19,7 +19,7 @@ config.plugins.xpower = ConfigSubsection()
 config.plugins.xpower.name = NoSave(ConfigText(default=_("PC"), fixed_size=False))
 config.plugins.xpower.ip = NoSave(ConfigIP(default=[192,168,1,100]))
 config.plugins.xpower.mac = NoSave(ConfigText(default="00:00:00:00:00:00"))
-config.plugins.xpower.system = NoSave(ConfigSelection(default="0", choices=[("0",_("XP")),("1",_("Win7")),("2",_("Linux")),("5",_("XP NET RPC"))]))
+config.plugins.xpower.system = NoSave(ConfigSelection(default="0", choices=[("0",_("XP")),("1",_("Win7")),("3",_("Win8")),("2",_("Linux")),("5",_("XP NET RPC"))]))
 config.plugins.xpower.user = NoSave(ConfigText(default="administrator", fixed_size=False))
 config.plugins.xpower.passwd = NoSave(ConfigPassword(default="password", fixed_size=False))
 config.plugins.xpower.bqdn = NoSave(ConfigSelection(default="0", choices=[("0",_("Shutdown")),("1",_("Suspend")),("2",_("Hybernate"))]))
@@ -75,7 +75,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 
 		ConfigListScreen.__init__(self, xpowerEditconfigList, session=self.session, on_change = self.changedEntry)
 
-                if self.pcinfo is None:
+		if self.pcinfo is None:
 			self.pcinfo = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False }
 
 		self["key_red"] = Button(_("Cancel"))
@@ -101,7 +101,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			}, -1)
 		self.setup_title = _("XPower: %s" % (self.pcinfo['name']))
 		self.onChangedEntry = []
-                self.remotepc = ixpowerUt.getPCsList()
+		self.remotepc = ixpowerUt.getPCsList()
 		self.fillCfg()
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.isAlive)
@@ -112,7 +112,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		for x in self.onChangedEntry:
 			x()
 	def getCurrentEntry(self):
-                return self["config"].getCurrent()[0]
+		return self["config"].getCurrent()[0]
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
 	def createSummary(self):
@@ -184,72 +184,70 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		if self.pcinfo.has_key('system'):
 			cfg.system.value = self.pcinfo['system']
 		if self.pcinfo.has_key('user'):
-                        cfg.user.value = self.pcinfo['user']
+			cfg.user.value = self.pcinfo['user']
 		if self.pcinfo.has_key('passwd'):
-                        cfg.passwd.value = self.pcinfo['passwd']
+			cfg.passwd.value = self.pcinfo['passwd']
 		if self.pcinfo.has_key('bqdn'):
-                        cfg.bqdn.value = self.pcinfo['bqdn']
+			cfg.bqdn.value = self.pcinfo['bqdn']
 
 	# convert ip from a string to a list of int
-        def convertIP(self, ip):
-                strIP = ip.split('.')
-                ip = []
-                for x in strIP:
-                        ip.append(int(x))
-                return ip
+	def convertIP(self, ip):
+		strIP = ip.split('.')
+		ip = []
+		for x in strIP:
+			ip.append(int(x))
+		return ip
 
 	def ok(self):
 		current = self["config"].getCurrent()
-                name = cfg.name.value
-                if self.remotepc.has_key(name) is True:
-                        self.session.openWithCallback(self.updateConfig, MessageBox, (_("A PC entry with this name already exists!\nUpdate existing entry and continue?") ) )
-                else:
-                        self.session.openWithCallback(self.applyConfig, MessageBox, (_("Are you sure you want to add this PC?\n") ) )
+		name = cfg.name.value
+		if self.remotepc.has_key(name) is True:
+			self.session.openWithCallback(self.updateConfig, MessageBox, (_("A PC entry with this name already exists!\nUpdate existing entry and continue?") ) )
+		else:
+			self.session.openWithCallback(self.applyConfig, MessageBox, (_("Are you sure you want to add this PC?\n") ) )
 
 	def updateConfig(self, ret = False): # update record
-                if (ret == True):
-                        ixpowerUt.setRemotePCAttribute(cfg.name.value, "name", cfg.name.value)
-                        ixpowerUt.setRemotePCAttribute(cfg.name.value, "ip", cfg.ip.getText())
-                        ixpowerUt.setRemotePCAttribute(cfg.name.value, "mac", cfg.mac.value)
+		if (ret == True):
+			ixpowerUt.setRemotePCAttribute(cfg.name.value, "name", cfg.name.value)
+			ixpowerUt.setRemotePCAttribute(cfg.name.value, "ip", cfg.ip.getText())
+			ixpowerUt.setRemotePCAttribute(cfg.name.value, "mac", cfg.mac.value)
 			ixpowerUt.setRemotePCAttribute(cfg.name.value, "system", cfg.system.value)
-                        ixpowerUt.setRemotePCAttribute(cfg.name.value, "user", cfg.user.value)
-                        ixpowerUt.setRemotePCAttribute(cfg.name.value, "passwd", cfg.passwd.value)
+			ixpowerUt.setRemotePCAttribute(cfg.name.value, "user", cfg.user.value)
+			ixpowerUt.setRemotePCAttribute(cfg.name.value, "passwd", cfg.passwd.value)
 			ixpowerUt.setRemotePCAttribute(cfg.name.value, "bqdn", cfg.bqdn.value)
 
-                        self.session.openWithCallback(self.updateFinished, MessageBox, _("Your PC has been updated..."), type = MessageBox.TYPE_INFO, timeout = 2)
-                        ixpowerUt.writePCsConfig()
+			self.session.openWithCallback(self.updateFinished, MessageBox, _("Your PC has been updated..."), type = MessageBox.TYPE_INFO, timeout = 2)
+			ixpowerUt.writePCsConfig()
 			cfg.close.save()
 			ixpowerUt.configActualized = True
-                else:
-                        self.close()
+		else:
+			self.close()
 
-        def updateFinished(self,data):
-                if data is not None and data is True:
+	def updateFinished(self,data):
+		if data is not None and data is True:
 			self.close()
 
 	def applyConfig(self, ret = False): # new record
-                if (ret == True):
-                        data = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'username': False, 'password': False, 'bqdn': False }
-                        data['name'] = cfg.name.value
-                        data['ip'] = cfg.ip.getText()
-                        data['mac'] = cfg.mac.value
+		if (ret == True):
+			data = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'username': False, 'password': False, 'bqdn': False }
+			data['name'] = cfg.name.value
+			data['ip'] = cfg.ip.getText()
+			data['mac'] = cfg.mac.value
 			data['system'] = cfg.system.value
-                        data['user'] = cfg.user.value
-                        data['passwd'] = cfg.passwd.value
+			data['user'] = cfg.user.value
+			data['passwd'] = cfg.passwd.value
 			data['bqdn'] = cfg.bqdn.value
 
-                        self.session.openWithCallback(self.applyFinished, MessageBox, _("Your new PC has been added."), type = MessageBox.TYPE_INFO, timeout = 2)
-                        ixpowerUt.remotepc[cfg.name.value] = data
-                        ixpowerUt.writePCsConfig()
+			self.session.openWithCallback(self.applyFinished, MessageBox, _("Your new PC has been added."), type = MessageBox.TYPE_INFO, timeout = 2)
+			ixpowerUt.remotepc[cfg.name.value] = data
+			ixpowerUt.writePCsConfig()
 			ixpowerUt.configActualized = True
-                else:
-                        self.close()
+		else:
+			self.close()
 
-        def applyFinished(self,data):
-                if data is not None and data is True:
+	def applyFinished(self,data):
+		if data is not None and data is True:
 			self.close()
 
 	def cancel(self):
 		self.close()
-
-

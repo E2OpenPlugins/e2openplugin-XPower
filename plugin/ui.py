@@ -25,12 +25,13 @@ from xpoweredit import xpowerEdit
 from xpowerhlp import xpowerHelp
 
 # Global
-version = "1.55"
+version = "1.56"
 
 OS_XP = "0"
 OS_WIN7 = "1"
 OS_LINUX = "2"
 OS_RPC= "5"
+OS_WIN8 = "3"
 
 SHUTDOWN = "0"
 SUSPEND = "1"
@@ -39,9 +40,9 @@ HIBERNATE = "2"
 class xpowerSummary(Screen):
 	skin = """
 	<screen position="0,0" size="96,64">
-		<widget source="title" render="Label" position="0,0" size="96,12" font="FdLcD;12" halign="left" foregroundColor="lightyellow" />
-		<widget source="pcname" render="Label" position="0,12" size="200,40" font="FdLcD;40" halign="left" valign="center" foregroundColor="white"/>
-		<widget source="bouquet" render="Label" position="0,52" size="96,12" font="FdLcD;12" halign="left" foregroundColor="lightyellow"/>
+		<widget source="title" render="Label" position="0,0" size="96,12" font="FdLcD;12" halign="left" foregroundColor="#00ccc040" />
+		<widget source="pcname" render="Label" position="0,12" size="200,40" font="FdLcD;40" halign="left" valign="center" foregroundColor="#00f0f0f0"/>
+		<widget source="bouquet" render="Label" position="0,52" size="96,12" font="FdLcD;12" halign="left" foregroundColor="#00ccc040"/>
 	</screen>"""
 
 	def __init__(self, session, parent):
@@ -120,7 +121,7 @@ class xpower(Screen, HelpableScreen):
 
 		self.list = []
 
-                self["config"] = List(self.list)
+		self["config"] = List(self.list)
 		self["statusbar"] = Label()
 		self.text = _("User defined...")
 
@@ -169,7 +170,7 @@ class xpower(Screen, HelpableScreen):
 	# for summary (+ changedEntry):
 	def getCurrentEntry(self):
 		current = self["config"].getCurrent()
-                return ixpowerUt.remotepc[current[1]]['name']
+		return ixpowerUt.remotepc[current[1]]['name']
 	def getCurrentValue(self):
 		self.statusbarText()
 		return _("BouqDn: %s") % (self.text)
@@ -196,7 +197,7 @@ class xpower(Screen, HelpableScreen):
 	def statusbarText(self):
 		self.text = _("Shutdown")
 		current = self["config"].getCurrent()
-                if current:
+		if current:
 			self.pcinfo = ixpowerUt.remotepc[current[1]]
 			
 			if self.pcinfo['system'] != OS_RPC:
@@ -216,11 +217,11 @@ class xpower(Screen, HelpableScreen):
 				self.hibernate()
 			else:
 				self.shutdown()
-		
+
 	def getItemParams(self, pcinfo):
 		ip = pcinfo['ip']
-                user = pcinfo['user']
-                passwd = pcinfo['passwd']
+		user = pcinfo['user']
+		passwd = pcinfo['passwd']
 		os = pcinfo['system']
 		mac = pcinfo['mac']
 		return ( os, ip, user, passwd, mac )
@@ -322,6 +323,8 @@ class xpower(Screen, HelpableScreen):
 		system = entry["system"]
 		if system == OS_WIN7:
 			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/win.png"))
+		elif system == OS_WIN8:
+			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/win8.png"))
 		elif system == OS_LINUX:
 			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/lin.png"))
 		elif system == OS_RPC:
@@ -332,11 +335,11 @@ class xpower(Screen, HelpableScreen):
 		return( pc, entry["name"], logo, ip, mac )
 
 	def keyOK(self):
-                self.session.openWithCallback(self.editClosed, xpowerEdit, self.pcinfo)
+		self.session.openWithCallback(self.editClosed, xpowerEdit, self.pcinfo)
 
 	def editClosed(self):
 		if ixpowerUt.configActualized:
-                        self.showPCsList()
+			self.showPCsList()
 
 	def deleteItem(self):
 		self.retValue=self.pcinfo['name']
@@ -390,6 +393,8 @@ class xpower(Screen, HelpableScreen):
 	def shutdownIP(self, p):
 		if p[0] == OS_WIN7:
 			self.telnet(p,"shutdown /s /t 10")
+		elif p[0] == OS_WIN8:
+			self.telnet(p,"shutdown /s /f /t 10")
 		elif p[0] == OS_LINUX:
 			self.telnet(p,"sudo shutdown -P now")
 		elif p[0] == OS_RPC:
@@ -400,6 +405,8 @@ class xpower(Screen, HelpableScreen):
 	#abort
 	def abortIP(self, p):
 		if p[0] == OS_WIN7:
+			self.telnet(p,"shutdown /a")
+		elif p[0] == OS_WIN8:
 			self.telnet(p,"shutdown /a")
 		elif p[0] == OS_LINUX:
 			self.telnet(p,"sudo shutdown -c")
@@ -412,6 +419,8 @@ class xpower(Screen, HelpableScreen):
 	def rebootIP(self, p):
 		if p[0] == OS_WIN7:
 			self.telnet(p,"shutdown /r /t 10")
+		elif p[0] == OS_WIN8:
+			self.telnet(p,"shutdown /r /f /t 10")
 		elif p[0] == OS_LINUX:
 			self.telnet(p,"sudo shutdown -r now")
 		elif p[0] == OS_RPC:
@@ -423,6 +432,8 @@ class xpower(Screen, HelpableScreen):
 	def suspendIP(self, p):
 		if p[0] == OS_WIN7:
 			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState", "powercfg -h off", "powercfg -h off")
+		elif p[0] == OS_WIN8:
+			self.telnet(p,"shutdown /h")
 		elif p[0] == OS_LINUX:
 			self.telnet(p,"sudo pm-suspend --quirk-s3-mode")
 		elif p[0] == OS_RPC:
@@ -434,6 +445,8 @@ class xpower(Screen, HelpableScreen):
 	def hibernateIP(self, p):
 		if p[0] == OS_WIN7:
 			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState Hibernate", "powercfg -h on", "powercfg -h on")
+		elif p[0] == OS_WIN8:
+			self.telnet(p,"shutdown /h")
 		elif p[0] == OS_LINUX:
 			self.telnet(p,"sudo pm-hibernate")
 		elif p[0] == OS_RPC:
@@ -450,7 +463,7 @@ class xpower(Screen, HelpableScreen):
 			self.message(_("Connection failed... %s" % (e)),4)
 			print "[xpower plugin] Error telnet:", e
 		else:
-			#telnet.set_debuglevel(1)
+#			telnet.set_debuglevel(1)
 			if p[0] == OS_LINUX:
 				try: 
 					telnet.read_until('ogin: ',10)
@@ -466,9 +479,9 @@ class xpower(Screen, HelpableScreen):
 				self.closeLinTelnet(telnet)
 			else:
 				try:
-					telnet.read_until('ogin: ',10)
+					telnet.read_until('ogin: ',5)
 					telnet.write(user + "\r\n")
-					telnet.read_until('assword: ',10)
+					telnet.read_until('assword: ',5)
 					telnet.write(passwd + "\r\n")
 					telnet.read_until('>',5)
 					if pre != "":
@@ -478,11 +491,10 @@ class xpower(Screen, HelpableScreen):
 					if post != "":
 						telnet.write("%s\r\n" % (post))
 					telnet.write("exit\r\n")
-				
-					telnet.read_until('? ',1)
-					telnet.write("N\r\n")
+					telnet.read_until('',1)
 				except EOFError, e:
 					"[xpower plugin] Error telnet:", e
+
 				self.closeLinTelnet(telnet)
 
 #	def closeWinTelnet(self, telnet):

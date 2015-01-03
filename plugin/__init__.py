@@ -12,7 +12,7 @@ def localeInit():
 def _(txt):
 	t = gettext.dgettext("XPower", txt)
 	if t == txt:
-		print "[XPower] fallback to default translation for", txt
+		#print "[XPower] fallback to default translation for", txt
 		t = gettext.gettext(txt)
 	return t
 

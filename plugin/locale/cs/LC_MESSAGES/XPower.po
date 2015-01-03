@@ -219,3 +219,6 @@ msgstr "Zavírat plugin"
 
 msgid "Delete"
 msgstr "Odstranit"
+
+msgid "- for Win8 enable ping (Firewall-Adwanced settings-Inbound Rules ... File and Printer Sharing (Echo Request - ICMPv4/6-In) to Yes"
+msgstr "- pro Win8 povolte ping (Firewall-Upřesnit nastavení-Příchozí pravidla... Sdílení souborů a tiskáren (Požadavek na odezvu - ICMPv4/6-In) na Ano"
