@@ -25,7 +25,7 @@ from xpoweredit import xpowerEdit
 from xpowerhlp import xpowerHelp
 
 # Global
-version = "1.56"
+version = "1.57"
 
 OS_XP = "0"
 OS_WIN7 = "1"
@@ -384,10 +384,44 @@ class xpower(Screen, HelpableScreen):
 
 	# p is ( system, ip, user, passw, mac )
 
+	def GetIPsFromNetworkInterfaces(self):
+		import socket, fcntl, struct, array, sys
+		is_64bits = sys.maxsize > 2**32
+		struct_size = 40 if is_64bits else 32
+		s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		max_possible = 8 # initial value
+		while True:
+			_bytes = max_possible * struct_size
+			names = array.array('B')
+			for i in range(0, _bytes):
+				names.append(0)
+			outbytes = struct.unpack('iL', fcntl.ioctl(
+				s.fileno(),
+				0x8912,  # SIOCGIFCONF
+				struct.pack('iL', _bytes, names.buffer_info()[0])
+			))[0]
+			if outbytes == _bytes:
+				max_possible *= 2
+			else:
+				break
+		namestr = names.tostring()
+		ifaces = []
+		for i in range(0, outbytes, struct_size):
+			iface_name = bytes.decode(namestr[i:i+16]).split('\0', 1)[0].encode('ascii')
+			if iface_name != 'lo':
+				iface_addr = socket.inet_ntoa(namestr[i+20:i+24])
+				ifaces.append((iface_name, iface_addr))
+		return ifaces
+
 	#wakeup
 	def wakeupIP(self, p):
-		os.system("ether-wake %s" % (p[4]))
-		self.session.openWithCallback(self.exitPlugin, MessageBox,_("Magic packet has been send to PC %s") % (self.pcinfo['name']),type = MessageBox.TYPE_INFO, timeout = 3)
+		ifaces_list = self.GetIPsFromNetworkInterfaces()
+		text = _("The network interface is not configured!")
+		if ifaces_list:
+			text = _("Magic packet has been send to PC %s") % (self.pcinfo['name'])
+			for iface in ifaces_list:
+				os.system("ether-wake -i %s %s" % (iface[0], p[4]))
+		self.session.openWithCallback(self.exitPlugin, MessageBox, text,type = MessageBox.TYPE_INFO, timeout = 3)
 
 	#shutdown
 	def shutdownIP(self, p):
