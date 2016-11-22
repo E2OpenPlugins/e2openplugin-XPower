@@ -4,208 +4,81 @@ msgstr ""
 "Project-Id-Version: XPower\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: ims\n"
-"Language-Team: ims <ims21@users.sourceforge.net>\n"
+"Last-Translator: Dimitrij <Dima-73@inbox.lv>\n"
+"Language-Team: openPli dima-73@inbox.lv\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Czech\n"
-"X-Poedit-Country: CZECH REPUBLIC\n"
-
-msgid "Please wait, \"%s\" is sended to computer %s"
-msgstr "Пожалуйста,подождите. Команда \"%s\" отправлена %s"
-
-msgid "Magic packet has been send to PC %s"
-msgstr "Меджик пакет был отправлен PC %s"
-
-msgid "Connection finished... %s"
-msgstr "Подключение завершено... %s"
-
-msgid "Finished... %s"
-msgstr "Завершено... %s"
-
-msgid "Add/Edit"
-msgstr "Доб./Удал."
-
-msgid "IP:"
-msgstr "IP:"
-
-msgid "MAC:"
-msgstr "MAC:"
-
-msgid "Do You want remove PC: %s?"
-msgstr "Вы хотите удалить PC: %s?"
-
-msgid "PC has been removed..."
-msgstr "PC был удален..."
-
-msgid "Power management for Win/Linux PC's"
-msgstr "Управление питанием Windows/Linux PC"
-
-msgid "BouqUp for %s, BouqDn for %s"
-msgstr "BouqUp - %s, BouqDn - %s"
-
-#msgid "BouqUp"
-#msgstr "Букет+"
-
-#msgid "BouqDn"
-#msgstr "Букет-" 
-
-msgid "BouqUp for WakeUp"
-msgstr "BouqUp - Разбудить"
-
-msgid "XPower PC configuration"
-msgstr "XPower - настройки PC"
-
-msgid "Get MAC"
-msgstr "Взять MAC"
-
-#
-#, python-format
-msgid ""
-"A PC entry with this name already exists!\n"
-"Update existing entry and continue?"
-msgstr ""
-"PC с таким именем уже существует!\n"
-"Обновление настройки и продолжить?"
-
-msgid "Are you sure you want to add this PC?\n"
-msgstr "Вы действительно хотите добавить этот PC?\n"
-
-msgid "Please wait while updating your PC..."
-msgstr "Дождитесь завершения обновления PC..."
-
-msgid "Your PC has been updated..."
-msgstr "PC был обновлен..."
-
-msgid "Your new PC has been added."
-msgstr "Ваш новый PC был добавлен."
-
-msgid "PC"
-msgstr "PC"
-
-msgid "User"
-msgstr "Пользователь"
-
-msgid "Name"
-msgstr "Имя"
-
-msgid "MAC"
-msgstr "MAC"
-
-msgid "IP"
-msgstr "IP"
-
-msgid "Password"
-msgstr "Пароль"
-
-msgid "Close plugin"
-msgstr "Закрыть"
-
-msgid "Delete selected item"
-msgstr "Удалить выбранный элемент"
-
-msgid "Help"
-msgstr "Помощь"
-
-msgid "Select power management"
-msgstr "Выберите управление питанием"
-
-msgid "Shutdown"
-msgstr "Выключение"
-
-msgid "WakeUp"
-msgstr "Разбудить"
-
-msgid "Abort shutdown / reboot"
-msgstr "Отмена выключения / перезагрузки"
-
-msgid "Reboot"
-msgstr "Рестарт"
-
-msgid "Suspend"
-msgstr "Режим сна"
-
-msgid "Hibernate"
-msgstr "Гибернация"
+"X-Generator: Poedit 1.8.9\n"
 
 msgid " - select action:"
 msgstr " - выбрать действие:"
 
-msgid "Select action"
-msgstr "Выбрать действие"
-
-msgid "Connection failed... %s"
-msgstr "Ошибка подключения... %s"
-
-msgid "get MAC of running PC"
-msgstr "получить MAC с работающего PC"
-
-msgid "wakeup PC"
-msgstr "включить PC"
-
-msgid "Add/Edit item"
-msgstr "Доб./Удал. пункт"
-
-msgid "User defined..."
-msgstr "Пользовательский вариант.."
-
-msgid "Version"
-msgstr "Version"
-
-msgid "XPower Help"
-msgstr "XPower помощь"
-
-msgid "Welcome in plugin XPower for remote power management PC's. This plugin knows sending Magic Packet and control power status of PC."
-msgstr "Добро пожаловать в плагин XPower. Этот плагин может посылать Magic Packet и управлять питанием PC."
-
-msgid "Each operation system using its own comunication and own power managenent. There in settings of each PC item must be set true value."
-msgstr "Каждая операционная система использует свои настройки связи и управления питанием.Вы должны установить для каждого PC правильное значение."
-
-msgid "If are on PC installed more OS, then create more PC's items. Priority key is name of PC."
-msgstr "Если PC имеет более одной ОС, надо загрузить PC несколько раз, каждый с другим именем. "
-
-msgid "Dont forget, that not all mode must be supported by Your hardware!"
-msgstr "Помните, что не каждый режим поддерживается вашим оборудованием!"
-
-msgid "XPower plugin knows:"
-msgstr "XPower может:"
-
-msgid "Do not forget, that Suspend and Hibernate are hardware, BIOS and drivers dependents."
-msgstr "Обратите внимание, что режим сна и гибернация зависит от аппаратного обеспечения, BIOS и драйверов."
+msgid "- enable the Telnet Server"
+msgstr "- включите Telnet Server"
 
 msgid "- install telnetd with:"
 msgstr "- установка telnetd:"
 
-msgid "- enable the Telnet Server"
-msgstr "- включите Telnet Server"
+msgid "The network interface is not configured!"
+msgstr "Сетевой интерфейс не настроен!"
 
-msgid "- set Telnet server service to Automatic and run it"
-msgstr "- поставьте Telnet службу на авто и запустите"
+msgid ""
+"- for Win8 enable ping (Firewall-Adwanced settings-Inbound Rules ... File and Printer Sharing (Echo Request - "
+"ICMPv4/6-In) to Yes"
+msgstr ""
+"- для Win8 включить пинг (Брандмауэр-Дополнительные настройки-Правила для входящих подключений ... Файлы и принтеры "
+"(Echo Request - ICMPv4/6-In) как Да"
+
+msgid ""
+"- must be installed actual compiled \"net\" command. Problem is, that size of this file is over 8MB and some box "
+"have not enought memory for it"
+msgstr ""
+"- должен быть установлен бинарный файл \"net\" команды. Это может быть проблемой, потому что этот файл имеет размер "
+"8 МБ и может не хватить памяти для этого."
 
 msgid "- set Telnet in Services to Automatic and run it"
-msgstr "- поставьте Telnet службу на авто и запустите"
+msgstr "- установите Telnet Services на авто и запустите его"
+
+msgid "- set Telnet server service to Automatic and run it"
+msgstr "- установите Telnet server service на авто и запустите его"
 
 msgid "- there in Firewall add tcp port 23 for telnet"
 msgstr "- в брандмауэре добавить tcp-порт 23 для Telnet"
 
-msgid "- must be installed actual compiled \"net\" command. Problem is, that size of this file is over 8MB and some box have not enought memory for it"
-msgstr "- должен быть установлен бинарный файл \"net\" команды. Это может быть проблемой, потому что этот файл имеет размер 8 мегабайт, и может не хватить памяти. "
-
 msgid "- this way knows Shutdown, Reboot and Abort only!"
-msgstr "- таким образом воможно только выключение, перезагрузка и отмена!"
+msgstr "- таким образом доступно выключение, перезагрузка и отмена только!"
 
 msgid ""
-"Note:\n"
-" telnet is easy way, but it is not safe protocol! Disable telnet port 23 on Your router, if it is possible!"
+"A PC entry with this name already exists!\n"
+"Update existing entry and continue?"
 msgstr ""
-"Примечание:\n"
-" Telnet это самый простой способ  для XPower, но это не безопасный протокол! Если это возможно, отключите порт маршрутизатора 23!"
+"ПК с таким именем уже существует!\n"
+"Обновить текущие настройки записи и продолжить?"
 
-msgid "Setup"
-msgstr "Настройки"
+msgid "Abort shutdown / reboot"
+msgstr "Отмена выключения / перезагрузки"
 
-msgid "Hotkeys"
-msgstr "Кнопки"
+msgid "Add/Edit"
+msgstr "Доб./Редак."
+
+msgid "Add/Edit item"
+msgstr "Доб./Удал."
+
+msgid "Are you sure you want to add this PC?\n"
+msgstr "Вы действительно хотите добавить этот ПК?\n"
+
+msgid "BouqUp for %s, BouqDn for %s"
+msgstr "Б+ для %s, Б- для %s"
+
+msgid "BouqUp for WakeUp"
+msgstr "Б+ для разбудить"
+
+msgid "Close plugin"
+msgstr "Закрыть"
+
+msgid "Closing plugin"
+msgstr "Закрывать плагин"
 
 msgid ""
 "Command \"net\" is not installed\n"
@@ -214,17 +87,156 @@ msgstr ""
 "Бинарный файл \"net\" не установлен\n"
 "служба \"XP NET RPC\" не работает..."
 
-msgid "No response from %s."
-msgstr "Нет ответа от %s."
+msgid "Connection failed... %s"
+msgstr "Ошибка подключения... %s"
 
-msgid "XPower PC configuration:"
-msgstr "XPower - крнфигурация PC:"
-
-msgid "Closing plugin"
-msgstr "Закрыть плагин"
+msgid "Connection finished... %s"
+msgstr "Подключение завершено... %s"
 
 msgid "Delete"
 msgstr "Удалить"
 
-msgid "- for Win8 enable ping (Firewall-Adwanced settings-Inbound Rules ... File and Printer Sharing (Echo Request - ICMPv4/6-In) to Yes"
+msgid "Delete selected item"
+msgstr "Удалить выбранную запись"
+
+msgid "Do You want remove PC: %s?"
+msgstr "Вы действительно хотите удалить ПК: %s?"
+
+msgid "Do not forget, that Suspend and Hibernate are hardware, BIOS and drivers dependents."
+msgstr "Обратите внимание, что режим сна и гибернация зависит от аппаратного обеспечения, BIOS и драйверов."
+
+msgid "Dont forget, that not all mode must be supported by Your hardware!"
+msgstr "Помните, что не каждый режим поддерживается Вашим оборудованием!"
+
+msgid ""
+"Each operation system using its own comunication and own power managenent. There in settings of each PC item must "
+"be set true value."
 msgstr ""
+"Каждая операционная система использует свои настройки связи и управления питанием.Вы должны установить для каждого "
+"ПК правильное значение."
+
+msgid "Finished... %s"
+msgstr "Завершено... %s"
+
+msgid "Get MAC"
+msgstr "Взять MAC"
+
+msgid "Help"
+msgstr "Помощь"
+
+msgid "Hibernate"
+msgstr "Hibernate (гибернация)"
+
+msgid "Hotkeys"
+msgstr "Горячие кнопки"
+
+msgid "IP"
+msgstr "АЙПИ"
+
+msgid "IP:"
+msgstr "АЙПИ:"
+
+msgid "If are on PC installed more OS, then create more PC's items. Priority key is name of PC."
+msgstr "Если ПК имеет более одной установленной ОС, надо создать несколько записей ПК. Ключевым является название ПК."
+
+msgid "MAC"
+msgstr "MAC"
+
+msgid "MAC:"
+msgstr "MAC:"
+
+msgid "Magic packet has been send to PC %s"
+msgstr "Magic packet был отправлен ПК %s"
+
+msgid "Name"
+msgstr "Название"
+
+msgid "No response from %s."
+msgstr "Нет ответа от %s."
+
+msgid ""
+"Note:\n"
+" telnet is easy way, but it is not safe protocol! Disable telnet port 23 on Your router, if it is possible!"
+msgstr ""
+"Примечание:\n"
+" Telnet это самый простой способ  для XPower, но это не безопасный протокол! Если это возможно, отключите телнет "
+"порт 23 Вашего роутера!"
+
+msgid "PC"
+msgstr "ПК"
+
+msgid "PC has been removed..."
+msgstr "ПК был удален..."
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Please wait while updating your PC..."
+msgstr "Пожалуйста, дождитесь завершения обновления Вашего ПК..."
+
+msgid "Please wait, \"%s\" is sended to computer %s"
+msgstr "Пожалуйста,подождите. Команда \"%s\" отправлена компьютеру %s"
+
+msgid "Power management for Win/Linux PC's"
+msgstr "Управление питанием для ПК Windows/Linux"
+
+msgid "Reboot"
+msgstr "Перезагрузка"
+
+msgid "Select action"
+msgstr "Выбрать действие"
+
+msgid "Select power management"
+msgstr "Выберите управление питанием"
+
+msgid "Setup"
+msgstr "Настройки"
+
+msgid "Shutdown"
+msgstr "Выключение"
+
+msgid "Suspend"
+msgstr "Suspend (режим сна)"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "User defined..."
+msgstr "Пользовательский вариант..."
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "WakeUp"
+msgstr "Разбудить"
+
+msgid ""
+"Welcome in plugin XPower for remote power management PC's. This plugin knows sending Magic Packet and control power "
+"status of PC."
+msgstr ""
+"Добро пожаловать в плагин удаленного управления питанием XPower. Этот плагин может посылать Magic Packet и "
+"управлять питанием PC."
+
+msgid "XPower Help"
+msgstr "XPower помощь"
+
+msgid "XPower PC configuration"
+msgstr "XPower - конфигурация ПК"
+
+msgid "XPower PC configuration:"
+msgstr "XPower - конфигурация ПК:"
+
+msgid "XPower plugin knows:"
+msgstr "XPower может:"
+
+msgid "Your PC has been updated..."
+msgstr "Ваш ПК был обновлен..."
+
+msgid "Your new PC has been added."
+msgstr "Ваш новый ПК был добавлен."
+
+msgid "get MAC of running PC"
+msgstr "получить MAC с работающего ПК"
+
+msgid "wakeup PC"
+msgstr "разбудить ПК"
