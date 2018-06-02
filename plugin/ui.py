@@ -193,6 +193,11 @@ class xpower(Screen, HelpableScreen):
 
 	def startMoving(self):
 		self.edit = not self.edit
+		if self.edit and config.plugins.xpower.sort.value:
+			self.message(_("It has not sense change order if is set list sorting..."),5)
+			self.edit = False
+			self.showPrevNext()
+			return
 		self.idx = self["config"].getIndex()
 		self.showPrevNext()
 	def showPrevNext(self):

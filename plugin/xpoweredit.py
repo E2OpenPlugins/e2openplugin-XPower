@@ -217,6 +217,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		if not self.isChanges(self.old, self.getBackupCfg()): # no changes in item pars, save cfg item only
 			cfg.close.save()
 			cfg.sort.save()
+			ixpowerUt.configActualized = True
 			self.close()
 		elif self.remotepc.has_key(name) is True:
 			self.session.openWithCallback(self.updateConfig, MessageBox, (_("A PC entry with this name already exists!\nUpdate existing entry and continue?") ) )
@@ -236,6 +237,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			self.session.openWithCallback(self.updateFinished, MessageBox, _("Your PC has been updated..."), type = MessageBox.TYPE_INFO, timeout = 2)
 			ixpowerUt.writePCsConfig()
 			cfg.close.save()
+			cfg.sort.save()
 			ixpowerUt.configActualized = True
 		else:
 			self.close()
