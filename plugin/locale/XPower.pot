@@ -1,0 +1,294 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-02 11:24+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "PC"
+msgstr ""
+
+msgid "XP"
+msgstr ""
+
+msgid "Win7"
+msgstr ""
+
+msgid "Win8"
+msgstr ""
+
+msgid "Linux"
+msgstr ""
+
+msgid "XP NET RPC"
+msgstr ""
+
+msgid "Shutdown"
+msgstr ""
+
+msgid "Suspend"
+msgstr ""
+
+msgid "Hybernate"
+msgstr ""
+
+msgid "MAC"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "IP"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "BouqDown"
+msgstr ""
+
+msgid "Closing plugin"
+msgstr ""
+
+msgid "Sort list"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
+msgid "Get MAC"
+msgstr ""
+
+msgid "get MAC of running PC"
+msgstr ""
+
+#, python-format
+msgid "XPower: %s"
+msgstr ""
+
+msgid "XPower PC configuration:"
+msgstr ""
+
+msgid ""
+"A PC entry with this name already exists!\n"
+"Update existing entry and continue?"
+msgstr ""
+
+msgid "Are you sure you want to add this PC?\n"
+msgstr ""
+
+msgid "Your PC has been updated..."
+msgstr ""
+
+msgid "Your new PC has been added."
+msgstr ""
+
+msgid "Power management for Win/Linux PC's"
+msgstr ""
+
+msgid "XPower"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Add/Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "User defined..."
+msgstr ""
+
+msgid "Close plugin"
+msgstr ""
+
+msgid "Add/Edit item"
+msgstr ""
+
+msgid "Delete selected item"
+msgstr ""
+
+msgid "Select power management"
+msgstr ""
+
+msgid "WakeUp"
+msgstr ""
+
+msgid "Abort shutdown / reboot"
+msgstr ""
+
+msgid "Reboot"
+msgstr ""
+
+msgid "Hibernate"
+msgstr ""
+
+msgid "Enable/disable moving item"
+msgstr ""
+
+msgid "Move item up"
+msgstr ""
+
+msgid "Move item down"
+msgstr ""
+
+msgid "IP:"
+msgstr ""
+
+msgid "MAC:"
+msgstr ""
+
+#, python-format
+msgid "BouqDn: %s"
+msgstr ""
+
+msgid " - select action:"
+msgstr ""
+
+#, python-format
+msgid "BouqUp for %s, BouqDn for %s"
+msgstr ""
+
+msgid ""
+"Command \"net\" is not installed\n"
+"option \"XP NET RPC\" does not work..."
+msgstr ""
+
+#, python-format
+msgid "No response from %s."
+msgstr ""
+
+#, python-format
+msgid "Please wait, \"%s\" is sended to computer %s"
+msgstr ""
+
+#, python-format
+msgid "Do You want remove PC: %s?"
+msgstr ""
+
+msgid "PC has been removed..."
+msgstr ""
+
+msgid "The network interface is not configured!"
+msgstr ""
+
+#, python-format
+msgid "Magic packet has been send to PC %s"
+msgstr ""
+
+#, python-format
+msgid "Connection failed... %s"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Setup"
+msgstr ""
+
+msgid "Hotkeys"
+msgstr ""
+
+msgid "XPower Help"
+msgstr ""
+
+msgid "Version"
+msgstr ""
+
+msgid ""
+"Welcome in plugin XPower for remote power management PC's. This plugin knows "
+"sending Magic Packet and control power status of PC."
+msgstr ""
+
+msgid ""
+"Each operation system using its own comunication and own power managenent. "
+"There in settings of each PC item must be set true value."
+msgstr ""
+
+msgid ""
+"If are on PC installed more OS, then create more PC's items. Priority key is "
+"name of PC."
+msgstr ""
+
+msgid "Dont forget, that not all mode must be supported by Your hardware!"
+msgstr ""
+
+msgid "XPower plugin knows:"
+msgstr ""
+
+msgid ""
+"Do not forget, that Suspend and Hibernate are hardware, BIOS and drivers "
+"dependents."
+msgstr ""
+
+msgid "- install telnetd with:"
+msgstr ""
+
+msgid "Windows 7/8"
+msgstr ""
+
+msgid "- enable the Telnet Server"
+msgstr ""
+
+msgid "- set Telnet server service to Automatic and run it"
+msgstr ""
+
+msgid ""
+"- for Win8 enable ping (Firewall-Adwanced settings-Inbound Rules ... File "
+"and Printer Sharing (Echo Request - ICMPv4/6-In) to Yes"
+msgstr ""
+
+msgid "Windows XP"
+msgstr ""
+
+msgid "- set Telnet in Services to Automatic and run it"
+msgstr ""
+
+msgid "- there in Firewall add tcp port 23 for telnet"
+msgstr ""
+
+msgid "Windows XP via net rpc"
+msgstr ""
+
+msgid ""
+"- must be installed actual compiled \"net\" command. Problem is, that size "
+"of this file is over 8MB and some box have not enought memory for it"
+msgstr ""
+
+msgid "- this way knows Shutdown, Reboot and Abort only!"
+msgstr ""
+
+msgid ""
+"Note:\n"
+" telnet is easy way, but it is not safe protocol! Disable telnet port 23 on "
+"Your router, if it is possible!"
+msgstr ""
+
+msgid "Select action"
+msgstr ""

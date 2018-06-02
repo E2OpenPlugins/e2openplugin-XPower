@@ -13,6 +13,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Components.Sources.StaticText import StaticText
+from Components.config import config
 
 from enigma import eTimer
 
@@ -25,7 +26,7 @@ from xpoweredit import xpowerEdit
 from xpowerhlp import xpowerHelp
 
 # Global
-version = "1.57"
+version = "1.59"
 
 OS_XP = "0"
 OS_WIN7 = "1"
@@ -142,7 +143,19 @@ class xpower(Screen, HelpableScreen):
 			"restart": (self.reboot, _("Reboot")),
 			"suspend": (self.suspend, _("Suspend")),
 			"hibernate": (self.hibernate, _("Hibernate")),
+			"edit": (self.startMoving, _("Enable/disable moving item")),
 			}, -1)
+		self["XPowerEditActions"] = HelpableActionMap(self, "DirectionActions",
+			{
+			"moveUp":	(self.moveUp, _("Move item up")),
+			"moveDown":	(self.moveDown, _("Move item down")),
+			}, -1)
+		self.edit = 0
+		self.idx = 0
+		self.changes = False
+		self["h_prev"] = Pixmap()
+		self["h_next"] = Pixmap()
+		self.showPrevNext()
 
 		self.ipStr = _("IP:")+" "
 		self.macStr = _("MAC:")+" "
@@ -178,12 +191,48 @@ class xpower(Screen, HelpableScreen):
 		return xpowerSummary
 	###
 
+	def startMoving(self):
+		self.edit = not self.edit
+		self.idx = self["config"].getIndex()
+		self.showPrevNext()
+	def showPrevNext(self):
+		if self.edit:
+			self["h_prev"].show()
+			self["h_next"].show()
+		else:
+			self["h_prev"].hide()
+			self["h_next"].hide()
+	def moveUp(self):
+		if self.edit:
+			if self.idx -1 < 0:
+				return
+			self["config"].setIndex(self.idx)
+			tmp = self["config"].getCurrent()
+			self["config"].setIndex(self.idx-1)
+			tmp2 = self["config"].getCurrent()
+			self["config"].modifyEntry(self.idx, tmp2)
+			self["config"].modifyEntry(self.idx-1, tmp)
+			self.idx-=1
+			self.changes = True
+	def moveDown(self):
+		if self.edit:
+			if self.idx +1 >= self["config"].count():
+				return
+			self["config"].setIndex(self.idx)
+			tmp = self["config"].getCurrent()
+			self["config"].setIndex(self.idx+1)
+			tmp2 = self["config"].getCurrent()
+			self["config"].modifyEntry(self.idx, tmp2)
+			self["config"].modifyEntry(self.idx+1, tmp)
+			self.idx+=1
+			self.changes = True
+
 	def prepare(self):
 		self.setTitle(_("XPower") + " " + version)
 
 	def showMenu(self):
 		menu_title_text = "%s" % (self.pcinfo['name']) + _(" - select action:")
-		self.session.openWithCallback(self.subMenu, ChoiceBox, title = menu_title_text, list=self.menu, keys = [ "1", "2", "3", "4", "5", "0",])
+		self.session.openWithCallback(self.subMenu, ChoiceBox, title = menu_title_text, list=self.menu, keys = [ "1", "2", "3", "4", "5", "8",])
 
 	def subMenu(self, choice):
 		if choice is None:
@@ -268,7 +317,6 @@ class xpower(Screen, HelpableScreen):
 
 	def exitPlugin(self, data):
 		if data is not None and data:
-			from Components.config import config
 			if config.plugins.xpower.close.value:
 				self.close()
 
@@ -293,10 +341,11 @@ class xpower(Screen, HelpableScreen):
 		oldCount = self["config"].count()
 
 		list = []
-		remotepc = ixpowerUt.getPCsList()
-		for name in remotepc.keys():
-			list.append(self.buildPCViewItem(ixpowerUt.remotepc[name]))
-		list.sort(key = lambda x: x[1])
+		remotepc, remotepc_order = ixpowerUt.getPCsList()
+		for name in remotepc_order:
+			list.append(self.buildPCViewItem(remotepc[name]))
+		if config.plugins.xpower.sort.value:
+			list.sort(key = lambda x: x[1])
 		self["config"].setList(list)
 
 		newCount = self["config"].count()
@@ -363,6 +412,8 @@ class xpower(Screen, HelpableScreen):
 		self.session.open(MessageBox, string, type = msg, timeout = delay)
 
 	def cancel(self):
+		if self.changes:
+			ixpowerUt.writePCsConfig(self["config"].list)
 		self.close()
 
 	def getHostname(self):
@@ -495,7 +546,7 @@ class xpower(Screen, HelpableScreen):
 		try:telnet = telnetlib.Telnet(ip)
 		except Exception, e:
 			self.message(_("Connection failed... %s" % (e)),4)
-			print "[xpower plugin] Error telnet:", e
+			print "[XPower plugin] Error telnet:", e
 		else:
 #			telnet.set_debuglevel(1)
 			if p[0] == OS_LINUX:

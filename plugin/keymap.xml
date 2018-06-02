@@ -3,13 +3,13 @@
 	<key id="KEY_CHANNELUP" mapto="wakeup" flags="m" />
 	<key id="KEY_CHANNELDOWN" mapto="bouqdn" flags="m" />
 
-	<key id="KEY_0" mapto="abort" flags="m" />
+	<key id="KEY_8" mapto="abort" flags="m" />
 	<key id="KEY_1" mapto="wakeup" flags="m" />
 	<key id="KEY_2" mapto="suspend" flags="m" />
 	<key id="KEY_3" mapto="shutdown" flags="m" />
 	<key id="KEY_4" mapto="restart" flags="m" />
 	<key id="KEY_5" mapto="hibernate" flags="m" />
-	
+	<key id="KEY_0" mapto="edit" flags="m" />
 	
 	<key id="KEY_OK" mapto="ok" flags="m" />
 	<key id="KEY_EXIT" mapto="cancel" flags="m" />

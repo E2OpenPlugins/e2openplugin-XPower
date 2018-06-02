@@ -14,12 +14,14 @@ class xpowerUt(Screen):
 
 	def __init__(self):
 		self.remotepc = {}
+		self.remotepc_order = []
 		self.configActualized = False
 
 		self.pcStr = _("PC")
 
 	def getRemotePCPoints(self):
 		self.remotepc = {}
+		self.remotepc_order = []
 
 		if not os_path.exists(XML_PCTAB):
 			self.setDummyRecord()
@@ -33,7 +35,8 @@ class xpowerUt(Screen):
 			Len = len(definitions)
 			return Len > 0 and definitions[Len-1].text or default
 		# Config is stored in "host" element, read out PC
-		for pc in tree.findall("host"):
+
+		for pc in tree.iter("host"):
 			data = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False }
 			try:
 				data['name'] = getValue(pc.findall("name"), self.pcStr).encode("UTF-8")
@@ -44,9 +47,9 @@ class xpowerUt(Screen):
 				data['passwd'] = getValue(pc.findall("passwd"), "password").encode("UTF-8")
 				data['bqdn'] = getValue(pc.findall("bqdn"), "0").encode("UTF-8")
 				self.remotepc[data['name']] = data
+				self.remotepc_order.append(getValue(pc.findall("name"), self.pcStr).encode("UTF-8"))
 			except Exception, e:
-				print "[xpower] Error reading remotepc:", e
-
+				print "[XPower plugin] Error reading remotepc:", e
 		self.checkList = self.remotepc.keys()
 		if not self.checkList: 
 		# exists empty file => create dummy record
@@ -54,7 +57,7 @@ class xpowerUt(Screen):
 		
 		self.checkList = self.remotepc.keys()
 		if not self.checkList:
-			print "\n[XPower.py] self.remotepc without remotepc", self.remotepc
+			print "\n[XPower plugin] self.remotepc without remotepc", self.remotepc
 		else:
 			self.checkList.pop()
 
@@ -68,21 +71,35 @@ class xpowerUt(Screen):
 		data['passwd'] = "password"
 		data['bqdn'] = "0"
 		self.remotepc[data['name']] = data
+		self.remotepc_order.append(self.pcStr)
 
 	def setRemotePCAttribute(self, pcpoint, attribute, value):
-		print "setting for pcpoint", pcpoint, "attribute", attribute, " to value", value
+		print "[XPower plugin] setting for pcpoint", pcpoint, "attribute", attribute, " to value", value
 		if self.remotepc.has_key(pcpoint):
 			self.remotepc[pcpoint][attribute] = value
 
 	def getPCsList(self):
 		self.getRemotePCPoints()
-		return self.remotepc
+		return self.remotepc, self.remotepc_order
 
-	def writePCsConfig(self):
+	def writePCsConfig(self, newlist=None):
+		def getRecord(sortname):
+			for name, data in self.remotepc.items():
+				if name == sortname:
+					return name, data
+
 		# Generate List in RAM
 		list = ['<?xml version="1.0" ?>\n<xpower>\n']
 
-		for name, data in self.remotepc.items():
+		if newlist:
+			items = newlist
+		else:
+			items = self.remotepc_order
+		for x in items:
+			if newlist:
+				name, data = getRecord(x[1])
+			else:
+				name, data = getRecord(x)
 			list.append(' <host>\n')
 			list.append(''.join(["  <name>", data['name'], "</name>\n"]))
 			list.append(''.join(["  <ip>", data['ip'], "</ip>\n"]))
@@ -92,7 +109,6 @@ class xpowerUt(Screen):
 			list.append(''.join(["  <passwd>", data['passwd'], "</passwd>\n"]))
 			list.append(''.join(["  <bqdn>", data['bqdn'], "</bqdn>\n"]))
 			list.append(' </host>\n')
-
 		list.append('</xpower>\n')
 
 		file = None
@@ -100,17 +116,20 @@ class xpowerUt(Screen):
 			file = open(XML_PCTAB, "w")
 			file.writelines(list)
 		except Exception, e:
-			print "[xpower plugin] Error Saving PC List:", e
+			print "[XPower plugin] Error Saving PC List:", e
 		finally:
-			if file is not None:
+			if file:
 				file.close()
 
 	def removePC(self, pcpoint):
 		self.newremotepc = {}
+		self.newremotepc_order = []
 		for name, data in self.remotepc.items():
 			if name.strip() != pcpoint.strip():
 				self.newremotepc[name] = data
+				self.newremotepc_order.append(name)
 		self.remotepc.clear()
+		self.remotepc_order = self.newremotepc_order[:]
 		self.remotepc = self.newremotepc
 
 ixpowerUt = xpowerUt()

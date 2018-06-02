@@ -24,6 +24,7 @@ config.plugins.xpower.user = NoSave(ConfigText(default="administrator", fixed_si
 config.plugins.xpower.passwd = NoSave(ConfigPassword(default="password", fixed_size=False))
 config.plugins.xpower.bqdn = NoSave(ConfigSelection(default="0", choices=[("0",_("Shutdown")),("1",_("Suspend")),("2",_("Hybernate"))]))
 config.plugins.xpower.close = ConfigYesNo(default=False)
+config.plugins.xpower.sort = ConfigYesNo(default=True)
 cfg = config.plugins.xpower
 
 class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
@@ -72,6 +73,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		xpowerEditconfigList.append(getConfigListEntry(_("Password"), cfg.passwd))
 		xpowerEditconfigList.append(getConfigListEntry(_("BouqDown"), cfg.bqdn))
 		xpowerEditconfigList.append(getConfigListEntry(_("Closing plugin"), cfg.close))
+		xpowerEditconfigList.append(getConfigListEntry(_("Sort list"), cfg.sort))
 
 		ConfigListScreen.__init__(self, xpowerEditconfigList, session=self.session, on_change = self.changedEntry)
 
@@ -89,6 +91,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		self["0"] = MultiPixmap()
 
 		self.remotepc = {}
+		self.remotepc_order = []
 
 		self["XPowerActions"] = HelpableActionMap(self, "XPowerActions",
 			{
@@ -101,8 +104,9 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			}, -1)
 		self.setup_title = _("XPower: %s" % (self.pcinfo['name']))
 		self.onChangedEntry = []
-		self.remotepc = ixpowerUt.getPCsList()
+		(self.remotepc, self.remotepc_order) = ixpowerUt.getPCsList()
 		self.fillCfg()
+		self.old = self.getBackupCfg()
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.isAlive)
 
@@ -198,10 +202,23 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			ip.append(int(x))
 		return ip
 
+	def getBackupCfg(self):
+		return [cfg.name.value,cfg.ip.value[:],cfg.mac.value,cfg.system.value,cfg.user.value,cfg.passwd.value,cfg.bqdn.value]
+
+	def isChanges(self, old, new):
+		for i in range(0, len(old)):
+			if old[i] != new[i]:
+				return True
+		return False
+
 	def ok(self):
-		current = self["config"].getCurrent()
+#		current = self["config"].getCurrent()
 		name = cfg.name.value
-		if self.remotepc.has_key(name) is True:
+		if not self.isChanges(self.old, self.getBackupCfg()): # no changes in item pars, save cfg item only
+			cfg.close.save()
+			cfg.sort.save()
+			self.close()
+		elif self.remotepc.has_key(name) is True:
 			self.session.openWithCallback(self.updateConfig, MessageBox, (_("A PC entry with this name already exists!\nUpdate existing entry and continue?") ) )
 		else:
 			self.session.openWithCallback(self.applyConfig, MessageBox, (_("Are you sure you want to add this PC?\n") ) )
@@ -240,6 +257,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 
 			self.session.openWithCallback(self.applyFinished, MessageBox, _("Your new PC has been added."), type = MessageBox.TYPE_INFO, timeout = 2)
 			ixpowerUt.remotepc[cfg.name.value] = data
+			ixpowerUt.remotepc_order.append(cfg.name.value)
 			ixpowerUt.writePCsConfig()
 			ixpowerUt.configActualized = True
 		else:
