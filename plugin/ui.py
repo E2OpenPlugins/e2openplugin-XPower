@@ -208,28 +208,19 @@ class xpower(Screen, HelpableScreen):
 			self["h_prev"].hide()
 			self["h_next"].hide()
 	def moveUp(self):
-		if self.edit:
-			if self.idx -1 < 0:
-				return
-			self["config"].setIndex(self.idx)
-			tmp = self["config"].getCurrent()
-			self["config"].setIndex(self.idx-1)
-			tmp2 = self["config"].getCurrent()
-			self["config"].modifyEntry(self.idx, tmp2)
-			self["config"].modifyEntry(self.idx-1, tmp)
-			self.idx-=1
-			self.changes = True
+		if self.edit and self.idx -1 >= 0:
+			self.moveDirection(-1)
 	def moveDown(self):
-		if self.edit:
-			if self.idx +1 >= self["config"].count():
-				return
+		if self.edit and self.idx +1 < self["config"].count():
+			self.moveDirection(1)
+	def moveDirection(self, direction):
 			self["config"].setIndex(self.idx)
 			tmp = self["config"].getCurrent()
-			self["config"].setIndex(self.idx+1)
+			self["config"].setIndex(self.idx+direction)
 			tmp2 = self["config"].getCurrent()
 			self["config"].modifyEntry(self.idx, tmp2)
-			self["config"].modifyEntry(self.idx+1, tmp)
-			self.idx+=1
+			self["config"].modifyEntry(self.idx+direction, tmp)
+			self.idx+=direction
 			self.changes = True
 
 	def prepare(self):
