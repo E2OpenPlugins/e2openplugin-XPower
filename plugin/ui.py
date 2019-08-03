@@ -71,10 +71,10 @@ class xpower(Screen, HelpableScreen):
 	skin = """
 	<screen position="center,center" size="560,430" title="XPower" >
 
-		<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<ePixmap name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" /> 
-		<ePixmap name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" /> 
+		<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
+		<ePixmap name="green"  position="140,0" zPosition="2" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />
+		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" /> 
+		<ePixmap name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" /> 
 
 		<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
 		<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
@@ -96,12 +96,12 @@ class xpower(Screen, HelpableScreen):
 			</convert>
 		</widget>
 
-		<ePixmap pixmap="skin_default/div-h.png" position="0,406" zPosition="1" size="560,2" />
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="480,413" size="14,14" zPosition="3"/>
+		<ePixmap pixmap="div-h.png" position="0,406" zPosition="1" size="560,2" />
+		<ePixmap alphatest="on" pixmap="icons/clock.png" position="480,413" size="14,14" zPosition="3"/>
 		<widget font="Regular;18" halign="left" position="505,410" render="Label" size="55,20" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<ePixmap pixmap="skin_default/buttons/key_menu.png" position="430,408" zPosition="3" size="35,25" alphatest="on" transparent="1" />
+		<ePixmap pixmap="buttons/key_menu.png" position="430,408" zPosition="3" size="35,25" alphatest="on" transparent="1" />
 		<widget name="statusbar" position="10,410" size="420,20" font="Regular;18" />
 
 	</screen>"""
