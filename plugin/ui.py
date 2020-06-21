@@ -584,10 +584,10 @@ class xpower(Screen, HelpableScreen):
 #		close = True
 		# finish telnet, but must wait, while starting power management
 #		try:tmp = telnet.read_very_eager()
-#		except EOFError, e:
+#		except EOFError as e:
 #			self.message(_("Connection finished... %s" % (e)),3)
 #			close = False
-#		except Exception, e:
+#		except Exception as e:
 #			self.message(_("Finished... %s" % (e)),3)
 #		if close:		
 #			telnet.close()
