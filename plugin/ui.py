@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 # for localized messages  	 
 from . import _
 
@@ -21,9 +23,9 @@ import telnetlib
 import os
 from os import path as os_path
 
-from xpowerut import ixpowerUt, xpowerUt
-from xpoweredit import xpowerEdit
-from xpowerhlp import xpowerHelp
+from .xpowerut import ixpowerUt, xpowerUt
+from .xpoweredit import xpowerEdit
+from .xpowerhlp import xpowerHelp
 
 # Global
 version = "1.59"
@@ -139,7 +141,7 @@ class xpower(Screen, HelpableScreen):
 
 			"shutdown": (self.shutdown, _("Shutdown")),
 			"wakeup": (self.wakeup, _("WakeUp")),
-			"abort": (self.abort,_("Abort shutdown / reboot")),
+			"abort": (self.abort, _("Abort shutdown / reboot")),
 			"restart": (self.reboot, _("Reboot")),
 			"suspend": (self.suspend, _("Suspend")),
 			"hibernate": (self.hibernate, _("Hibernate")),
@@ -161,12 +163,12 @@ class xpower(Screen, HelpableScreen):
 		self.macStr = _("MAC:")+" "
 
 		self.menu = []
-		self.menu.append((_("WakeUp"),"wakeup"))
-		self.menu.append((_("Suspend"),"suspend"))
-		self.menu.append((_("Shutdown"),"shutdown"))
-		self.menu.append((_("Reboot"),"reboot"))
-		self.menu.append((_("Hibernate"),"hibernate"))
-		self.menu.append((_("Abort shutdown / reboot"),"abort"))
+		self.menu.append((_("WakeUp"), "wakeup"))
+		self.menu.append((_("Suspend"), "suspend"))
+		self.menu.append((_("Shutdown"), "shutdown"))
+		self.menu.append((_("Reboot"), "reboot"))
+		self.menu.append((_("Hibernate"), "hibernate"))
+		self.menu.append((_("Abort shutdown / reboot"), "abort"))
 
 		self.pcinfo = None
 		self.showPCsList()
@@ -194,7 +196,7 @@ class xpower(Screen, HelpableScreen):
 	def startMoving(self):
 		self.edit = not self.edit
 		if self.edit and config.plugins.xpower.sort.value:
-			self.message(_("It has not sense change order if is set list sorting..."),5)
+			self.message(_("It has not sense change order if is set list sorting..."), 5)
 			self.edit = False
 			self.showPrevNext()
 			return
@@ -274,7 +276,7 @@ class xpower(Screen, HelpableScreen):
 	def xpnet(self):
 		if self.pcinfo['system'] == OS_RPC:
 			if os.system("net rpc | grep 'net rpc' > /dev/null 2>&1") != 0:
-				self.message(_("Command \"net\" is not installed\noption \"XP NET RPC\" does not work..."),10,"error")
+				self.message(_("Command \"net\" is not installed\noption \"XP NET RPC\" does not work..."), 10, "error")
 				return False
 		return True
 
@@ -282,7 +284,7 @@ class xpower(Screen, HelpableScreen):
 		if self.alive():
 			return True
 		else:
-			self.message(_("No response from %s.") % (self.pcinfo['name']),5,"error")
+			self.message(_("No response from %s.") % (self.pcinfo['name']), 5, "error")
 			return False
 
 	def shutdown(self):
@@ -308,7 +310,7 @@ class xpower(Screen, HelpableScreen):
 	def sendCommand(self):
 		if self.xpnet():
 			if self.isAlive():
-				self.session.openWithCallback(self.exitPlugin, MessageBox,_("Please wait, \"%s\" is sended to computer %s") % (self.command, self.pcinfo['name']),type = MessageBox.TYPE_INFO, timeout = 3)
+				self.session.openWithCallback(self.exitPlugin, MessageBox, _("Please wait, \"%s\" is sended to computer %s") % (self.command, self.pcinfo['name']), type = MessageBox.TYPE_INFO, timeout = 3)
 				self.commandTimer.start(100, True)
 
 	def exitPlugin(self, data):
@@ -363,8 +365,8 @@ class xpower(Screen, HelpableScreen):
 
 	def buildPCViewItem(self, entry):
 		pc = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/host.png"))
-		ip = "".join((self.ipStr,str(entry["ip"])))
-		mac = "".join((self.macStr,str(entry["mac"])))
+		ip = "".join((self.ipStr, str(entry["ip"])))
+		mac = "".join((self.macStr, str(entry["mac"])))
 		system = entry["system"]
 		if system == OS_WIN7:
 			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/win.png"))
@@ -468,112 +470,112 @@ class xpower(Screen, HelpableScreen):
 			text = _("Magic packet has been send to PC %s") % (self.pcinfo['name'])
 			for iface in ifaces_list:
 				os.system("ether-wake -i %s %s" % (iface[0], p[4]))
-		self.session.openWithCallback(self.exitPlugin, MessageBox, text,type = MessageBox.TYPE_INFO, timeout = 3)
+		self.session.openWithCallback(self.exitPlugin, MessageBox, text, type = MessageBox.TYPE_INFO, timeout = 3)
 
 	#shutdown
 	def shutdownIP(self, p):
 		if p[0] == OS_WIN7:
-			self.telnet(p,"shutdown /s /t 10")
+			self.telnet(p, "shutdown /s /t 10")
 		elif p[0] == OS_WIN8:
-			self.telnet(p,"shutdown /s /f /t 10")
+			self.telnet(p, "shutdown /s /f /t 10")
 		elif p[0] == OS_LINUX:
-			self.telnet(p,"sudo shutdown -P now")
+			self.telnet(p, "sudo shutdown -P now")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname()+":shutdown"))
+			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1], p[2], "%", p[3], self.getHostname()+":shutdown"))
 		else:
-			self.telnet(p,"shutdown -s -t 10")
+			self.telnet(p, "shutdown -s -t 10")
 
 	#abort
 	def abortIP(self, p):
 		if p[0] == OS_WIN7:
-			self.telnet(p,"shutdown /a")
+			self.telnet(p, "shutdown /a")
 		elif p[0] == OS_WIN8:
-			self.telnet(p,"shutdown /a")
+			self.telnet(p, "shutdown /a")
 		elif p[0] == OS_LINUX:
-			self.telnet(p,"sudo shutdown -c")
+			self.telnet(p, "sudo shutdown -c")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc abortshutdown -I %s -U %s%s%s > /dev/null 2>&1" % (p[1],p[2],"%",p[3]))
+			self.netRpc("net rpc abortshutdown -I %s -U %s%s%s > /dev/null 2>&1" % (p[1], p[2], "%", p[3]))
 		else:
-			self.telnet(p,"shutdown -a")
+			self.telnet(p, "shutdown -a")
 
 	#reboot
 	def rebootIP(self, p):
 		if p[0] == OS_WIN7:
-			self.telnet(p,"shutdown /r /t 10")
+			self.telnet(p, "shutdown /r /t 10")
 		elif p[0] == OS_WIN8:
-			self.telnet(p,"shutdown /r /f /t 10")
+			self.telnet(p, "shutdown /r /f /t 10")
 		elif p[0] == OS_LINUX:
-			self.telnet(p,"sudo shutdown -r now")
+			self.telnet(p, "sudo shutdown -r now")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc shutdown -r -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname()+":reboot"))
+			self.netRpc("net rpc shutdown -r -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1], p[2], "%", p[3], self.getHostname()+":reboot"))
 		else:
-			self.telnet(p,"shutdown -r -t 10")
+			self.telnet(p, "shutdown -r -t 10")
 
 	#standby
 	def suspendIP(self, p):
 		if p[0] == OS_WIN7:
-			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState", "powercfg -h off", "powercfg -h off")
+			self.telnet(p, "rundll32.exe PowrProf.dll,SetSuspendState", "powercfg -h off", "powercfg -h off")
 		elif p[0] == OS_WIN8:
-			self.telnet(p,"shutdown /h")
+			self.telnet(p, "shutdown /h")
 		elif p[0] == OS_LINUX:
-			self.telnet(p,"sudo pm-suspend --quirk-s3-mode")
+			self.telnet(p, "sudo pm-suspend --quirk-s3-mode")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname()+":shutdown"))
+			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1], p[2], "%", p[3], self.getHostname()+":shutdown"))
 		else:
-			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState", "powercfg /h off", "powercfg /h off")
+			self.telnet(p, "rundll32.exe PowrProf.dll,SetSuspendState", "powercfg /h off", "powercfg /h off")
 
 	#hibernate
 	def hibernateIP(self, p):
 		if p[0] == OS_WIN7:
-			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState Hibernate", "powercfg -h on", "powercfg -h on")
+			self.telnet(p, "rundll32.exe PowrProf.dll,SetSuspendState Hibernate", "powercfg -h on", "powercfg -h on")
 		elif p[0] == OS_WIN8:
-			self.telnet(p,"shutdown /h")
+			self.telnet(p, "shutdown /h")
 		elif p[0] == OS_LINUX:
-			self.telnet(p,"sudo pm-hibernate")
+			self.telnet(p, "sudo pm-hibernate")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname()+":shutdown"))
+			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1], p[2], "%", p[3], self.getHostname()+":shutdown"))
 		else:
-			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState Hibernate", "powercfg /h on", "powercfg /h on")
+			self.telnet(p, "rundll32.exe PowrProf.dll,SetSuspendState Hibernate", "powercfg /h on", "powercfg /h on")
 
 	def telnet(self, p, command, pre = "", post = "" ):
 		ip = p[1]
 		user = p[2]
 		passwd = p[3]
 		try:telnet = telnetlib.Telnet(ip)
-		except Exception, e:
-			self.message(_("Connection failed... %s" % (e)),4)
-			print "[XPower plugin] Error telnet:", e
+		except Exception as e:
+			self.message(_("Connection failed... %s" % (e)), 4)
+			print("[XPower plugin] Error telnet:", e)
 		else:
 #			telnet.set_debuglevel(1)
 			if p[0] == OS_LINUX:
 				try: 
-					telnet.read_until('ogin: ',10)
+					telnet.read_until('ogin: ', 10)
 					telnet.write(user + '\r')
-					telnet.read_until('assword: ',10)
+					telnet.read_until('assword: ', 10)
 					telnet.write(passwd + '\r')
-					telnet.read_until(user,5)
+					telnet.read_until(user, 5)
 					telnet.write(command + '\r')
-					telnet.read_until('assword',5)
+					telnet.read_until('assword', 5)
 					telnet.write(passwd + '\r')
-				except EOFError, e:
+				except EOFError as e:
 					"[xpower plugin] Error telnet:", e
 				self.closeLinTelnet(telnet)
 			else:
 				try:
-					telnet.read_until('ogin: ',5)
+					telnet.read_until('ogin: ', 5)
 					telnet.write(user + "\r\n")
-					telnet.read_until('assword: ',5)
+					telnet.read_until('assword: ', 5)
 					telnet.write(passwd + "\r\n")
-					telnet.read_until('>',5)
+					telnet.read_until('>', 5)
 					if pre != "":
 						telnet.write("%s\r\n" % (pre))
 					telnet.write("%s\r\n" % (command))
-					telnet.read_until('\r\n',5)
+					telnet.read_until('\r\n', 5)
 					if post != "":
 						telnet.write("%s\r\n" % (post))
 					telnet.write("exit\r\n")
-					telnet.read_until('',1)
-				except EOFError, e:
+					telnet.read_until('', 1)
+				except EOFError as e:
 					"[xpower plugin] Error telnet:", e
 
 				self.closeLinTelnet(telnet)
@@ -595,12 +597,12 @@ class xpower(Screen, HelpableScreen):
 		# finish telnet, but must wait, while starting power management
 		i = 0
 		while self.alive():
-			try:tmp = telnet.read_until('xyz',1)
-			except EOFError, e:
+			try:tmp = telnet.read_until('xyz', 1)
+			except EOFError as e:
 				#self.message(_("Connection finished... %s" % (e)),3)
 				close = False
 				break
-			except Exception, e:
+			except Exception as e:
 				#self.message(_("Finished... %s" % (e)),4)
 				break
 			if self.command == "abort":

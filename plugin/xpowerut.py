@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.Button import Button
@@ -48,8 +49,8 @@ class xpowerUt(Screen):
 				data['bqdn'] = getValue(pc.findall("bqdn"), "0").encode("UTF-8")
 				self.remotepc[data['name']] = data
 				self.remotepc_order.append(getValue(pc.findall("name"), self.pcStr).encode("UTF-8"))
-			except Exception, e:
-				print "[XPower plugin] Error reading remotepc:", e
+			except Exception as e:
+				print("[XPower plugin] Error reading remotepc:", e)
 		self.checkList = self.remotepc.keys()
 		if not self.checkList: 
 		# exists empty file => create dummy record
@@ -57,7 +58,7 @@ class xpowerUt(Screen):
 		
 		self.checkList = self.remotepc.keys()
 		if not self.checkList:
-			print "\n[XPower plugin] self.remotepc without remotepc", self.remotepc
+			print("\n[XPower plugin] self.remotepc without remotepc", self.remotepc)
 		else:
 			self.checkList.pop()
 
@@ -74,8 +75,8 @@ class xpowerUt(Screen):
 		self.remotepc_order.append(self.pcStr)
 
 	def setRemotePCAttribute(self, pcpoint, attribute, value):
-		print "[XPower plugin] setting for pcpoint", pcpoint, "attribute", attribute, " to value", value
-		if self.remotepc.has_key(pcpoint):
+		print("[XPower plugin] setting for pcpoint", pcpoint, "attribute", attribute, " to value", value)
+		if pcpoint in self.remotepc:
 			self.remotepc[pcpoint][attribute] = value
 
 	def getPCsList(self):
@@ -115,8 +116,8 @@ class xpowerUt(Screen):
 		try:
 			file = open(XML_PCTAB, "w")
 			file.writelines(list)
-		except Exception, e:
-			print "[XPower plugin] Error Saving PC List:", e
+		except Exception as e:
+			print("[XPower plugin] Error Saving PC List:", e)
 		finally:
 			if file:
 				file.close()
