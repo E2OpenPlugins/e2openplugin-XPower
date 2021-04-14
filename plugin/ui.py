@@ -543,7 +543,8 @@ class xpower(Screen, HelpableScreen):
 		ip = p[1]
 		user = p[2]
 		passwd = p[3]
-		try:telnet = telnetlib.Telnet(ip)
+		try:
+			telnet = telnetlib.Telnet(ip)
 		except Exception, e:
 			self.message(_("Connection failed... %s" % (e)),4)
 			print "[XPower plugin] Error telnet:", e
@@ -599,7 +600,8 @@ class xpower(Screen, HelpableScreen):
 		# finish telnet, but must wait, while starting power management
 		i = 0
 		while self.alive():
-			try:tmp = telnet.read_until('xyz',1)
+			try:
+				tmp = telnet.read_until('xyz',1)
 			except EOFError, e:
 				#self.message(_("Connection finished... %s" % (e)),3)
 				close = False
@@ -608,7 +610,7 @@ class xpower(Screen, HelpableScreen):
 				#self.message(_("Finished... %s" % (e)),4)
 				break
 			if self.command == "abort":
-				break;
+				break
 			if i > 15: # max cca 30s
 				break
 			i += 1
