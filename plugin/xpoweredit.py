@@ -27,6 +27,7 @@ config.plugins.xpower.close = ConfigYesNo(default=False)
 config.plugins.xpower.sort = ConfigYesNo(default=True)
 cfg = config.plugins.xpower
 
+
 class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 	skin = """
 	<screen position="center,center" size="560,275" title="XPower Configuration PC" >
@@ -110,15 +111,18 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.isAlive)
 
-
 	# for summary
+
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
+
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
+
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
+
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
 		return SetupSummary

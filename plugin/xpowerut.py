@@ -10,6 +10,7 @@ from xml.etree.cElementTree import parse as cet_parse
 
 XML_PCTAB = "/etc/enigma2/xpower.xml"
 
+
 class xpowerUt(Screen):
 
 	def __init__(self):
@@ -131,5 +132,6 @@ class xpowerUt(Screen):
 		self.remotepc.clear()
 		self.remotepc_order = self.newremotepc_order[:]
 		self.remotepc = self.newremotepc
+
 
 ixpowerUt = xpowerUt()

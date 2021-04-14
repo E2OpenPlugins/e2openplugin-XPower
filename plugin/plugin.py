@@ -3,9 +3,11 @@ from . import _
 
 from Plugins.Plugin import PluginDescriptor
 
+
 def xpowerMain(session, **kwargs):
 	import ui
 	session.open(ui.xpower, plugin_path)
+
 
 def Plugins(path, **kwargs):
 	global plugin_path

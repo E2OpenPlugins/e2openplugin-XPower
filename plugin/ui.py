@@ -38,6 +38,7 @@ SHUTDOWN = "0"
 SUSPEND = "1"
 HIBERNATE = "2"
 
+
 class xpowerSummary(Screen):
 	skin = """
 	<screen position="0,0" size="96,64">
@@ -66,6 +67,7 @@ class xpowerSummary(Screen):
 	def selectionChanged(self):
 		self["pcname"].text = self.parent.getCurrentEntry()
 		self["bouquet"].text = self.parent.getCurrentValue()
+
 
 class xpower(Screen, HelpableScreen):
 	skin = """
@@ -179,14 +181,16 @@ class xpower(Screen, HelpableScreen):
 
 		self.onChangedEntry = []
 
-
 	# for summary (+ changedEntry):
+
 	def getCurrentEntry(self):
 		current = self["config"].getCurrent()
 		return ixpowerUt.remotepc[current[1]]['name']
+
 	def getCurrentValue(self):
 		self.statusbarText()
 		return _("BouqDn: %s") % (self.text)
+
 	def createSummary(self):
 		return xpowerSummary
 	###
@@ -200,6 +204,7 @@ class xpower(Screen, HelpableScreen):
 			return
 		self.idx = self["config"].getIndex()
 		self.showPrevNext()
+
 	def showPrevNext(self):
 		if self.edit:
 			self["h_prev"].show()
@@ -207,12 +212,15 @@ class xpower(Screen, HelpableScreen):
 		else:
 			self["h_prev"].hide()
 			self["h_next"].hide()
+
 	def moveUp(self):
 		if self.edit and self.idx - 1 >= 0:
 			self.moveDirection(-1)
+
 	def moveDown(self):
 		if self.edit and self.idx + 1 < self["config"].count():
 			self.moveDirection(1)
+
 	def moveDirection(self, direction):
 			self["config"].setIndex(self.idx)
 			tmp = self["config"].getCurrent()
