@@ -228,7 +228,7 @@ class xpower(Screen, HelpableScreen):
 
 	def showMenu(self):
 		menu_title_text = "%s" % (self.pcinfo['name']) + _(" - select action:")
-		self.session.openWithCallback(self.subMenu, ChoiceBox, title=menu_title_text, list=self.menu, keys=[ "1", "2", "3", "4", "5", "8",])
+		self.session.openWithCallback(self.subMenu, ChoiceBox, title=menu_title_text, list=self.menu, keys=["1", "2", "3", "4", "5", "8",])
 
 	def subMenu(self, choice):
 		if choice is None:
@@ -269,7 +269,7 @@ class xpower(Screen, HelpableScreen):
 		passwd = pcinfo['passwd']
 		os = pcinfo['system']
 		mac = pcinfo['mac']
-		return ( os, ip, user, passwd, mac )
+		return (os, ip, user, passwd, mac)
 
 	def xpnet(self):
 		if self.pcinfo['system'] == OS_RPC:
@@ -377,7 +377,7 @@ class xpower(Screen, HelpableScreen):
 		else:
 			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/xp.png"))
 		# return displayed items
-		return( pc, entry["name"], logo, ip, mac )
+		return(pc, entry["name"], logo, ip, mac)
 
 	def keyOK(self):
 		self.session.openWithCallback(self.editClosed, xpowerEdit, self.pcinfo)
@@ -390,7 +390,7 @@ class xpower(Screen, HelpableScreen):
 		self.retValue=self.pcinfo['name']
 		self.session.openWithCallback(self.removeData, MessageBox, _("Do You want remove PC: %s?") % (self.pcinfo['name']), type=MessageBox.TYPE_YESNO)
 
-	def removeData(self, answer ):
+	def removeData(self, answer):
 		if answer is not None and answer:
 			ixpowerUt.removePC(self.retValue)
 			ixpowerUt.writePCsConfig()
@@ -539,7 +539,7 @@ class xpower(Screen, HelpableScreen):
 		else:
 			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState Hibernate", "powercfg /h on", "powercfg /h on")
 
-	def telnet(self, p, command, pre="", post="" ):
+	def telnet(self, p, command, pre="", post=""):
 		ip = p[1]
 		user = p[2]
 		passwd = p[3]

@@ -10,5 +10,5 @@ def xpowerMain(session, **kwargs):
 def Plugins(path,**kwargs):
 	global plugin_path
 	plugin_path = path
-	result = [PluginDescriptor(name="XPower",description=_("Power management for Win/Linux PC's"),where=[ PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU ],icon='plugin.png',fnc=xpowerMain)]
+	result = [PluginDescriptor(name="XPower",description=_("Power management for Win/Linux PC's"),where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU],icon='plugin.png',fnc=xpowerMain)]
 	return result

@@ -37,7 +37,7 @@ class xpowerUt(Screen):
 		# Config is stored in "host" element, read out PC
 
 		for pc in tree.iter("host"):
-			data = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False }
+			data = {'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False}
 			try:
 				data['name'] = getValue(pc.findall("name"), self.pcStr).encode("UTF-8")
 				data['ip'] = getValue(pc.findall("ip"), "192.168.1.0").encode("UTF-8")
@@ -62,7 +62,7 @@ class xpowerUt(Screen):
 			self.checkList.pop()
 
 	def setDummyRecord(self):
-		data = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False }
+		data = {'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False}
 		data['name'] = self.pcStr
 		data['ip'] = "192.168.1.100"
 		data['mac'] = "00:00:00:00:00:00"

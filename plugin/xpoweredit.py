@@ -78,7 +78,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		ConfigListScreen.__init__(self, xpowerEditconfigList, session=self.session, on_change=self.changedEntry)
 
 		if self.pcinfo is None:
-			self.pcinfo = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False }
+			self.pcinfo = {'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False}
 
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Ok"))
@@ -220,9 +220,9 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			ixpowerUt.configActualized = True
 			self.close()
 		elif self.remotepc.has_key(name) is True:
-			self.session.openWithCallback(self.updateConfig, MessageBox, (_("A PC entry with this name already exists!\nUpdate existing entry and continue?") ) )
+			self.session.openWithCallback(self.updateConfig, MessageBox, (_("A PC entry with this name already exists!\nUpdate existing entry and continue?")))
 		else:
-			self.session.openWithCallback(self.applyConfig, MessageBox, (_("Are you sure you want to add this PC?\n") ) )
+			self.session.openWithCallback(self.applyConfig, MessageBox, (_("Are you sure you want to add this PC?\n")))
 
 	def updateConfig(self, ret=False): # update record
 		if (ret == True):
@@ -248,7 +248,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 
 	def applyConfig(self, ret=False): # new record
 		if (ret == True):
-			data = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'username': False, 'password': False, 'bqdn': False }
+			data = {'name': False, 'ip': False, 'mac': False, 'system': False, 'username': False, 'password': False, 'bqdn': False}
 			data['name'] = cfg.name.value
 			data['ip'] = cfg.ip.getText()
 			data['mac'] = cfg.mac.value

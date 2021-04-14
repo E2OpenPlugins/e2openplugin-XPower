@@ -2,7 +2,7 @@ from distutils.core import setup
 import setup_translate
 
 pkg = 'Extensions.XPower'
-setup (name='enigma2-plugin-extensions-xpower',
+setup(name='enigma2-plugin-extensions-xpower',
 	version='1.59',
 	description='remote PC power management for Win and linux',
 	packages=[pkg],
