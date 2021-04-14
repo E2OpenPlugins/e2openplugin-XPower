@@ -47,7 +47,7 @@ class xpowerSummary(Screen):
 	</screen>"""
 
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["title"] = StaticText(_(parent.setup_title))
 		self["pcname"] = StaticText("")
 		self["bouquet"] = StaticText("")
@@ -228,7 +228,7 @@ class xpower(Screen, HelpableScreen):
 
 	def showMenu(self):
 		menu_title_text = "%s" % (self.pcinfo['name']) + _(" - select action:")
-		self.session.openWithCallback(self.subMenu, ChoiceBox, title = menu_title_text, list=self.menu, keys = [ "1", "2", "3", "4", "5", "8",])
+		self.session.openWithCallback(self.subMenu, ChoiceBox, title=menu_title_text, list=self.menu, keys=[ "1", "2", "3", "4", "5", "8",])
 
 	def subMenu(self, choice):
 		if choice is None:
@@ -308,7 +308,7 @@ class xpower(Screen, HelpableScreen):
 	def sendCommand(self):
 		if self.xpnet():
 			if self.isAlive():
-				self.session.openWithCallback(self.exitPlugin, MessageBox,_("Please wait, \"%s\" is sended to computer %s") % (self.command, self.pcinfo['name']),type = MessageBox.TYPE_INFO, timeout = 3)
+				self.session.openWithCallback(self.exitPlugin, MessageBox,_("Please wait, \"%s\" is sended to computer %s") % (self.command, self.pcinfo['name']),type=MessageBox.TYPE_INFO, timeout=3)
 				self.commandTimer.start(100, True)
 
 	def exitPlugin(self, data):
@@ -341,7 +341,7 @@ class xpower(Screen, HelpableScreen):
 		for name in remotepc_order:
 			list.append(self.buildPCViewItem(remotepc[name]))
 		if config.plugins.xpower.sort.value:
-			list.sort(key = lambda x: x[1])
+			list.sort(key=lambda x: x[1])
 		self["config"].setList(list)
 
 		newCount = self["config"].count()
@@ -388,7 +388,7 @@ class xpower(Screen, HelpableScreen):
 
 	def deleteItem(self):
 		self.retValue=self.pcinfo['name']
-		self.session.openWithCallback(self.removeData, MessageBox, _("Do You want remove PC: %s?") % (self.pcinfo['name']), type = MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.removeData, MessageBox, _("Do You want remove PC: %s?") % (self.pcinfo['name']), type=MessageBox.TYPE_YESNO)
 
 	def removeData(self, answer ):
 		if answer is not None and answer:
@@ -396,7 +396,7 @@ class xpower(Screen, HelpableScreen):
 			ixpowerUt.writePCsConfig()
 			ixpowerUt.getRemotePCPoints()
 			self.showPCsList()
-			self.session.open(MessageBox, _("PC has been removed..."), type = MessageBox.TYPE_INFO, timeout = 2)
+			self.session.open(MessageBox, _("PC has been removed..."), type=MessageBox.TYPE_INFO, timeout=2)
 
 	def help(self):
 		self.session.open(xpowerHelp, self.ppath)
@@ -405,7 +405,7 @@ class xpower(Screen, HelpableScreen):
 		msg = MessageBox.TYPE_INFO
 		if msg_type=="error":
 			msg = MessageBox.TYPE_ERROR
-		self.session.open(MessageBox, string, type = msg, timeout = delay)
+		self.session.open(MessageBox, string, type=msg, timeout=delay)
 
 	def cancel(self):
 		if self.changes:
@@ -472,7 +472,7 @@ class xpower(Screen, HelpableScreen):
 			text = _("Magic packet has been send to PC %s") % (self.pcinfo['name'])
 			for iface in ifaces_list:
 				os.system("ether-wake -i %s %s" % (iface[0], p[4]))
-		self.session.openWithCallback(self.exitPlugin, MessageBox, text,type = MessageBox.TYPE_INFO, timeout = 3)
+		self.session.openWithCallback(self.exitPlugin, MessageBox, text,type=MessageBox.TYPE_INFO, timeout=3)
 
 	#shutdown
 	def shutdownIP(self, p):
@@ -539,7 +539,7 @@ class xpower(Screen, HelpableScreen):
 		else:
 			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState Hibernate", "powercfg /h on", "powercfg /h on")
 
-	def telnet(self, p, command, pre = "", post = "" ):
+	def telnet(self, p, command, pre="", post="" ):
 		ip = p[1]
 		user = p[2]
 		passwd = p[3]

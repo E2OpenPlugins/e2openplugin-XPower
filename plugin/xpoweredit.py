@@ -55,7 +55,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 
 	</screen>"""
 
-	def __init__(self, session, pcinfo = None):
+	def __init__(self, session, pcinfo=None):
 		self.skin = xpowerEdit.skin
 		self.session = session
 		self.pcinfo = pcinfo
@@ -75,7 +75,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		xpowerEditconfigList.append(getConfigListEntry(_("Closing plugin"), cfg.close))
 		xpowerEditconfigList.append(getConfigListEntry(_("Sort list"), cfg.sort))
 
-		ConfigListScreen.__init__(self, xpowerEditconfigList, session=self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, xpowerEditconfigList, session=self.session, on_change=self.changedEntry)
 
 		if self.pcinfo is None:
 			self.pcinfo = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False }
@@ -224,7 +224,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		else:
 			self.session.openWithCallback(self.applyConfig, MessageBox, (_("Are you sure you want to add this PC?\n") ) )
 
-	def updateConfig(self, ret = False): # update record
+	def updateConfig(self, ret=False): # update record
 		if (ret == True):
 			ixpowerUt.setRemotePCAttribute(cfg.name.value, "name", cfg.name.value)
 			ixpowerUt.setRemotePCAttribute(cfg.name.value, "ip", cfg.ip.getText())
@@ -234,7 +234,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			ixpowerUt.setRemotePCAttribute(cfg.name.value, "passwd", cfg.passwd.value)
 			ixpowerUt.setRemotePCAttribute(cfg.name.value, "bqdn", cfg.bqdn.value)
 
-			self.session.openWithCallback(self.updateFinished, MessageBox, _("Your PC has been updated..."), type = MessageBox.TYPE_INFO, timeout = 2)
+			self.session.openWithCallback(self.updateFinished, MessageBox, _("Your PC has been updated..."), type=MessageBox.TYPE_INFO, timeout=2)
 			ixpowerUt.writePCsConfig()
 			cfg.close.save()
 			cfg.sort.save()
@@ -246,7 +246,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		if data is not None and data is True:
 			self.close()
 
-	def applyConfig(self, ret = False): # new record
+	def applyConfig(self, ret=False): # new record
 		if (ret == True):
 			data = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'username': False, 'password': False, 'bqdn': False }
 			data['name'] = cfg.name.value
@@ -257,7 +257,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			data['passwd'] = cfg.passwd.value
 			data['bqdn'] = cfg.bqdn.value
 
-			self.session.openWithCallback(self.applyFinished, MessageBox, _("Your new PC has been added."), type = MessageBox.TYPE_INFO, timeout = 2)
+			self.session.openWithCallback(self.applyFinished, MessageBox, _("Your new PC has been added."), type=MessageBox.TYPE_INFO, timeout=2)
 			ixpowerUt.remotepc[cfg.name.value] = data
 			ixpowerUt.remotepc_order.append(cfg.name.value)
 			ixpowerUt.writePCsConfig()
