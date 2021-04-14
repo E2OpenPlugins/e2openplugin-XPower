@@ -9,11 +9,11 @@ from Components.Pixmap import Pixmap
 
 import ui
 		
-l1  = "\n"
+l1 = "\n"
 l2 = "\n" * 2
 l3 = "\n" * 3
-s6  = " " * 6
-s8  = " " * 8
+s6 = " " * 6
+s8 = " " * 8
 
 
 class xpowerHelp(Screen):
@@ -84,7 +84,7 @@ class xpowerHelp(Screen):
 		self["HelpScrollLabel"].setText(self.hlpTxt() + self.hotkeysTxt() + self.installTxt())
 
 	def hlpTxt(self):
-		text  = l1 + s8 
+		text = l1 + s8 
 		text += _("Welcome in plugin XPower for remote power management PC's. This plugin knows sending Magic Packet and control power status of PC.") + l1
 		text += l1 + s8 
 		text += _("Each operation system using its own comunication and own power managenent. There in settings of each PC item must be set true value.") + l1
@@ -102,7 +102,7 @@ class xpowerHelp(Screen):
 		return text
 
 	def installTxt(self):
-		text =  "\t" + _("Setup") + ":" + l1
+		text = "\t" + _("Setup") + ":" + l1
 		text += _("Linux") + l2
 		text += _("- install telnetd with:") + "  " + ("sudo apt-get install telnetd") + l2
 		text += _("Windows 7/8") + l2

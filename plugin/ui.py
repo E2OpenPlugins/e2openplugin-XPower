@@ -31,7 +31,7 @@ version = "1.59"
 OS_XP = "0"
 OS_WIN7 = "1"
 OS_LINUX = "2"
-OS_RPC= "5"
+OS_RPC = "5"
 OS_WIN8 = "3"
 
 SHUTDOWN = "0"
@@ -147,8 +147,8 @@ class xpower(Screen, HelpableScreen):
 			}, -1)
 		self["XPowerEditActions"] = HelpableActionMap(self, "DirectionActions",
 			{
-			"moveUp":	(self.moveUp, _("Move item up")),
-			"moveDown":	(self.moveDown, _("Move item down")),
+			"moveUp": (self.moveUp, _("Move item up")),
+			"moveDown": (self.moveDown, _("Move item down")),
 			}, -1)
 		self.edit = 0
 		self.idx = 0
@@ -157,8 +157,8 @@ class xpower(Screen, HelpableScreen):
 		self["h_next"] = Pixmap()
 		self.showPrevNext()
 
-		self.ipStr = _("IP:")+" "
-		self.macStr = _("MAC:")+" "
+		self.ipStr = _("IP:") + " "
+		self.macStr = _("MAC:") + " "
 
 		self.menu = []
 		self.menu.append((_("WakeUp"),"wakeup"))
@@ -208,19 +208,19 @@ class xpower(Screen, HelpableScreen):
 			self["h_prev"].hide()
 			self["h_next"].hide()
 	def moveUp(self):
-		if self.edit and self.idx -1 >= 0:
+		if self.edit and self.idx - 1 >= 0:
 			self.moveDirection(-1)
 	def moveDown(self):
-		if self.edit and self.idx +1 < self["config"].count():
+		if self.edit and self.idx + 1 < self["config"].count():
 			self.moveDirection(1)
 	def moveDirection(self, direction):
 			self["config"].setIndex(self.idx)
 			tmp = self["config"].getCurrent()
-			self["config"].setIndex(self.idx+direction)
+			self["config"].setIndex(self.idx + direction)
 			tmp2 = self["config"].getCurrent()
 			self["config"].modifyEntry(self.idx, tmp2)
-			self["config"].modifyEntry(self.idx+direction, tmp)
-			self.idx+=direction
+			self["config"].modifyEntry(self.idx + direction, tmp)
+			self.idx += direction
 			self.changes = True
 
 	def prepare(self):
@@ -353,29 +353,29 @@ class xpower(Screen, HelpableScreen):
 		if newIndex != None: 
 			if oldIndex + 1 == oldCount: # last record 
 				if oldCount < newCount:	# added
-					self["config"].setIndex(oldIndex+1)
+					self["config"].setIndex(oldIndex + 1)
 				elif oldCount > newCount: # removed
-					self["config"].setIndex(oldIndex-1)
+					self["config"].setIndex(oldIndex - 1)
 				else: # same status
 					self["config"].setIndex(oldIndex)
 			else:
 				self["config"].setIndex(oldIndex)
 
 	def buildPCViewItem(self, entry):
-		pc = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/host.png"))
+		pc = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath + "/img/host.png"))
 		ip = "".join((self.ipStr,str(entry["ip"])))
 		mac = "".join((self.macStr,str(entry["mac"])))
 		system = entry["system"]
 		if system == OS_WIN7:
-			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/win.png"))
+			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath + "/img/win.png"))
 		elif system == OS_WIN8:
-			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/win8.png"))
+			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath + "/img/win8.png"))
 		elif system == OS_LINUX:
-			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/lin.png"))
+			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath + "/img/lin.png"))
 		elif system == OS_RPC:
-			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/rpc.png"))
+			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath + "/img/rpc.png"))
 		else:
-			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/xp.png"))
+			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath + "/img/xp.png"))
 		# return displayed items
 		return(pc, entry["name"], logo, ip, mac)
 
@@ -387,7 +387,7 @@ class xpower(Screen, HelpableScreen):
 			self.showPCsList()
 
 	def deleteItem(self):
-		self.retValue=self.pcinfo['name']
+		self.retValue = self.pcinfo['name']
 		self.session.openWithCallback(self.removeData, MessageBox, _("Do You want remove PC: %s?") % (self.pcinfo['name']), type=MessageBox.TYPE_YESNO)
 
 	def removeData(self, answer):
@@ -403,7 +403,7 @@ class xpower(Screen, HelpableScreen):
 
 	def message(self, string, delay, msg_type=""):
 		msg = MessageBox.TYPE_INFO
-		if msg_type=="error":
+		if msg_type == "error":
 			msg = MessageBox.TYPE_ERROR
 		self.session.open(MessageBox, string, type=msg, timeout=delay)
 
@@ -458,9 +458,9 @@ class xpower(Screen, HelpableScreen):
 		namestr = names.tostring()
 		ifaces = []
 		for i in range(0, outbytes, struct_size):
-			iface_name = bytes.decode(namestr[i:i+16]).split('\0', 1)[0].encode('ascii')
+			iface_name = bytes.decode(namestr[i:i + 16]).split('\0', 1)[0].encode('ascii')
 			if iface_name != 'lo':
-				iface_addr = socket.inet_ntoa(namestr[i+20:i+24])
+				iface_addr = socket.inet_ntoa(namestr[i + 20:i + 24])
 				ifaces.append((iface_name, iface_addr))
 		return ifaces
 
@@ -483,7 +483,7 @@ class xpower(Screen, HelpableScreen):
 		elif p[0] == OS_LINUX:
 			self.telnet(p,"sudo shutdown -P now")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname()+":shutdown"))
+			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname() + ":shutdown"))
 		else:
 			self.telnet(p,"shutdown -s -t 10")
 
@@ -509,7 +509,7 @@ class xpower(Screen, HelpableScreen):
 		elif p[0] == OS_LINUX:
 			self.telnet(p,"sudo shutdown -r now")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc shutdown -r -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname()+":reboot"))
+			self.netRpc("net rpc shutdown -r -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname() + ":reboot"))
 		else:
 			self.telnet(p,"shutdown -r -t 10")
 
@@ -522,7 +522,7 @@ class xpower(Screen, HelpableScreen):
 		elif p[0] == OS_LINUX:
 			self.telnet(p,"sudo pm-suspend --quirk-s3-mode")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname()+":shutdown"))
+			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname() + ":shutdown"))
 		else:
 			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState", "powercfg /h off", "powercfg /h off")
 
@@ -535,7 +535,7 @@ class xpower(Screen, HelpableScreen):
 		elif p[0] == OS_LINUX:
 			self.telnet(p,"sudo pm-hibernate")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname()+":shutdown"))
+			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname() + ":shutdown"))
 		else:
 			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState Hibernate", "powercfg /h on", "powercfg /h on")
 

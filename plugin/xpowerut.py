@@ -33,7 +33,7 @@ class xpowerUt(Screen):
 			ret = ""
 			# How many definitions are present
 			Len = len(definitions)
-			return Len > 0 and definitions[Len-1].text or default
+			return Len > 0 and definitions[Len - 1].text or default
 		# Config is stored in "host" element, read out PC
 
 		for pc in tree.iter("host"):
