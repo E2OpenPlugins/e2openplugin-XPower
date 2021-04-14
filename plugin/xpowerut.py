@@ -52,10 +52,10 @@ class xpowerUt(Screen):
 			except Exception, e:
 				print "[XPower plugin] Error reading remotepc:", e
 		self.checkList = self.remotepc.keys()
-		if not self.checkList: 
+		if not self.checkList:
 		# exists empty file => create dummy record
 			self.setDummyRecord()
-		
+
 		self.checkList = self.remotepc.keys()
 		if not self.checkList:
 			print "\n[XPower plugin] self.remotepc without remotepc", self.remotepc

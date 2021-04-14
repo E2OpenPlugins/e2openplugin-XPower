@@ -1,4 +1,4 @@
-# for localized messages  	 
+# for localized messages
 from . import _
 
 from Screens.Screen import Screen
@@ -75,11 +75,11 @@ class xpower(Screen, HelpableScreen):
 
 		<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 		<ePixmap name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" /> 
-		<ePixmap name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" /> 
+		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+		<ePixmap name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
 
-		<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
-		<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
+		<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+		<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_yellow" position="280,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_blue" position="420,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 
@@ -175,7 +175,7 @@ class xpower(Screen, HelpableScreen):
 
 		self.commandTimer = eTimer()
 		self.commandTimer.timeout.get().append(self.sendDelayed)
-		
+
 		self.onShown.append(self.prepare)
 		self["config"].onSelectionChanged.append(self.statusbarText)
 
@@ -252,7 +252,7 @@ class xpower(Screen, HelpableScreen):
 		current = self["config"].getCurrent()
 		if current:
 			self.pcinfo = ixpowerUt.remotepc[current[1]]
-			
+
 			if self.pcinfo['system'] != OS_RPC:
 				if self.pcinfo['bqdn'] == SUSPEND:
 					self.text = _("Suspend")
@@ -358,8 +358,8 @@ class xpower(Screen, HelpableScreen):
 		self.setListIndex(oldIndex, newIndex, oldCount, newCount)
 
 	def setListIndex(self, oldIndex, newIndex, oldCount, newCount):
-		if newIndex != None: 
-			if oldIndex + 1 == oldCount: # last record 
+		if newIndex != None:
+			if oldIndex + 1 == oldCount: # last record
 				if oldCount < newCount:	# added
 					self["config"].setIndex(oldIndex + 1)
 				elif oldCount > newCount: # removed
@@ -559,7 +559,7 @@ class xpower(Screen, HelpableScreen):
 		else:
 #			telnet.set_debuglevel(1)
 			if p[0] == OS_LINUX:
-				try: 
+				try:
 					telnet.read_until('ogin: ', 10)
 					telnet.write(user + '\r')
 					telnet.read_until('assword: ', 10)
@@ -600,7 +600,7 @@ class xpower(Screen, HelpableScreen):
 #			close = False
 #		except Exception, e:
 #			self.message(_("Finished... %s" % (e)),3)
-#		if close:		
+#		if close:
 #			telnet.close()
 
 	def closeLinTelnet(self, telnet):
@@ -622,7 +622,6 @@ class xpower(Screen, HelpableScreen):
 			if i > 15: # max cca 30s
 				break
 			i += 1
-			
-		if close:		
-			telnet.close()
 
+		if close:
+			telnet.close()

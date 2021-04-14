@@ -34,11 +34,11 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 
 		<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 		<ePixmap name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" /> 
-		<ePixmap name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" /> 
+		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+		<ePixmap name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
 
-		<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
-		<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
+		<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+		<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_yellow" position="280,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_blue" position="420,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 
@@ -50,7 +50,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			<convert type="ClockToText">Default</convert>
 		</widget>
 		<widget name="statusbar" position="10,255" size="470,20" font="Regular;18" />
-	
+
 		<widget name="0" pixmaps="skin_default/buttons/button_green_off.png,skin_default/buttons/button_green.png" position="10,43" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
 		<!--widget name="2" pixmaps="skin_default/buttons/button_blue_off.png,skin_default/buttons/button_blue.png" position="10,93" zPosition="10" size="15,16" transparent="1" alphatest="on"/-->
 
@@ -60,7 +60,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		self.skin = xpowerEdit.skin
 		self.session = session
 		self.pcinfo = pcinfo
-		
+
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 
@@ -138,7 +138,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		#from ui import xpower
 		#self.session.open(xpower,xpower.wakeup)
 
-	def getPcMAC(self):						
+	def getPcMAC(self):
 		ip = "%s.%s.%s.%s" % (tuple(cfg.ip.value))
 		self.readAlive(ip)
 		pcMAC = self.readMac(ip)
@@ -180,7 +180,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			return True
 		else:
 			self["0"].setPixmapNum(0)
-		return False		
+		return False
 
 	def fillCfg(self):
 		if self.pcinfo.has_key('name'):
