@@ -17,12 +17,12 @@ from xpowerut import ixpowerUt, xpowerUt
 # Configuration
 config.plugins.xpower = ConfigSubsection()
 config.plugins.xpower.name = NoSave(ConfigText(default=_("PC"), fixed_size=False))
-config.plugins.xpower.ip = NoSave(ConfigIP(default=[192,168,1,100]))
+config.plugins.xpower.ip = NoSave(ConfigIP(default=[192, 168, 1, 100]))
 config.plugins.xpower.mac = NoSave(ConfigText(default="00:00:00:00:00:00"))
-config.plugins.xpower.system = NoSave(ConfigSelection(default="0", choices=[("0",_("XP")),("1",_("Win7")),("3",_("Win8")),("2",_("Linux")),("5",_("XP NET RPC"))]))
+config.plugins.xpower.system = NoSave(ConfigSelection(default="0", choices=[("0", _("XP")), ("1", _("Win7")), ("3", _("Win8")), ("2", _("Linux")), ("5", _("XP NET RPC"))]))
 config.plugins.xpower.user = NoSave(ConfigText(default="administrator", fixed_size=False))
 config.plugins.xpower.passwd = NoSave(ConfigPassword(default="password", fixed_size=False))
-config.plugins.xpower.bqdn = NoSave(ConfigSelection(default="0", choices=[("0",_("Shutdown")),("1",_("Suspend")),("2",_("Hybernate"))]))
+config.plugins.xpower.bqdn = NoSave(ConfigSelection(default="0", choices=[("0", _("Shutdown")), ("1", _("Suspend")), ("2", _("Hybernate"))]))
 config.plugins.xpower.close = ConfigYesNo(default=False)
 config.plugins.xpower.sort = ConfigYesNo(default=True)
 cfg = config.plugins.xpower
@@ -69,7 +69,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		xpowerEditconfigList.append(getConfigListEntry(_("IP"), cfg.ip))
 		xpowerEditconfigList.append(self.mac)
 		xpowerEditconfigList.append(getConfigListEntry(_("System"), cfg.system))
-		xpowerEditconfigList.append(getConfigListEntry(_("User"),cfg.user))
+		xpowerEditconfigList.append(getConfigListEntry(_("User"), cfg.user))
 		xpowerEditconfigList.append(getConfigListEntry(_("Password"), cfg.passwd))
 		xpowerEditconfigList.append(getConfigListEntry(_("BouqDown"), cfg.bqdn))
 		xpowerEditconfigList.append(getConfigListEntry(_("Closing plugin"), cfg.close))
@@ -169,7 +169,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		ip = "%s.%s.%s.%s" % (tuple(cfg.ip.value))
 		self.readAlive(ip)
 
-	def readAlive(self,ip):
+	def readAlive(self, ip):
 		res = os.system("ping -c 1 -W 1 %s >/dev/null 2>&1" % (ip))
 		if not res:
 			self["0"].setPixmapNum(1)
@@ -203,7 +203,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		return ip
 
 	def getBackupCfg(self):
-		return [cfg.name.value,cfg.ip.value[:],cfg.mac.value,cfg.system.value,cfg.user.value,cfg.passwd.value,cfg.bqdn.value]
+		return [cfg.name.value, cfg.ip.value[:], cfg.mac.value, cfg.system.value, cfg.user.value, cfg.passwd.value, cfg.bqdn.value]
 
 	def isChanges(self, old, new):
 		for i in range(0, len(old)):
@@ -242,7 +242,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		else:
 			self.close()
 
-	def updateFinished(self,data):
+	def updateFinished(self, data):
 		if data is not None and data is True:
 			self.close()
 
@@ -265,7 +265,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		else:
 			self.close()
 
-	def applyFinished(self,data):
+	def applyFinished(self, data):
 		if data is not None and data is True:
 			self.close()
 
