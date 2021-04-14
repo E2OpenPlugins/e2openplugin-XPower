@@ -17,15 +17,16 @@ from xpowerut import ixpowerUt, xpowerUt
 # Configuration
 config.plugins.xpower = ConfigSubsection()
 config.plugins.xpower.name = NoSave(ConfigText(default=_("PC"), fixed_size=False))
-config.plugins.xpower.ip = NoSave(ConfigIP(default=[192,168,1,100]))
+config.plugins.xpower.ip = NoSave(ConfigIP(default=[192, 168, 1, 100]))
 config.plugins.xpower.mac = NoSave(ConfigText(default="00:00:00:00:00:00"))
-config.plugins.xpower.system = NoSave(ConfigSelection(default="0", choices=[("0",_("XP")),("1",_("Win7")),("3",_("Win8")),("2",_("Linux")),("5",_("XP NET RPC"))]))
+config.plugins.xpower.system = NoSave(ConfigSelection(default="0", choices=[("0", _("XP")), ("1", _("Win7")), ("3", _("Win8")), ("2", _("Linux")), ("5", _("XP NET RPC"))]))
 config.plugins.xpower.user = NoSave(ConfigText(default="administrator", fixed_size=False))
 config.plugins.xpower.passwd = NoSave(ConfigPassword(default="password", fixed_size=False))
-config.plugins.xpower.bqdn = NoSave(ConfigSelection(default="0", choices=[("0",_("Shutdown")),("1",_("Suspend")),("2",_("Hybernate"))]))
+config.plugins.xpower.bqdn = NoSave(ConfigSelection(default="0", choices=[("0", _("Shutdown")), ("1", _("Suspend")), ("2", _("Hybernate"))]))
 config.plugins.xpower.close = ConfigYesNo(default=False)
 config.plugins.xpower.sort = ConfigYesNo(default=True)
 cfg = config.plugins.xpower
+
 
 class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 	skin = """
@@ -33,11 +34,11 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 
 		<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 		<ePixmap name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" /> 
-		<ePixmap name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" /> 
+		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+		<ePixmap name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
 
-		<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
-		<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
+		<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+		<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_yellow" position="280,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_blue" position="420,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 
@@ -49,17 +50,17 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			<convert type="ClockToText">Default</convert>
 		</widget>
 		<widget name="statusbar" position="10,255" size="470,20" font="Regular;18" />
-	
+
 		<widget name="0" pixmaps="skin_default/buttons/button_green_off.png,skin_default/buttons/button_green.png" position="10,43" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
 		<!--widget name="2" pixmaps="skin_default/buttons/button_blue_off.png,skin_default/buttons/button_blue.png" position="10,93" zPosition="10" size="15,16" transparent="1" alphatest="on"/-->
 
 	</screen>"""
 
-	def __init__(self, session, pcinfo = None):
+	def __init__(self, session, pcinfo=None):
 		self.skin = xpowerEdit.skin
 		self.session = session
 		self.pcinfo = pcinfo
-		
+
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 
@@ -69,16 +70,16 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		xpowerEditconfigList.append(getConfigListEntry(_("IP"), cfg.ip))
 		xpowerEditconfigList.append(self.mac)
 		xpowerEditconfigList.append(getConfigListEntry(_("System"), cfg.system))
-		xpowerEditconfigList.append(getConfigListEntry(_("User"),cfg.user))
+		xpowerEditconfigList.append(getConfigListEntry(_("User"), cfg.user))
 		xpowerEditconfigList.append(getConfigListEntry(_("Password"), cfg.passwd))
 		xpowerEditconfigList.append(getConfigListEntry(_("BouqDown"), cfg.bqdn))
 		xpowerEditconfigList.append(getConfigListEntry(_("Closing plugin"), cfg.close))
 		xpowerEditconfigList.append(getConfigListEntry(_("Sort list"), cfg.sort))
 
-		ConfigListScreen.__init__(self, xpowerEditconfigList, session=self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, xpowerEditconfigList, session=self.session, on_change=self.changedEntry)
 
 		if self.pcinfo is None:
-			self.pcinfo = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False }
+			self.pcinfo = {'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False}
 
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Ok"))
@@ -110,15 +111,18 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.isAlive)
 
-
 	# for summary
+
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
+
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
+
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
+
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
@@ -134,7 +138,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		#from ui import xpower
 		#self.session.open(xpower,xpower.wakeup)
 
-	def getPcMAC(self):						
+	def getPcMAC(self):
 		ip = "%s.%s.%s.%s" % (tuple(cfg.ip.value))
 		self.readAlive(ip)
 		pcMAC = self.readMac(ip)
@@ -158,7 +162,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 				break
 			if entry.find(ip) == 0:
 				p = entry.find(':')
-				pcMAC = entry[p-2:p+15]
+				pcMAC = entry[p - 2:p + 15]
 				if pcMAC != "00:00:00:00:00:00":
 					file.close()
 					return pcMAC
@@ -169,14 +173,14 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		ip = "%s.%s.%s.%s" % (tuple(cfg.ip.value))
 		self.readAlive(ip)
 
-	def readAlive(self,ip):
+	def readAlive(self, ip):
 		res = os.system("ping -c 1 -W 1 %s >/dev/null 2>&1" % (ip))
 		if not res:
 			self["0"].setPixmapNum(1)
 			return True
 		else:
 			self["0"].setPixmapNum(0)
-		return False		
+		return False
 
 	def fillCfg(self):
 		if self.pcinfo.has_key('name'):
@@ -203,7 +207,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		return ip
 
 	def getBackupCfg(self):
-		return [cfg.name.value,cfg.ip.value[:],cfg.mac.value,cfg.system.value,cfg.user.value,cfg.passwd.value,cfg.bqdn.value]
+		return [cfg.name.value, cfg.ip.value[:], cfg.mac.value, cfg.system.value, cfg.user.value, cfg.passwd.value, cfg.bqdn.value]
 
 	def isChanges(self, old, new):
 		for i in range(0, len(old)):
@@ -220,11 +224,11 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			ixpowerUt.configActualized = True
 			self.close()
 		elif self.remotepc.has_key(name) is True:
-			self.session.openWithCallback(self.updateConfig, MessageBox, (_("A PC entry with this name already exists!\nUpdate existing entry and continue?") ) )
+			self.session.openWithCallback(self.updateConfig, MessageBox, (_("A PC entry with this name already exists!\nUpdate existing entry and continue?")))
 		else:
-			self.session.openWithCallback(self.applyConfig, MessageBox, (_("Are you sure you want to add this PC?\n") ) )
+			self.session.openWithCallback(self.applyConfig, MessageBox, (_("Are you sure you want to add this PC?\n")))
 
-	def updateConfig(self, ret = False): # update record
+	def updateConfig(self, ret=False): # update record
 		if (ret == True):
 			ixpowerUt.setRemotePCAttribute(cfg.name.value, "name", cfg.name.value)
 			ixpowerUt.setRemotePCAttribute(cfg.name.value, "ip", cfg.ip.getText())
@@ -234,7 +238,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			ixpowerUt.setRemotePCAttribute(cfg.name.value, "passwd", cfg.passwd.value)
 			ixpowerUt.setRemotePCAttribute(cfg.name.value, "bqdn", cfg.bqdn.value)
 
-			self.session.openWithCallback(self.updateFinished, MessageBox, _("Your PC has been updated..."), type = MessageBox.TYPE_INFO, timeout = 2)
+			self.session.openWithCallback(self.updateFinished, MessageBox, _("Your PC has been updated..."), type=MessageBox.TYPE_INFO, timeout=2)
 			ixpowerUt.writePCsConfig()
 			cfg.close.save()
 			cfg.sort.save()
@@ -242,13 +246,13 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		else:
 			self.close()
 
-	def updateFinished(self,data):
+	def updateFinished(self, data):
 		if data is not None and data is True:
 			self.close()
 
-	def applyConfig(self, ret = False): # new record
+	def applyConfig(self, ret=False): # new record
 		if (ret == True):
-			data = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'username': False, 'password': False, 'bqdn': False }
+			data = {'name': False, 'ip': False, 'mac': False, 'system': False, 'username': False, 'password': False, 'bqdn': False}
 			data['name'] = cfg.name.value
 			data['ip'] = cfg.ip.getText()
 			data['mac'] = cfg.mac.value
@@ -257,7 +261,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 			data['passwd'] = cfg.passwd.value
 			data['bqdn'] = cfg.bqdn.value
 
-			self.session.openWithCallback(self.applyFinished, MessageBox, _("Your new PC has been added."), type = MessageBox.TYPE_INFO, timeout = 2)
+			self.session.openWithCallback(self.applyFinished, MessageBox, _("Your new PC has been added."), type=MessageBox.TYPE_INFO, timeout=2)
 			ixpowerUt.remotepc[cfg.name.value] = data
 			ixpowerUt.remotepc_order.append(cfg.name.value)
 			ixpowerUt.writePCsConfig()
@@ -265,7 +269,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 		else:
 			self.close()
 
-	def applyFinished(self,data):
+	def applyFinished(self, data):
 		if data is not None and data is True:
 			self.close()
 

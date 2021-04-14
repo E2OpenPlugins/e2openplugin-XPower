@@ -1,4 +1,4 @@
-# for localized messages  	 
+# for localized messages
 from . import _
 
 from Screens.Screen import Screen
@@ -31,12 +31,13 @@ version = "1.59"
 OS_XP = "0"
 OS_WIN7 = "1"
 OS_LINUX = "2"
-OS_RPC= "5"
+OS_RPC = "5"
 OS_WIN8 = "3"
 
 SHUTDOWN = "0"
 SUSPEND = "1"
 HIBERNATE = "2"
+
 
 class xpowerSummary(Screen):
 	skin = """
@@ -47,7 +48,7 @@ class xpowerSummary(Screen):
 	</screen>"""
 
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["title"] = StaticText(_(parent.setup_title))
 		self["pcname"] = StaticText("")
 		self["bouquet"] = StaticText("")
@@ -67,17 +68,18 @@ class xpowerSummary(Screen):
 		self["pcname"].text = self.parent.getCurrentEntry()
 		self["bouquet"].text = self.parent.getCurrentValue()
 
+
 class xpower(Screen, HelpableScreen):
 	skin = """
 	<screen position="center,center" size="560,430" title="XPower" >
 
 		<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 		<ePixmap name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" /> 
-		<ePixmap name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" /> 
+		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+		<ePixmap name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
 
-		<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
-		<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
+		<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+		<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_yellow" position="280,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_blue" position="420,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 
@@ -139,7 +141,7 @@ class xpower(Screen, HelpableScreen):
 
 			"shutdown": (self.shutdown, _("Shutdown")),
 			"wakeup": (self.wakeup, _("WakeUp")),
-			"abort": (self.abort,_("Abort shutdown / reboot")),
+			"abort": (self.abort, _("Abort shutdown / reboot")),
 			"restart": (self.reboot, _("Reboot")),
 			"suspend": (self.suspend, _("Suspend")),
 			"hibernate": (self.hibernate, _("Hibernate")),
@@ -147,8 +149,8 @@ class xpower(Screen, HelpableScreen):
 			}, -1)
 		self["XPowerEditActions"] = HelpableActionMap(self, "DirectionActions",
 			{
-			"moveUp":	(self.moveUp, _("Move item up")),
-			"moveDown":	(self.moveDown, _("Move item down")),
+			"moveUp": (self.moveUp, _("Move item up")),
+			"moveDown": (self.moveDown, _("Move item down")),
 			}, -1)
 		self.edit = 0
 		self.idx = 0
@@ -157,36 +159,38 @@ class xpower(Screen, HelpableScreen):
 		self["h_next"] = Pixmap()
 		self.showPrevNext()
 
-		self.ipStr = _("IP:")+" "
-		self.macStr = _("MAC:")+" "
+		self.ipStr = _("IP:") + " "
+		self.macStr = _("MAC:") + " "
 
 		self.menu = []
-		self.menu.append((_("WakeUp"),"wakeup"))
-		self.menu.append((_("Suspend"),"suspend"))
-		self.menu.append((_("Shutdown"),"shutdown"))
-		self.menu.append((_("Reboot"),"reboot"))
-		self.menu.append((_("Hibernate"),"hibernate"))
-		self.menu.append((_("Abort shutdown / reboot"),"abort"))
+		self.menu.append((_("WakeUp"), "wakeup"))
+		self.menu.append((_("Suspend"), "suspend"))
+		self.menu.append((_("Shutdown"), "shutdown"))
+		self.menu.append((_("Reboot"), "reboot"))
+		self.menu.append((_("Hibernate"), "hibernate"))
+		self.menu.append((_("Abort shutdown / reboot"), "abort"))
 
 		self.pcinfo = None
 		self.showPCsList()
 
 		self.commandTimer = eTimer()
 		self.commandTimer.timeout.get().append(self.sendDelayed)
-		
+
 		self.onShown.append(self.prepare)
 		self["config"].onSelectionChanged.append(self.statusbarText)
 
 		self.onChangedEntry = []
 
-
 	# for summary (+ changedEntry):
+
 	def getCurrentEntry(self):
 		current = self["config"].getCurrent()
 		return ixpowerUt.remotepc[current[1]]['name']
+
 	def getCurrentValue(self):
 		self.statusbarText()
 		return _("BouqDn: %s") % (self.text)
+
 	def createSummary(self):
 		return xpowerSummary
 	###
@@ -194,12 +198,13 @@ class xpower(Screen, HelpableScreen):
 	def startMoving(self):
 		self.edit = not self.edit
 		if self.edit and config.plugins.xpower.sort.value:
-			self.message(_("It has not sense change order if is set list sorting..."),5)
+			self.message(_("It has not sense change order if is set list sorting..."), 5)
 			self.edit = False
 			self.showPrevNext()
 			return
 		self.idx = self["config"].getIndex()
 		self.showPrevNext()
+
 	def showPrevNext(self):
 		if self.edit:
 			self["h_prev"].show()
@@ -207,20 +212,23 @@ class xpower(Screen, HelpableScreen):
 		else:
 			self["h_prev"].hide()
 			self["h_next"].hide()
+
 	def moveUp(self):
-		if self.edit and self.idx -1 >= 0:
+		if self.edit and self.idx - 1 >= 0:
 			self.moveDirection(-1)
+
 	def moveDown(self):
-		if self.edit and self.idx +1 < self["config"].count():
+		if self.edit and self.idx + 1 < self["config"].count():
 			self.moveDirection(1)
+
 	def moveDirection(self, direction):
 			self["config"].setIndex(self.idx)
 			tmp = self["config"].getCurrent()
-			self["config"].setIndex(self.idx+direction)
+			self["config"].setIndex(self.idx + direction)
 			tmp2 = self["config"].getCurrent()
 			self["config"].modifyEntry(self.idx, tmp2)
-			self["config"].modifyEntry(self.idx+direction, tmp)
-			self.idx+=direction
+			self["config"].modifyEntry(self.idx + direction, tmp)
+			self.idx += direction
 			self.changes = True
 
 	def prepare(self):
@@ -228,7 +236,7 @@ class xpower(Screen, HelpableScreen):
 
 	def showMenu(self):
 		menu_title_text = "%s" % (self.pcinfo['name']) + _(" - select action:")
-		self.session.openWithCallback(self.subMenu, ChoiceBox, title = menu_title_text, list=self.menu, keys = [ "1", "2", "3", "4", "5", "8",])
+		self.session.openWithCallback(self.subMenu, ChoiceBox, title=menu_title_text, list=self.menu, keys=["1", "2", "3", "4", "5", "8", ])
 
 	def subMenu(self, choice):
 		if choice is None:
@@ -244,7 +252,7 @@ class xpower(Screen, HelpableScreen):
 		current = self["config"].getCurrent()
 		if current:
 			self.pcinfo = ixpowerUt.remotepc[current[1]]
-			
+
 			if self.pcinfo['system'] != OS_RPC:
 				if self.pcinfo['bqdn'] == SUSPEND:
 					self.text = _("Suspend")
@@ -269,12 +277,12 @@ class xpower(Screen, HelpableScreen):
 		passwd = pcinfo['passwd']
 		os = pcinfo['system']
 		mac = pcinfo['mac']
-		return ( os, ip, user, passwd, mac )
+		return (os, ip, user, passwd, mac)
 
 	def xpnet(self):
 		if self.pcinfo['system'] == OS_RPC:
 			if os.system("net rpc | grep 'net rpc' > /dev/null 2>&1") != 0:
-				self.message(_("Command \"net\" is not installed\noption \"XP NET RPC\" does not work..."),10,"error")
+				self.message(_("Command \"net\" is not installed\noption \"XP NET RPC\" does not work..."), 10, "error")
 				return False
 		return True
 
@@ -282,7 +290,7 @@ class xpower(Screen, HelpableScreen):
 		if self.alive():
 			return True
 		else:
-			self.message(_("No response from %s.") % (self.pcinfo['name']),5,"error")
+			self.message(_("No response from %s.") % (self.pcinfo['name']), 5, "error")
 			return False
 
 	def shutdown(self):
@@ -308,7 +316,7 @@ class xpower(Screen, HelpableScreen):
 	def sendCommand(self):
 		if self.xpnet():
 			if self.isAlive():
-				self.session.openWithCallback(self.exitPlugin, MessageBox,_("Please wait, \"%s\" is sended to computer %s") % (self.command, self.pcinfo['name']),type = MessageBox.TYPE_INFO, timeout = 3)
+				self.session.openWithCallback(self.exitPlugin, MessageBox, _("Please wait, \"%s\" is sended to computer %s") % (self.command, self.pcinfo['name']), type=MessageBox.TYPE_INFO, timeout=3)
 				self.commandTimer.start(100, True)
 
 	def exitPlugin(self, data):
@@ -341,7 +349,7 @@ class xpower(Screen, HelpableScreen):
 		for name in remotepc_order:
 			list.append(self.buildPCViewItem(remotepc[name]))
 		if config.plugins.xpower.sort.value:
-			list.sort(key = lambda x: x[1])
+			list.sort(key=lambda x: x[1])
 		self["config"].setList(list)
 
 		newCount = self["config"].count()
@@ -350,34 +358,34 @@ class xpower(Screen, HelpableScreen):
 		self.setListIndex(oldIndex, newIndex, oldCount, newCount)
 
 	def setListIndex(self, oldIndex, newIndex, oldCount, newCount):
-		if newIndex != None: 
-			if oldIndex + 1 == oldCount: # last record 
+		if newIndex != None:
+			if oldIndex + 1 == oldCount: # last record
 				if oldCount < newCount:	# added
-					self["config"].setIndex(oldIndex+1)
+					self["config"].setIndex(oldIndex + 1)
 				elif oldCount > newCount: # removed
-					self["config"].setIndex(oldIndex-1)
+					self["config"].setIndex(oldIndex - 1)
 				else: # same status
 					self["config"].setIndex(oldIndex)
 			else:
 				self["config"].setIndex(oldIndex)
 
 	def buildPCViewItem(self, entry):
-		pc = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/host.png"))
-		ip = "".join((self.ipStr,str(entry["ip"])))
-		mac = "".join((self.macStr,str(entry["mac"])))
+		pc = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath + "/img/host.png"))
+		ip = "".join((self.ipStr, str(entry["ip"])))
+		mac = "".join((self.macStr, str(entry["mac"])))
 		system = entry["system"]
 		if system == OS_WIN7:
-			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/win.png"))
+			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath + "/img/win.png"))
 		elif system == OS_WIN8:
-			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/win8.png"))
+			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath + "/img/win8.png"))
 		elif system == OS_LINUX:
-			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/lin.png"))
+			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath + "/img/lin.png"))
 		elif system == OS_RPC:
-			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/rpc.png"))
+			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath + "/img/rpc.png"))
 		else:
-			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath+"/img/xp.png"))
+			logo = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, self.ppath + "/img/xp.png"))
 		# return displayed items
-		return( pc, entry["name"], logo, ip, mac )
+		return(pc, entry["name"], logo, ip, mac)
 
 	def keyOK(self):
 		self.session.openWithCallback(self.editClosed, xpowerEdit, self.pcinfo)
@@ -387,25 +395,25 @@ class xpower(Screen, HelpableScreen):
 			self.showPCsList()
 
 	def deleteItem(self):
-		self.retValue=self.pcinfo['name']
-		self.session.openWithCallback(self.removeData, MessageBox, _("Do You want remove PC: %s?") % (self.pcinfo['name']), type = MessageBox.TYPE_YESNO)
+		self.retValue = self.pcinfo['name']
+		self.session.openWithCallback(self.removeData, MessageBox, _("Do You want remove PC: %s?") % (self.pcinfo['name']), type=MessageBox.TYPE_YESNO)
 
-	def removeData(self, answer ):
+	def removeData(self, answer):
 		if answer is not None and answer:
 			ixpowerUt.removePC(self.retValue)
 			ixpowerUt.writePCsConfig()
 			ixpowerUt.getRemotePCPoints()
 			self.showPCsList()
-			self.session.open(MessageBox, _("PC has been removed..."), type = MessageBox.TYPE_INFO, timeout = 2)
+			self.session.open(MessageBox, _("PC has been removed..."), type=MessageBox.TYPE_INFO, timeout=2)
 
 	def help(self):
 		self.session.open(xpowerHelp, self.ppath)
 
 	def message(self, string, delay, msg_type=""):
 		msg = MessageBox.TYPE_INFO
-		if msg_type=="error":
+		if msg_type == "error":
 			msg = MessageBox.TYPE_ERROR
-		self.session.open(MessageBox, string, type = msg, timeout = delay)
+		self.session.open(MessageBox, string, type=msg, timeout=delay)
 
 	def cancel(self):
 		if self.changes:
@@ -432,7 +440,11 @@ class xpower(Screen, HelpableScreen):
 	# p is ( system, ip, user, passw, mac )
 
 	def GetIPsFromNetworkInterfaces(self):
-		import socket, fcntl, struct, array, sys
+		import socket
+		import fcntl
+		import struct
+		import array
+		import sys
 		is_64bits = sys.maxsize > 2**32
 		struct_size = 40 if is_64bits else 32
 		s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -454,9 +466,9 @@ class xpower(Screen, HelpableScreen):
 		namestr = names.tostring()
 		ifaces = []
 		for i in range(0, outbytes, struct_size):
-			iface_name = bytes.decode(namestr[i:i+16]).split('\0', 1)[0].encode('ascii')
+			iface_name = bytes.decode(namestr[i:i + 16]).split('\0', 1)[0].encode('ascii')
 			if iface_name != 'lo':
-				iface_addr = socket.inet_ntoa(namestr[i+20:i+24])
+				iface_addr = socket.inet_ntoa(namestr[i + 20:i + 24])
 				ifaces.append((iface_name, iface_addr))
 		return ifaces
 
@@ -468,111 +480,112 @@ class xpower(Screen, HelpableScreen):
 			text = _("Magic packet has been send to PC %s") % (self.pcinfo['name'])
 			for iface in ifaces_list:
 				os.system("ether-wake -i %s %s" % (iface[0], p[4]))
-		self.session.openWithCallback(self.exitPlugin, MessageBox, text,type = MessageBox.TYPE_INFO, timeout = 3)
+		self.session.openWithCallback(self.exitPlugin, MessageBox, text, type=MessageBox.TYPE_INFO, timeout=3)
 
 	#shutdown
 	def shutdownIP(self, p):
 		if p[0] == OS_WIN7:
-			self.telnet(p,"shutdown /s /t 10")
+			self.telnet(p, "shutdown /s /t 10")
 		elif p[0] == OS_WIN8:
-			self.telnet(p,"shutdown /s /f /t 10")
+			self.telnet(p, "shutdown /s /f /t 10")
 		elif p[0] == OS_LINUX:
-			self.telnet(p,"sudo shutdown -P now")
+			self.telnet(p, "sudo shutdown -P now")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname()+":shutdown"))
+			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1], p[2], "%", p[3], self.getHostname() + ":shutdown"))
 		else:
-			self.telnet(p,"shutdown -s -t 10")
+			self.telnet(p, "shutdown -s -t 10")
 
 	#abort
 	def abortIP(self, p):
 		if p[0] == OS_WIN7:
-			self.telnet(p,"shutdown /a")
+			self.telnet(p, "shutdown /a")
 		elif p[0] == OS_WIN8:
-			self.telnet(p,"shutdown /a")
+			self.telnet(p, "shutdown /a")
 		elif p[0] == OS_LINUX:
-			self.telnet(p,"sudo shutdown -c")
+			self.telnet(p, "sudo shutdown -c")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc abortshutdown -I %s -U %s%s%s > /dev/null 2>&1" % (p[1],p[2],"%",p[3]))
+			self.netRpc("net rpc abortshutdown -I %s -U %s%s%s > /dev/null 2>&1" % (p[1], p[2], "%", p[3]))
 		else:
-			self.telnet(p,"shutdown -a")
+			self.telnet(p, "shutdown -a")
 
 	#reboot
 	def rebootIP(self, p):
 		if p[0] == OS_WIN7:
-			self.telnet(p,"shutdown /r /t 10")
+			self.telnet(p, "shutdown /r /t 10")
 		elif p[0] == OS_WIN8:
-			self.telnet(p,"shutdown /r /f /t 10")
+			self.telnet(p, "shutdown /r /f /t 10")
 		elif p[0] == OS_LINUX:
-			self.telnet(p,"sudo shutdown -r now")
+			self.telnet(p, "sudo shutdown -r now")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc shutdown -r -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname()+":reboot"))
+			self.netRpc("net rpc shutdown -r -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1], p[2], "%", p[3], self.getHostname() + ":reboot"))
 		else:
-			self.telnet(p,"shutdown -r -t 10")
+			self.telnet(p, "shutdown -r -t 10")
 
 	#standby
 	def suspendIP(self, p):
 		if p[0] == OS_WIN7:
-			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState", "powercfg -h off", "powercfg -h off")
+			self.telnet(p, "rundll32.exe PowrProf.dll,SetSuspendState", "powercfg -h off", "powercfg -h off")
 		elif p[0] == OS_WIN8:
-			self.telnet(p,"shutdown /h")
+			self.telnet(p, "shutdown /h")
 		elif p[0] == OS_LINUX:
-			self.telnet(p,"sudo pm-suspend --quirk-s3-mode")
+			self.telnet(p, "sudo pm-suspend --quirk-s3-mode")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname()+":shutdown"))
+			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1], p[2], "%", p[3], self.getHostname() + ":shutdown"))
 		else:
-			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState", "powercfg /h off", "powercfg /h off")
+			self.telnet(p, "rundll32.exe PowrProf.dll,SetSuspendState", "powercfg /h off", "powercfg /h off")
 
 	#hibernate
 	def hibernateIP(self, p):
 		if p[0] == OS_WIN7:
-			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState Hibernate", "powercfg -h on", "powercfg -h on")
+			self.telnet(p, "rundll32.exe PowrProf.dll,SetSuspendState Hibernate", "powercfg -h on", "powercfg -h on")
 		elif p[0] == OS_WIN8:
-			self.telnet(p,"shutdown /h")
+			self.telnet(p, "shutdown /h")
 		elif p[0] == OS_LINUX:
-			self.telnet(p,"sudo pm-hibernate")
+			self.telnet(p, "sudo pm-hibernate")
 		elif p[0] == OS_RPC:
-			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1],p[2],"%",p[3], self.getHostname()+":shutdown"))
+			self.netRpc("net rpc shutdown -I %s -U %s%s%s -C %s > /dev/null 2>&1" % (p[1], p[2], "%", p[3], self.getHostname() + ":shutdown"))
 		else:
-			self.telnet(p,"rundll32.exe PowrProf.dll,SetSuspendState Hibernate", "powercfg /h on", "powercfg /h on")
+			self.telnet(p, "rundll32.exe PowrProf.dll,SetSuspendState Hibernate", "powercfg /h on", "powercfg /h on")
 
-	def telnet(self, p, command, pre = "", post = "" ):
+	def telnet(self, p, command, pre="", post=""):
 		ip = p[1]
 		user = p[2]
 		passwd = p[3]
-		try:telnet = telnetlib.Telnet(ip)
+		try:
+			telnet = telnetlib.Telnet(ip)
 		except Exception, e:
-			self.message(_("Connection failed... %s" % (e)),4)
+			self.message(_("Connection failed... %s" % (e)), 4)
 			print "[XPower plugin] Error telnet:", e
 		else:
 #			telnet.set_debuglevel(1)
 			if p[0] == OS_LINUX:
-				try: 
-					telnet.read_until('ogin: ',10)
+				try:
+					telnet.read_until('ogin: ', 10)
 					telnet.write(user + '\r')
-					telnet.read_until('assword: ',10)
+					telnet.read_until('assword: ', 10)
 					telnet.write(passwd + '\r')
-					telnet.read_until(user,5)
+					telnet.read_until(user, 5)
 					telnet.write(command + '\r')
-					telnet.read_until('assword',5)
+					telnet.read_until('assword', 5)
 					telnet.write(passwd + '\r')
 				except EOFError, e:
 					"[xpower plugin] Error telnet:", e
 				self.closeLinTelnet(telnet)
 			else:
 				try:
-					telnet.read_until('ogin: ',5)
+					telnet.read_until('ogin: ', 5)
 					telnet.write(user + "\r\n")
-					telnet.read_until('assword: ',5)
+					telnet.read_until('assword: ', 5)
 					telnet.write(passwd + "\r\n")
-					telnet.read_until('>',5)
+					telnet.read_until('>', 5)
 					if pre != "":
 						telnet.write("%s\r\n" % (pre))
 					telnet.write("%s\r\n" % (command))
-					telnet.read_until('\r\n',5)
+					telnet.read_until('\r\n', 5)
 					if post != "":
 						telnet.write("%s\r\n" % (post))
 					telnet.write("exit\r\n")
-					telnet.read_until('',1)
+					telnet.read_until('', 1)
 				except EOFError, e:
 					"[xpower plugin] Error telnet:", e
 
@@ -587,7 +600,7 @@ class xpower(Screen, HelpableScreen):
 #			close = False
 #		except Exception, e:
 #			self.message(_("Finished... %s" % (e)),3)
-#		if close:		
+#		if close:
 #			telnet.close()
 
 	def closeLinTelnet(self, telnet):
@@ -595,7 +608,8 @@ class xpower(Screen, HelpableScreen):
 		# finish telnet, but must wait, while starting power management
 		i = 0
 		while self.alive():
-			try:tmp = telnet.read_until('xyz',1)
+			try:
+				tmp = telnet.read_until('xyz', 1)
 			except EOFError, e:
 				#self.message(_("Connection finished... %s" % (e)),3)
 				close = False
@@ -604,11 +618,10 @@ class xpower(Screen, HelpableScreen):
 				#self.message(_("Finished... %s" % (e)),4)
 				break
 			if self.command == "abort":
-				break;
+				break
 			if i > 15: # max cca 30s
 				break
 			i += 1
-			
-		if close:		
-			telnet.close()
 
+		if close:
+			telnet.close()
