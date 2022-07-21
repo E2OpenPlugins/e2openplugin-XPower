@@ -56,7 +56,7 @@ class xpowerUt(Screen):
 		# exists empty file => create dummy record
 			self.setDummyRecord()
 		
-		self.checkList = self.remotepc.keys()
+		self.checkList = list(self.remotepc.keys())
 		if not self.checkList:
 			print("\n[XPower plugin] self.remotepc without remotepc", self.remotepc)
 		else:
