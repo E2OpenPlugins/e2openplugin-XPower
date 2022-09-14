@@ -40,15 +40,15 @@ class xpowerUt(Screen):
 		for pc in tree.iter("host"):
 			data = { 'name': False, 'ip': False, 'mac': False, 'system': False, 'user': False, 'passwd': False, 'bqdn': False }
 			try:
-				data['name'] = getValue(pc.findall("name"), self.pcStr).encode("UTF-8")
-				data['ip'] = getValue(pc.findall("ip"), "192.168.1.0").encode("UTF-8")
-				data['mac'] = getValue(pc.findall("mac"), "00:00:00:00:00:00").encode("UTF-8")
-				data['system'] = getValue(pc.findall("system"), "0").encode("UTF-8")
-				data['user'] = getValue(pc.findall("user"), "administrator").encode("UTF-8")
-				data['passwd'] = getValue(pc.findall("passwd"), "password").encode("UTF-8")
-				data['bqdn'] = getValue(pc.findall("bqdn"), "0").encode("UTF-8")
+				data['name'] = getValue(pc.findall("name"), self.pcStr)
+				data['ip'] = getValue(pc.findall("ip"), "192.168.1.0")
+				data['mac'] = getValue(pc.findall("mac"), "00:00:00:00:00:00")
+				data['system'] = getValue(pc.findall("system"), "0")
+				data['user'] = getValue(pc.findall("user"), "administrator")
+				data['passwd'] = getValue(pc.findall("passwd"), "password")
+				data['bqdn'] = getValue(pc.findall("bqdn"), "0")
 				self.remotepc[data['name']] = data
-				self.remotepc_order.append(getValue(pc.findall("name"), self.pcStr).encode("UTF-8"))
+				self.remotepc_order.append(getValue(pc.findall("name"), self.pcStr))
 			except Exception as e:
 				print("[XPower plugin] Error reading remotepc:", e)
 		self.checkList = self.remotepc.keys()

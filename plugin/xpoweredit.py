@@ -119,7 +119,7 @@ class xpowerEdit(Screen, ConfigListScreen, HelpableScreen):
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
 	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
+		return self["config"].getCurrent()[1].getText()
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
