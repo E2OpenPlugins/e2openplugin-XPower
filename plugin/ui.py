@@ -453,10 +453,10 @@ class xpower(Screen, HelpableScreen):
 				max_possible *= 2
 			else:
 				break
-		namestr = names.tostring()
+		namestr = names.tobytes()
 		ifaces = []
 		for i in range(0, outbytes, struct_size):
-			iface_name = bytes.decode(namestr[i:i+16]).split('\0', 1)[0].encode('ascii')
+			iface_name = namestr[i:i+16].decode().split('\0', 1)[0]
 			if iface_name != 'lo':
 				iface_addr = socket.inet_ntoa(namestr[i+20:i+24])
 				ifaces.append((iface_name, iface_addr))
