@@ -541,6 +541,7 @@ class xpower(Screen, HelpableScreen):
 		ip = p[1]
 		user = p[2]
 		passwd = p[3]
+#		print("[xpower plugin] command:", command)
 		try:telnet = telnetlib.Telnet(ip)
 		except Exception as e:
 			self.message(_("Connection failed... %s" % (e)), 4)
@@ -549,32 +550,32 @@ class xpower(Screen, HelpableScreen):
 #			telnet.set_debuglevel(1)
 			if p[0] == OS_LINUX:
 				try: 
-					telnet.read_until('ogin: ', 10)
-					telnet.write(user + '\r')
-					telnet.read_until('assword: ', 10)
-					telnet.write(passwd + '\r')
-					telnet.read_until(user, 5)
-					telnet.write(command + '\r')
-					telnet.read_until('assword', 5)
-					telnet.write(passwd + '\r')
+					telnet.read_until(b'ogin: ', 10)
+					telnet.write((user + '\r').encode('utf-8'))
+					telnet.read_until(b'assword: ', 10)
+					telnet.write((passwd + '\r').encode('utf-8'))
+					telnet.read_until(user.encode('utf-8'), 5)
+					telnet.write((command + '\r').encode('utf-8'))
+					telnet.read_until(b'assword', 5)
+					telnet.write((passwd + '\r').encode('utf-8'))
 				except EOFError as e:
 					"[xpower plugin] Error telnet:", e
 				self.closeLinTelnet(telnet)
 			else:
 				try:
-					telnet.read_until('ogin: ', 5)
-					telnet.write(user + "\r\n")
-					telnet.read_until('assword: ', 5)
-					telnet.write(passwd + "\r\n")
-					telnet.read_until('>', 5)
+					telnet.read_until(b'ogin: ', 5)
+					telnet.write((user + '\r\n').encode('utf-8'))
+					telnet.read_until(b'assword: ', 5)
+					telnet.write((passwd + '\r\n').encode('utf-8'))
+					telnet.read_until(b'>', 5)
 					if pre != "":
-						telnet.write("%s\r\n" % (pre))
-					telnet.write("%s\r\n" % (command))
-					telnet.read_until('\r\n', 5)
+						telnet.write(b'%s\r\n' % (pre))
+					telnet.write(b'%s\r\n' % (command))
+					telnet.read_until(b'\r\n', 5)
 					if post != "":
-						telnet.write("%s\r\n" % (post))
-					telnet.write("exit\r\n")
-					telnet.read_until('', 1)
+						telnet.write(b'%s\r\n' % (post))
+					telnet.write(b'exit\r\n')
+					telnet.read_until(b'', 1)
 				except EOFError as e:
 					"[xpower plugin] Error telnet:", e
 
@@ -597,7 +598,7 @@ class xpower(Screen, HelpableScreen):
 		# finish telnet, but must wait, while starting power management
 		i = 0
 		while self.alive():
-			try:tmp = telnet.read_until('xyz', 1)
+			try:tmp = telnet.read_until(b'xyz', 1)
 			except EOFError as e:
 				#self.message(_("Connection finished... %s" % (e)),3)
 				close = False

@@ -1,54 +1,58 @@
 msgid ""
 msgstr ""
-"Content-Type: text/plain; charset=utf-8\n"
 "Project-Id-Version: XPower\n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-30 09:25+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Dimitrij <Dima-73@inbox.lv>\n"
 "Language-Team: openPli dima-73@inbox.lv\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.9\n"
 
+#: ../ui.py:232
 msgid " - select action:"
 msgstr " - выбрать действие:"
 
+#: ../xpowerhlp.py:111
 msgid "- enable the Telnet Server"
 msgstr "- включите Telnet Server"
 
+#: ../xpowerhlp.py:113
+msgid "- for Win8 enable ping (Firewall-Adwanced settings-Inbound Rules ... File and Printer Sharing (Echo Request - ICMPv4/6-In) to Yes"
+msgstr "- для Win8 включить пинг (Брандмауэр-Дополнительные настройки-Правила для входящих подключений ... Файлы и принтеры (Echo Request - ICMPv4/6-In) как Да"
+
+#: ../xpowerhlp.py:109
+msgid "- install pm-utils with:"
+msgstr "- установка pm-utils:"
+
+#: ../xpowerhlp.py:108
 msgid "- install telnetd with:"
 msgstr "- установка telnetd:"
 
-msgid "The network interface is not configured!"
-msgstr "Сетевой интерфейс не настроен!"
+#: ../xpowerhlp.py:118
+msgid "- must be installed actual compiled \"net\" command. Problem is, that size of this file is over 8MB and some box have not enought memory for it"
+msgstr "- должен быть установлен бинарный файл \"net\" команды. Это может быть проблемой, потому что этот файл имеет размер 8 МБ и может не хватить памяти для этого."
 
-msgid ""
-"- for Win8 enable ping (Firewall-Adwanced settings-Inbound Rules ... File and Printer Sharing (Echo Request - "
-"ICMPv4/6-In) to Yes"
-msgstr ""
-"- для Win8 включить пинг (Брандмауэр-Дополнительные настройки-Правила для входящих подключений ... Файлы и принтеры "
-"(Echo Request - ICMPv4/6-In) как Да"
-
-msgid ""
-"- must be installed actual compiled \"net\" command. Problem is, that size of this file is over 8MB and some box "
-"have not enought memory for it"
-msgstr ""
-"- должен быть установлен бинарный файл \"net\" команды. Это может быть проблемой, потому что этот файл имеет размер "
-"8 МБ и может не хватить памяти для этого."
-
+#: ../xpowerhlp.py:115
 msgid "- set Telnet in Services to Automatic and run it"
 msgstr "- установите Telnet Services на авто и запустите его"
 
+#: ../xpowerhlp.py:112
 msgid "- set Telnet server service to Automatic and run it"
 msgstr "- установите Telnet server service на авто и запустите его"
 
+#: ../xpowerhlp.py:116
 msgid "- there in Firewall add tcp port 23 for telnet"
 msgstr "- в брандмауэре добавить tcp-порт 23 для Telnet"
 
+#: ../xpowerhlp.py:119
 msgid "- this way knows Shutdown, Reboot and Abort only!"
 msgstr "- таким образом доступно выключение, перезагрузка и отмена только!"
 
+#: ../xpoweredit.py:224
 msgid ""
 "A PC entry with this name already exists!\n"
 "Update existing entry and continue?"
@@ -56,30 +60,57 @@ msgstr ""
 "ПК с таким именем уже существует!\n"
 "Обновить текущие настройки записи и продолжить?"
 
+#: ../xpowerhlp.py:99 ../xpowerhlp.py:132 ../ui.py:144 ../ui.py:171
 msgid "Abort shutdown / reboot"
 msgstr "Отмена выключения / перезагрузки"
 
+#: ../ui.py:121
 msgid "Add/Edit"
 msgstr "Доб./Редак."
 
+#: ../ui.py:134 ../ui.py:139
 msgid "Add/Edit item"
 msgstr "Доб./Удал."
 
+#: ../xpowerhlp.py:54
+msgid "All"
+msgstr ""
+
+#: ../xpoweredit.py:226
 msgid "Are you sure you want to add this PC?\n"
 msgstr "Вы действительно хотите добавить этот ПК?\n"
 
+#: ../ui.py:191
+#, python-format
+msgid "BouqDn: %s"
+msgstr ""
+
+#: ../xpoweredit.py:75
+msgid "BouqDown"
+msgstr ""
+
+#: ../ui.py:255
+#, python-format
 msgid "BouqUp for %s, BouqDn for %s"
 msgstr "Б+ для %s, Б- для %s"
 
-msgid "BouqUp for WakeUp"
-msgstr "Б+ для разбудить"
+#: ../xpoweredit.py:84
+msgid "Cancel"
+msgstr ""
 
+#: ../xpowerhlp.py:53 ../ui.py:120
+msgid "Close"
+msgstr ""
+
+#: ../ui.py:133 ../ui.py:138
 msgid "Close plugin"
 msgstr "Закрыть"
 
+#: ../xpoweredit.py:76
 msgid "Closing plugin"
 msgstr "Закрывать плагин"
 
+#: ../ui.py:279
 msgid ""
 "Command \"net\" is not installed\n"
 "option \"XP NET RPC\" does not work..."
@@ -87,156 +118,262 @@ msgstr ""
 "Бинарный файл \"net\" не установлен\n"
 "служба \"XP NET RPC\" не работает..."
 
+#: ../ui.py:547
+#, python-format
 msgid "Connection failed... %s"
 msgstr "Ошибка подключения... %s"
 
-msgid "Connection finished... %s"
-msgstr "Подключение завершено... %s"
-
+#: ../ui.py:122
 msgid "Delete"
 msgstr "Удалить"
 
+#: ../ui.py:135
 msgid "Delete selected item"
 msgstr "Удалить выбранную запись"
 
+#: ../ui.py:393
+#, python-format
 msgid "Do You want remove PC: %s?"
 msgstr "Вы действительно хотите удалить ПК: %s?"
 
+#: ../xpowerhlp.py:102
 msgid "Do not forget, that Suspend and Hibernate are hardware, BIOS and drivers dependents."
 msgstr "Обратите внимание, что режим сна и гибернация зависит от аппаратного обеспечения, BIOS и драйверов."
 
+#: ../xpowerhlp.py:94
 msgid "Dont forget, that not all mode must be supported by Your hardware!"
 msgstr "Помните, что не каждый режим поддерживается Вашим оборудованием!"
 
-msgid ""
-"Each operation system using its own comunication and own power managenent. There in settings of each PC item must "
-"be set true value."
+#: ../xpowerhlp.py:91
+msgid "Each operation system using its own comunication and own power managenent. There in settings of each PC item must be set true value."
+msgstr "Каждая операционная система использует свои настройки связи и управления питанием.Вы должны установить для каждого ПК правильное значение."
+
+#: ../ui.py:148
+msgid "Enable/disable moving item"
 msgstr ""
-"Каждая операционная система использует свои настройки связи и управления питанием.Вы должны установить для каждого "
-"ПК правильное значение."
 
-msgid "Finished... %s"
-msgstr "Завершено... %s"
-
+#: ../xpoweredit.py:87
 msgid "Get MAC"
 msgstr "Взять MAC"
 
+#: ../ui.py:123 ../ui.py:136
 msgid "Help"
 msgstr "Помощь"
 
+#: ../xpowerhlp.py:101 ../xpowerhlp.py:130 ../ui.py:147 ../ui.py:170
+#: ../ui.py:254
 msgid "Hibernate"
 msgstr "Hibernate (гибернация)"
 
+#: ../xpowerhlp.py:56 ../xpowerhlp.py:124
 msgid "Hotkeys"
 msgstr "Горячие кнопки"
 
+#: ../xpoweredit.py:26
+#, fuzzy
+msgid "Hybernate"
+msgstr "Hibernate (гибернация)"
+
+#: ../xpoweredit.py:70
 msgid "IP"
 msgstr "АЙПИ"
 
+#: ../ui.py:162
 msgid "IP:"
 msgstr "АЙПИ:"
 
+#: ../xpowerhlp.py:93
 msgid "If are on PC installed more OS, then create more PC's items. Priority key is name of PC."
 msgstr "Если ПК имеет более одной установленной ОС, надо создать несколько записей ПК. Ключевым является название ПК."
 
+#: ../ui.py:199
+msgid "It has not sense change order if is set list sorting..."
+msgstr ""
+
+#: ../xpoweredit.py:23 ../xpowerhlp.py:107
+msgid "Linux"
+msgstr ""
+
+#: ../xpoweredit.py:67
 msgid "MAC"
 msgstr "MAC"
 
+#: ../ui.py:163
 msgid "MAC:"
 msgstr "MAC:"
 
+#: ../ui.py:470
+#, python-format
 msgid "Magic packet has been send to PC %s"
 msgstr "Magic packet был отправлен ПК %s"
 
+#: ../ui.py:153
+msgid "Move item down"
+msgstr ""
+
+#: ../ui.py:152
+msgid "Move item up"
+msgstr ""
+
+#: ../xpoweredit.py:69
 msgid "Name"
 msgstr "Название"
 
+#: ../ui.py:287
+#, python-format
 msgid "No response from %s."
 msgstr "Нет ответа от %s."
 
+#: ../xpowerhlp.py:120
 msgid ""
 "Note:\n"
 " telnet is easy way, but it is not safe protocol! Disable telnet port 23 on Your router, if it is possible!"
 msgstr ""
 "Примечание:\n"
-" Telnet это самый простой способ  для XPower, но это не безопасный протокол! Если это возможно, отключите телнет "
-"порт 23 Вашего роутера!"
+" Telnet это самый простой способ  для XPower, но это не безопасный протокол! Если это возможно, отключите телнет порт 23 Вашего роутера!"
 
+#: ../xpoweredit.py:85
+msgid "Ok"
+msgstr ""
+
+#: ../xpoweredit.py:20 ../xpowerut.py:21
 msgid "PC"
 msgstr "ПК"
 
+#: ../ui.py:401
 msgid "PC has been removed..."
 msgstr "ПК был удален..."
 
+#: ../xpoweredit.py:74
 msgid "Password"
 msgstr "Пароль"
 
-msgid "Please wait while updating your PC..."
-msgstr "Пожалуйста, дождитесь завершения обновления Вашего ПК..."
-
+#: ../ui.py:313
+#, python-format
 msgid "Please wait, \"%s\" is sended to computer %s"
 msgstr "Пожалуйста,подождите. Команда \"%s\" отправлена компьютеру %s"
 
+#: ../plugin.py:14
 msgid "Power management for Win/Linux PC's"
 msgstr "Управление питанием для ПК Windows/Linux"
 
+#: ../xpowerhlp.py:99 ../xpowerhlp.py:131 ../ui.py:145 ../ui.py:169
 msgid "Reboot"
 msgstr "Перезагрузка"
 
+#: ../xpowerhlp.py:133
 msgid "Select action"
 msgstr "Выбрать действие"
 
+#: ../ui.py:140
 msgid "Select power management"
 msgstr "Выберите управление питанием"
 
+#: ../xpowerhlp.py:55 ../xpowerhlp.py:106
 msgid "Setup"
 msgstr "Настройки"
 
+#: ../xpoweredit.py:26 ../xpowerhlp.py:99 ../xpowerhlp.py:129 ../ui.py:142
+#: ../ui.py:168 ../ui.py:245
 msgid "Shutdown"
 msgstr "Выключение"
 
+#: ../xpoweredit.py:77
+msgid "Sort list"
+msgstr ""
+
+#: ../xpoweredit.py:26 ../xpowerhlp.py:101 ../xpowerhlp.py:128 ../ui.py:146
+#: ../ui.py:167 ../ui.py:252
 msgid "Suspend"
 msgstr "Suspend (режим сна)"
 
+#: ../xpoweredit.py:72
+msgid "System"
+msgstr ""
+
+#: ../ui.py:468
+msgid "The network interface is not configured!"
+msgstr "Сетевой интерфейс не настроен!"
+
+#: ../xpoweredit.py:73
 msgid "User"
 msgstr "Пользователь"
 
+#: ../xpowerhlp.py:126 ../ui.py:129
 msgid "User defined..."
 msgstr "Пользовательский вариант..."
 
+#: ../xpowerhlp.py:75
 msgid "Version"
 msgstr "Версия"
 
+#: ../xpowerhlp.py:97 ../xpowerhlp.py:125 ../xpowerhlp.py:127 ../ui.py:143
+#: ../ui.py:166 ../ui.py:255
 msgid "WakeUp"
 msgstr "Разбудить"
 
-msgid ""
-"Welcome in plugin XPower for remote power management PC's. This plugin knows sending Magic Packet and control power "
-"status of PC."
-msgstr ""
-"Добро пожаловать в плагин удаленного управления питанием XPower. Этот плагин может посылать Magic Packet и "
-"управлять питанием PC."
+#: ../xpowerhlp.py:89
+msgid "Welcome in plugin XPower for remote power management PC's. This plugin knows sending Magic Packet and control power status of PC."
+msgstr "Добро пожаловать в плагин удаленного управления питанием XPower. Этот плагин может посылать Magic Packet и управлять питанием PC."
 
+#: ../xpoweredit.py:23
+msgid "Win7"
+msgstr ""
+
+#: ../xpoweredit.py:23
+msgid "Win8"
+msgstr ""
+
+#: ../xpowerhlp.py:110
+msgid "Windows 7/8"
+msgstr ""
+
+#: ../xpowerhlp.py:114
+msgid "Windows XP"
+msgstr ""
+
+#: ../xpowerhlp.py:117
+msgid "Windows XP via net rpc"
+msgstr ""
+
+#: ../xpoweredit.py:23
+msgid "XP"
+msgstr ""
+
+#: ../xpoweredit.py:23
+msgid "XP NET RPC"
+msgstr ""
+
+#: ../ui.py:115 ../ui.py:229
+#, fuzzy
+msgid "XPower"
+msgstr "XPower помощь"
+
+#: ../xpowerhlp.py:74
 msgid "XPower Help"
 msgstr "XPower помощь"
 
-msgid "XPower PC configuration"
-msgstr "XPower - конфигурация ПК"
-
+#: ../xpoweredit.py:129
 msgid "XPower PC configuration:"
 msgstr "XPower - конфигурация ПК:"
 
+#: ../xpowerhlp.py:95
 msgid "XPower plugin knows:"
 msgstr "XPower может:"
 
+#: ../xpoweredit.py:106
+#, fuzzy, python-format
+msgid "XPower: %s"
+msgstr "XPower помощь"
+
+#: ../xpoweredit.py:238
 msgid "Your PC has been updated..."
 msgstr "Ваш ПК был обновлен..."
 
+#: ../xpoweredit.py:261
 msgid "Your new PC has been added."
 msgstr "Ваш новый ПК был добавлен."
 
+#: ../xpoweredit.py:103
 msgid "get MAC of running PC"
 msgstr "получить MAC с работающего ПК"
-
-msgid "wakeup PC"
-msgstr "разбудить ПК"

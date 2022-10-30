@@ -2,90 +2,58 @@ msgid ""
 msgstr ""
 "Project-Id-Version: XPower\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-02 22:44+0200\n"
+"POT-Creation-Date: 2022-10-30 09:25+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: ims <ims21@users.sourceforge.net>\n"
+"Last-Translator: IMS <ims@openpli.org>\n"
 "Language-Team: ims <ims21@users.sourceforge.net>\n"
 "Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 3.2.1\n"
 
-msgid "PC"
-msgstr "PC"
+#: ../ui.py:232
+msgid " - select action:"
+msgstr " - zvolte akci:"
 
-msgid "XP"
-msgstr ""
+#: ../xpowerhlp.py:111
+msgid "- enable the Telnet Server"
+msgstr "- povolit Telnet Server"
 
-msgid "Win7"
-msgstr ""
+#: ../xpowerhlp.py:113
+msgid "- for Win8 enable ping (Firewall-Adwanced settings-Inbound Rules ... File and Printer Sharing (Echo Request - ICMPv4/6-In) to Yes"
+msgstr "- pro Win8 povolte ping (Firewall-Upřesnit nastavení-Příchozí pravidla... Sdílení souborů a tiskáren (Požadavek na odezvu - ICMPv4/6-In) na Ano"
 
-msgid "Win8"
-msgstr ""
+#: ../xpowerhlp.py:109
+msgid "- install pm-utils with:"
+msgstr "- nainstalovat pm-utils:"
 
-msgid "Linux"
-msgstr ""
+#: ../xpowerhlp.py:108
+msgid "- install telnetd with:"
+msgstr "- nainstalovat telnetd:"
 
-msgid "XP NET RPC"
-msgstr ""
+#: ../xpowerhlp.py:118
+msgid "- must be installed actual compiled \"net\" command. Problem is, that size of this file is over 8MB and some box have not enought memory for it"
+msgstr "- musí být instalován aktuálně zkompilovaný příkaz \"net\". Může nastat problém, protože tento soubor má velikost 8MB a některé boxy nemají dostatek paměti."
 
-msgid "Shutdown"
-msgstr "Vypnout"
+#: ../xpowerhlp.py:115
+msgid "- set Telnet in Services to Automatic and run it"
+msgstr "- nastavit Telnet ve službách na Automaticky a spustit"
 
-msgid "Suspend"
-msgstr "Uspat"
+#: ../xpowerhlp.py:112
+msgid "- set Telnet server service to Automatic and run it"
+msgstr "- nastavit Telnet službu na Automaticky a spustit"
 
-msgid "Hybernate"
-msgstr "Hibernovat"
+#: ../xpowerhlp.py:116
+msgid "- there in Firewall add tcp port 23 for telnet"
+msgstr "- ve Firewallu přidat tcp port 23 pro telnet"
 
-msgid "MAC"
-msgstr "MAC"
-
-msgid "Name"
-msgstr "Název"
-
-msgid "IP"
-msgstr "IP"
-
-msgid "System"
-msgstr "Systém"
-
-msgid "User"
-msgstr "Uživatel"
-
-msgid "Password"
-msgstr "Heslo"
-
-msgid "BouqDown"
-msgstr ""
-
-msgid "Closing plugin"
-msgstr "Zavírat plugin"
-
-msgid "Sort list"
-msgstr "Třídit seznam"
-
-msgid "Cancel"
-msgstr "Zrušit"
-
-msgid "Ok"
-msgstr ""
-
-msgid "Get MAC"
-msgstr "Získat MAC"
-
-msgid "get MAC of running PC"
-msgstr "získat MAC běžícího PC"
-
-#, python-format
-msgid "XPower: %s"
-msgstr ""
-
-msgid "XPower PC configuration:"
-msgstr "XPower - konfigurace PC:"
+#: ../xpowerhlp.py:119
+msgid "- this way knows Shutdown, Reboot and Abort only!"
+msgstr "- touto cestou je možné provést pouze Shutdown, Reboot a Abort!"
 
 #
+#: ../xpoweredit.py:224
 msgid ""
 "A PC entry with this name already exists!\n"
 "Update existing entry and continue?"
@@ -93,89 +61,57 @@ msgstr ""
 "PC s tímto názvem již existuje!\n"
 "Aktualizovat existující položku a pokračovat?"
 
-msgid "Are you sure you want to add this PC?\n"
-msgstr "Opravdu chcete přidat toto PC?\n"
-
-msgid "Your PC has been updated..."
-msgstr "PC bylo aktualizováno..."
-
-msgid "Your new PC has been added."
-msgstr "Nové PC bylo přidáno."
-
-msgid "Power management for Win/Linux PC's"
-msgstr "Správa napájení pro Win/Linux PC"
-
-msgid "XPower"
-msgstr ""
-
-msgid "Close"
-msgstr "Zavřít"
-
-msgid "Add/Edit"
-msgstr "Přidat/Upravit"
-
-msgid "Delete"
-msgstr "Odstranit"
-
-msgid "Help"
-msgstr "Nápověda"
-
-msgid "User defined..."
-msgstr "Definováno uživatelem..."
-
-msgid "Close plugin"
-msgstr "Zavřít"
-
-msgid "Add/Edit item"
-msgstr "Přidat / upravit položku"
-
-msgid "Delete selected item"
-msgstr "Odstranit vybranou položku"
-
-msgid "Select power management"
-msgstr "Vyběr správy napájení"
-
-msgid "WakeUp"
-msgstr "Probudit"
-
+#: ../xpowerhlp.py:99 ../xpowerhlp.py:132 ../ui.py:144 ../ui.py:171
 msgid "Abort shutdown / reboot"
 msgstr "Zrušit vypnutí / restart"
 
-msgid "Reboot"
-msgstr "Restart"
+#: ../ui.py:121
+msgid "Add/Edit"
+msgstr "Přidat/Upravit"
 
-msgid "Hibernate"
-msgstr "Hibernovat"
+#: ../ui.py:134 ../ui.py:139
+msgid "Add/Edit item"
+msgstr "Přidat / upravit položku"
 
-msgid "Enable/disable moving item"
-msgstr "Povolit/zakázat přesun položky"
+#: ../xpowerhlp.py:54
+msgid "All"
+msgstr "Vše"
 
-msgid "Move item up"
-msgstr "Přesun položky nahoru"
+#: ../xpoweredit.py:226
+msgid "Are you sure you want to add this PC?\n"
+msgstr "Opravdu chcete přidat toto PC?\n"
 
-msgid "Move item down"
-msgstr "Přesun položky dolů"
-
-msgid "IP:"
-msgstr "IP:"
-
-msgid "MAC:"
-msgstr "MAC:"
-
+#: ../ui.py:191
 #, python-format
 msgid "BouqDn: %s"
 msgstr ""
 
-msgid "It has not sense change order if is set list sorting..."
-msgstr "Nemá smysl měnit pořadí, jestliže je zapnuté třídění seznamu..."
+#: ../xpoweredit.py:75
+msgid "BouqDown"
+msgstr ""
 
-msgid " - select action:"
-msgstr " - zvolte akci:"
-
+#: ../ui.py:255
 #, python-format
 msgid "BouqUp for %s, BouqDn for %s"
 msgstr "BouqUp - %s, BouqDn - %s"
 
+#: ../xpoweredit.py:84
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: ../xpowerhlp.py:53 ../ui.py:120
+msgid "Close"
+msgstr "Zavřít"
+
+#: ../ui.py:133 ../ui.py:138
+msgid "Close plugin"
+msgstr "Zavřít"
+
+#: ../xpoweredit.py:76
+msgid "Closing plugin"
+msgstr "Zavírat plugin"
+
+#: ../ui.py:279
 msgid ""
 "Command \"net\" is not installed\n"
 "option \"XP NET RPC\" does not work..."
@@ -183,148 +119,260 @@ msgstr ""
 "Příkaz \"net\" není nainstalován\n"
 "volba \"XP NET RPC\" nepracuje..."
 
-#, python-format
-msgid "No response from %s."
-msgstr "Žádná odpověď od %s."
-
-#, python-format
-msgid "Please wait, \"%s\" is sended to computer %s"
-msgstr "Čekejte, prosím. Příkaz \"%s\" je odesílán do %s"
-
-#, python-format
-msgid "Do You want remove PC: %s?"
-msgstr "Chcete odstranit PC: %s?"
-
-msgid "PC has been removed..."
-msgstr "PC bylo odstraněno..."
-
-msgid "The network interface is not configured!"
-msgstr "Síťový adaptér není nakonfigurován!"
-
-#, python-format
-msgid "Magic packet has been send to PC %s"
-msgstr "Magic packet byl odeslán do PC %s"
-
+#: ../ui.py:547
 #, python-format
 msgid "Connection failed... %s"
 msgstr "Spojení selhalo... %s"
 
-msgid "All"
-msgstr "Vše"
+#: ../ui.py:122
+msgid "Delete"
+msgstr "Odstranit"
 
-msgid "Setup"
-msgstr "Nastavení"
+#: ../ui.py:135
+msgid "Delete selected item"
+msgstr "Odstranit vybranou položku"
 
-msgid "Hotkeys"
-msgstr "Hotkeys"
+#: ../ui.py:393
+#, python-format
+msgid "Do You want remove PC: %s?"
+msgstr "Chcete odstranit PC: %s?"
 
-msgid "XPower Help"
-msgstr "XPower nápověda"
+#: ../xpowerhlp.py:102
+msgid "Do not forget, that Suspend and Hibernate are hardware, BIOS and drivers dependents."
+msgstr "Nezapomeňte, že Uspat a Hibernovat závisí na hardware, BIOSu a ovladačích."
 
-msgid "Version"
-msgstr "Verze"
-
-msgid ""
-"Welcome in plugin XPower for remote power management PC's. This plugin knows "
-"sending Magic Packet and control power status of PC."
-msgstr ""
-"Vítejte v pluginu XPower pro ovládání napájení vzdálených PC. Tento plugin "
-"umí posílat Magic Packet a řídit stav napájení PC."
-
-msgid ""
-"Each operation system using its own comunication and own power managenent. "
-"There in settings of each PC item must be set true value."
-msgstr ""
-"Každý operační systém užívá vlastní komunikaci a vlastní správu napájení, "
-"proto musí být nastavena pro každé PC správná hodnota."
-
-msgid ""
-"If are on PC installed more OS, then create more PC's items. Priority key is "
-"name of PC."
-msgstr ""
-"Jestliže je na PC instalováno více OS, pak založte PC vícekrát, pokaždé s "
-"jiným jménem. "
-
+#: ../xpowerhlp.py:94
 msgid "Dont forget, that not all mode must be supported by Your hardware!"
 msgstr "Nezapomeňte, že ne každý mód musí Vaše hardware podporovat!"
 
-msgid "XPower plugin knows:"
-msgstr "XPower umí:"
+#: ../xpowerhlp.py:91
+msgid "Each operation system using its own comunication and own power managenent. There in settings of each PC item must be set true value."
+msgstr "Každý operační systém užívá vlastní komunikaci a vlastní správu napájení, proto musí být nastavena pro každé PC správná hodnota."
 
-msgid ""
-"Do not forget, that Suspend and Hibernate are hardware, BIOS and drivers "
-"dependents."
+#: ../ui.py:148
+msgid "Enable/disable moving item"
+msgstr "Povolit/zakázat přesun položky"
+
+#: ../xpoweredit.py:87
+msgid "Get MAC"
+msgstr "Získat MAC"
+
+#: ../ui.py:123 ../ui.py:136
+msgid "Help"
+msgstr "Nápověda"
+
+#: ../xpowerhlp.py:101 ../xpowerhlp.py:130 ../ui.py:147 ../ui.py:170
+#: ../ui.py:254
+msgid "Hibernate"
+msgstr "Hibernovat"
+
+#: ../xpowerhlp.py:56 ../xpowerhlp.py:124
+msgid "Hotkeys"
+msgstr "Hotkeys"
+
+#: ../xpoweredit.py:26
+msgid "Hybernate"
+msgstr "Hibernovat"
+
+#: ../xpoweredit.py:70
+msgid "IP"
+msgstr "IP"
+
+#: ../ui.py:162
+msgid "IP:"
+msgstr "IP:"
+
+#: ../xpowerhlp.py:93
+msgid "If are on PC installed more OS, then create more PC's items. Priority key is name of PC."
+msgstr "Jestliže je na PC instalováno více OS, pak založte PC vícekrát, pokaždé s jiným jménem. "
+
+#: ../ui.py:199
+msgid "It has not sense change order if is set list sorting..."
+msgstr "Nemá smysl měnit pořadí, jestliže je zapnuté třídění seznamu..."
+
+#: ../xpoweredit.py:23 ../xpowerhlp.py:107
+msgid "Linux"
 msgstr ""
-"Nezapomeňte, že Uspat a Hibernovat závisí na hardware, BIOSu a ovladačích."
 
-msgid "- install telnetd with:"
-msgstr "- nainstalovat telnetd:"
+#: ../xpoweredit.py:67
+msgid "MAC"
+msgstr "MAC"
 
-msgid "Windows 7/8"
-msgstr ""
+#: ../ui.py:163
+msgid "MAC:"
+msgstr "MAC:"
 
-msgid "- enable the Telnet Server"
-msgstr "- povolit Telnet Server"
+#: ../ui.py:470
+#, python-format
+msgid "Magic packet has been send to PC %s"
+msgstr "Magic packet byl odeslán do PC %s"
 
-msgid "- set Telnet server service to Automatic and run it"
-msgstr "- nastavit Telnet službu na Automaticky a spustit"
+#: ../ui.py:153
+msgid "Move item down"
+msgstr "Přesun položky dolů"
 
-msgid ""
-"- for Win8 enable ping (Firewall-Adwanced settings-Inbound Rules ... File "
-"and Printer Sharing (Echo Request - ICMPv4/6-In) to Yes"
-msgstr ""
-"- pro Win8 povolte ping (Firewall-Upřesnit nastavení-Příchozí pravidla... "
-"Sdílení souborů a tiskáren (Požadavek na odezvu - ICMPv4/6-In) na Ano"
+#: ../ui.py:152
+msgid "Move item up"
+msgstr "Přesun položky nahoru"
 
-msgid "Windows XP"
-msgstr ""
+#: ../xpoweredit.py:69
+msgid "Name"
+msgstr "Název"
 
-msgid "- set Telnet in Services to Automatic and run it"
-msgstr "- nastavit Telnet ve službách na Automaticky a spustit"
+#: ../ui.py:287
+#, python-format
+msgid "No response from %s."
+msgstr "Žádná odpověď od %s."
 
-msgid "- there in Firewall add tcp port 23 for telnet"
-msgstr "- ve Firewallu přidat tcp port 23 pro telnet"
-
-msgid "Windows XP via net rpc"
-msgstr ""
-
-msgid ""
-"- must be installed actual compiled \"net\" command. Problem is, that size "
-"of this file is over 8MB and some box have not enought memory for it"
-msgstr ""
-"- musí být instalován aktuálně zkompilovaný příkaz \"net\". Může nastat "
-"problém, protože tento soubor má velikost 8MB a některé boxy nemají dostatek "
-"paměti. "
-
-msgid "- this way knows Shutdown, Reboot and Abort only!"
-msgstr "- touto cestou je možné provést pouze Shutdown, Reboot a Abort!"
-
+#: ../xpowerhlp.py:120
 msgid ""
 "Note:\n"
-" telnet is easy way, but it is not safe protocol! Disable telnet port 23 on "
-"Your router, if it is possible!"
+" telnet is easy way, but it is not safe protocol! Disable telnet port 23 on Your router, if it is possible!"
 msgstr ""
 "Poznámka:\n"
-" telnet je nejjednodušší cesta pro XPower, ale není to bezpečný protokol! "
-"Pokud je to možné, zakažte na routeru port 23!"
+" telnet je nejjednodušší cesta pro XPower, ale není to bezpečný protokol! Pokud je to možné, zakažte na routeru port 23!"
 
+#: ../xpoweredit.py:85
+msgid "Ok"
+msgstr ""
+
+#: ../xpoweredit.py:20 ../xpowerut.py:21
+msgid "PC"
+msgstr "PC"
+
+#: ../ui.py:401
+msgid "PC has been removed..."
+msgstr "PC bylo odstraněno..."
+
+#: ../xpoweredit.py:74
+msgid "Password"
+msgstr "Heslo"
+
+#: ../ui.py:313
+#, python-format
+msgid "Please wait, \"%s\" is sended to computer %s"
+msgstr "Čekejte, prosím. Příkaz \"%s\" je odesílán do %s"
+
+#: ../plugin.py:14
+msgid "Power management for Win/Linux PC's"
+msgstr "Správa napájení pro Win/Linux PC"
+
+#: ../xpowerhlp.py:99 ../xpowerhlp.py:131 ../ui.py:145 ../ui.py:169
+msgid "Reboot"
+msgstr "Restart"
+
+#: ../xpowerhlp.py:133
 msgid "Select action"
 msgstr "Zvolit akci"
 
-#~ msgid "Connection finished... %s"
-#~ msgstr "Spojení ukončeno... %s"
+#: ../ui.py:140
+msgid "Select power management"
+msgstr "Vyběr správy napájení"
 
-#~ msgid "Finished... %s"
-#~ msgstr "Dokončeno... %s"
+#: ../xpowerhlp.py:55 ../xpowerhlp.py:106
+msgid "Setup"
+msgstr "Nastavení"
 
-#~ msgid "BouqUp for WakeUp"
-#~ msgstr "BouqUp - probudit"
+#: ../xpoweredit.py:26 ../xpowerhlp.py:99 ../xpowerhlp.py:129 ../ui.py:142
+#: ../ui.py:168 ../ui.py:245
+msgid "Shutdown"
+msgstr "Vypnout"
 
-#~ msgid "XPower PC configuration"
-#~ msgstr "XPower - nastavení PC"
+#: ../xpoweredit.py:77
+msgid "Sort list"
+msgstr "Třídit seznam"
 
-#~ msgid "Please wait while updating your PC..."
-#~ msgstr "Čekejte na dokončení aktualizace PC..."
+#: ../xpoweredit.py:26 ../xpowerhlp.py:101 ../xpowerhlp.py:128 ../ui.py:146
+#: ../ui.py:167 ../ui.py:252
+msgid "Suspend"
+msgstr "Uspat"
 
-#~ msgid "wakeup PC"
-#~ msgstr "probudit PC"
+#: ../xpoweredit.py:72
+msgid "System"
+msgstr "Systém"
+
+#: ../ui.py:468
+msgid "The network interface is not configured!"
+msgstr "Síťový adaptér není nakonfigurován!"
+
+#: ../xpoweredit.py:73
+msgid "User"
+msgstr "Uživatel"
+
+#: ../xpowerhlp.py:126 ../ui.py:129
+msgid "User defined..."
+msgstr "Definováno uživatelem..."
+
+#: ../xpowerhlp.py:75
+msgid "Version"
+msgstr "Verze"
+
+#: ../xpowerhlp.py:97 ../xpowerhlp.py:125 ../xpowerhlp.py:127 ../ui.py:143
+#: ../ui.py:166 ../ui.py:255
+msgid "WakeUp"
+msgstr "Probudit"
+
+#: ../xpowerhlp.py:89
+msgid "Welcome in plugin XPower for remote power management PC's. This plugin knows sending Magic Packet and control power status of PC."
+msgstr "Vítejte v pluginu XPower pro ovládání napájení vzdálených PC. Tento plugin umí posílat Magic Packet a řídit stav napájení PC."
+
+#: ../xpoweredit.py:23
+msgid "Win7"
+msgstr ""
+
+#: ../xpoweredit.py:23
+msgid "Win8"
+msgstr ""
+
+#: ../xpowerhlp.py:110
+msgid "Windows 7/8"
+msgstr ""
+
+#: ../xpowerhlp.py:114
+msgid "Windows XP"
+msgstr ""
+
+#: ../xpowerhlp.py:117
+msgid "Windows XP via net rpc"
+msgstr ""
+
+#: ../xpoweredit.py:23
+msgid "XP"
+msgstr ""
+
+#: ../xpoweredit.py:23
+msgid "XP NET RPC"
+msgstr ""
+
+#: ../ui.py:115 ../ui.py:229
+msgid "XPower"
+msgstr ""
+
+#: ../xpowerhlp.py:74
+msgid "XPower Help"
+msgstr "XPower nápověda"
+
+#: ../xpoweredit.py:129
+msgid "XPower PC configuration:"
+msgstr "XPower - konfigurace PC:"
+
+#: ../xpowerhlp.py:95
+msgid "XPower plugin knows:"
+msgstr "XPower umí:"
+
+#: ../xpoweredit.py:106
+#, python-format
+msgid "XPower: %s"
+msgstr ""
+
+#: ../xpoweredit.py:238
+msgid "Your PC has been updated..."
+msgstr "PC bylo aktualizováno..."
+
+#: ../xpoweredit.py:261
+msgid "Your new PC has been added."
+msgstr "Nové PC bylo přidáno."
+
+#: ../xpoweredit.py:103
+msgid "get MAC of running PC"
+msgstr "získat MAC běžícího PC"

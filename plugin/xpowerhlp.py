@@ -105,7 +105,8 @@ class xpowerHelp(Screen):
 	def installTxt(self):
 		text =  "\t" + _("Setup") + ":" + l1
 		text += _("Linux") + l2
-		text += _("- install telnetd with:") + "  " + ("sudo apt-get install telnetd") + l2
+		text += _("- install telnetd with:") + "  " + ("sudo apt-get install telnetd") + l1
+		text += _("- install pm-utils with:") + "  " + ("sudo apt-get install pm-utils") + l2
 		text += _("Windows 7/8") + l2
 		text += _("- enable the Telnet Server") + l1
 		text += _("- set Telnet server service to Automatic and run it") + l1
