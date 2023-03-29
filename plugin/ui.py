@@ -569,12 +569,12 @@ class xpower(Screen, HelpableScreen):
 					telnet.write((passwd + '\r\n').encode('utf-8'))
 					telnet.read_until(b'>', 5)
 					if pre != "":
-						telnet.write(b'%s\r\n' % (pre))
-					telnet.write(b'%s\r\n' % (command))
+						telnet.write(('%s\r\n' % pre).encode('utf-8'))
+					telnet.write(('%s\r\n' % (command)).encode('utf-8'))
 					telnet.read_until(b'\r\n', 5)
 					if post != "":
-						telnet.write(b'%s\r\n' % (post))
-					telnet.write(b'exit\r\n')
+						telnet.write(('%s\r\n' % (post)).encode('utf-8'))
+					telnet.write(('exit\r\n').encode('utf-8'))
 					telnet.read_until(b'', 1)
 				except EOFError as e:
 					"[xpower plugin] Error telnet:", e
